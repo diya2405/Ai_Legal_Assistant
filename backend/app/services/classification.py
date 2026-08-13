@@ -52,7 +52,7 @@ def classify_intake_text(text: str) -> Dict[str, Any]:
     # Keyword Rule Boost for High-Precision Legal Terms
     text_lower = text.lower()
     keyword_boosts = [
-        (["mrp", "supermarket", "cash memo", "overcharg", "printed price"], "consumer", "unfair_trade_practice"),
+        (["mrp", "supermarket", "cash memo", "overcharg", "printed price", "soap", "soap bar", "fake item", "wrong item", "substituted", "flipkart", "amazon", "fraud", "cheating", "empty box", "different item"], "consumer", "unfair_trade_practice"),
         (["defective", "warranty", "repair", "broken product", "washing machine"], "consumer", "defective_product"),
         (["deposit", "landlord", "flat", "rent", "vacating"], "tenant", "deposit_not_returned"),
         (["evict", "water connection", "electricity", "lock out"], "tenant", "illegal_eviction"),

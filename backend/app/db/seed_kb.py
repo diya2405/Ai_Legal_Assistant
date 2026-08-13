@@ -124,19 +124,22 @@ def seed_data():
         KBEntry(
             domain="consumer",
             issue_type="unfair_trade_practice",
-            law_code="N/A",
-            act_name="Consumer Protection Act, 2019",
-            section_number="Section 2(47)",
+            law_code="BNS / CPA",
+            act_name="Consumer Protection Act, 2019 & Bharatiya Nyaya Sanhita, 2023",
+            section_number="CPA Section 2(47) / BNS Section 318 (IPC Section 420)",
             section_text_plain=(
-                "Unfair trade practice includes false representation of goods/services, misleading advertisements, "
-                "charging prices above MRP, refusal to issue cash memo, or refusal to take back defective goods."
+                "Under Section 2(47) of Consumer Protection Act, 2019 and BNS Section 318 (IPC Section 420), "
+                "delivering a substituted, fake, or wrong product (such as receiving a soap bar instead of an ordered mobile phone), "
+                "false representation of goods, deceptive e-commerce practices, overcharging over MRP, or refusing refunds "
+                "constitutes illegal unfair trade practice and criminal cheating. E-commerce platforms and sellers are jointly liable."
             ),
             plain_summary_seed=(
-                "Sellers cannot cheat you with misleading advertisements, hidden fees, overcharging over MRP, or "
-                "refusing refunds contrary to consumer protection rules."
+                "Receiving a substituted or fake item (like a soap bar instead of an ordered mobile phone) is a serious offense "
+                "combining Unfair Trade Practice under Consumer Law and Criminal Cheating under BNS Section 318. The e-commerce seller "
+                "and platform are legally required to provide an immediate 100% full refund plus statutory compensation for fraud."
             ),
-            remedy_forum="District Consumer Disputes Redressal Commission / CCPA",
-            limitation_period="2 years from cause of action",
+            remedy_forum="District Consumer Commission (DCDRC) / Cyber Police",
+            limitation_period="2 years from date of delivery",
             notice_template_id="consumer_unfair_trade_notice",
             source_url="https://www.indiacode.nic.in/handle/123456789/15256",
             last_verified_date=date(2024, 1, 20)
