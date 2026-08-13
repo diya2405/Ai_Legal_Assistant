@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { 
   ShieldCheck, AlertCircle, Sparkles, Scale, FileText, Download, 
-  Send, Globe, CheckCircle2, ChevronRight, Edit3, UserCheck,
+  Send, CheckCircle2, ChevronRight, Edit3, UserCheck,
   Clock, MapPin, Copy, Check, RefreshCw, MessageSquare, ArrowLeft,
-  BookOpen, AlertTriangle, Layers, FileCheck, Landmark, Info, Search,
-  Award, Shield, FileSpreadsheet, ExternalLink
+  BookOpen, AlertTriangle, FileCheck, Landmark, Info, Award, Shield
 } from 'lucide-react';
 
 const MANDATORY_DISCLAIMER = "LegalAId is an automated AI legal research assistant designed for informational and educational purposes only under Indian jurisprudence. It does not constitute formal legal representation. Litigants are advised to consult a licensed advocate before initiating judicial proceedings.";
@@ -12,28 +11,23 @@ const MANDATORY_DISCLAIMER = "LegalAId is an automated AI legal research assista
 const SAMPLE_STARTERS = [
   {
     label: "Tenant Security Deposit",
-    text_en: "My landlord in Bangalore is refusing to return my security deposit of ₹45,000 after 2 months of vacating the flat.",
-    text_hi: "मकान मालिक मेरी 45,000 रुपये की सिक्योरिटी डिपॉजिट वापस नहीं कर रहा है।"
+    text: "My landlord in Bangalore is refusing to return my security deposit of ₹45,000 after 2 months of vacating the flat."
   },
   {
     label: "Supermarket MRP Overcharge",
-    text_en: "A local supermarket charged me ₹450 for a packaged food item that has a printed Maximum Retail Price (MRP) of ₹300, and refused to provide a cash memo receipt.",
-    text_hi: "सुपरमार्केट ने ₹300 एमआरपी वाले सामान के ₹450 वसूले और रसीद देने से मना कर दिया।"
+    text: "A local supermarket charged me ₹450 for a packaged food item that has a printed Maximum Retail Price (MRP) of ₹300, and refused to provide a cash memo receipt."
   },
   {
     label: "Defective Electronics Warranty",
-    text_en: "I bought a washing machine for ₹25,000 but it was broken on arrival. Seller is refusing refund or warranty repair.",
-    text_hi: "नया वाशिंग मशीन खरीदा पर वो खराब निकला, दुकानदार वापस नहीं ले रहा।"
+    text: "I bought a washing machine for ₹25,000 but it was broken on arrival. Seller is refusing refund or warranty repair."
   },
   {
     label: "Unpaid Salary Withheld",
-    text_en: "My company has withheld my monthly salary of ₹35,000 for 3 consecutive months without any written reason.",
-    text_hi: "कंपनी 3 महीने से मेरी सैलरी नहीं दे रही है और टाल-मटोल कर रही है।"
+    text: "My company has withheld my monthly salary of ₹35,000 for 3 consecutive months without any written reason."
   },
   {
     label: "Illegal Utility Disconnection",
-    text_en: "House owner cut off our electricity and water supply without notice to force us to leave the premises.",
-    text_hi: "मकान मालिक ने बिना नोटिस दिए पानी और बिजली का कनेक्शन काट दिया।"
+    text: "House owner cut off our electricity and water supply without notice to force us to leave the premises."
   }
 ];
 
@@ -74,7 +68,6 @@ function renderFormattedMessage(text) {
 }
 
 export default function App() {
-  const [lang, setLang] = useState('en'); // 'en' or 'hi'
   const [sessionId, setSessionId] = useState(null);
   
   // Intake state
@@ -141,7 +134,7 @@ export default function App() {
         body: JSON.stringify({
           session_id: sessionId,
           raw_text: inputText,
-          language: lang
+          language: 'en'
         })
       });
       const data = await res.json();
@@ -215,10 +208,10 @@ export default function App() {
           session_id: sessionId,
           kb_entry_id: kbEntry.id,
           tone: docTone,
-          user_name: userName || (lang === 'hi' ? 'प्रथम नागरिक' : 'First Citizen'),
-          user_address: userAddress || (lang === 'hi' ? 'निवासी स्थान' : 'Resident Address'),
-          opposing_name: opposingName || (lang === 'hi' ? 'विपक्षी पक्ष' : 'Opposing Party'),
-          opposing_address: opposingAddress || (lang === 'hi' ? 'विपक्षी पता' : 'Opposing Address')
+          user_name: userName || 'First Citizen',
+          user_address: userAddress || 'Resident Address',
+          opposing_name: opposingName || 'Opposing Party',
+          opposing_address: opposingAddress || 'Opposing Address'
         })
       });
       const data = await res.json();
@@ -277,7 +270,7 @@ export default function App() {
             <div>
               <div className="logo-title">LegalAId <span className="logo-badge">PRO</span></div>
               <div className="logo-subtitle">
-                {lang === 'hi' ? 'सत्यापित एआई कानूनी अधिकार और नोटिस प्लेटफॉर्म' : 'Verified AI Legal Rights & Statutory Notice Platform'}
+                Verified AI Legal Rights & Statutory Notice Platform
               </div>
             </div>
           </div>
@@ -291,14 +284,6 @@ export default function App() {
               <Award size={14} />
               Deterministic Bare Act KB
             </div>
-
-            <button 
-              className="lang-btn" 
-              onClick={() => setLang(l => l === 'en' ? 'hi' : 'en')}
-            >
-              <Globe size={16} />
-              {lang === 'en' ? 'हिंदी (Devanagari)' : 'English'}
-            </button>
           </div>
         </div>
       </header>
@@ -317,14 +302,10 @@ export default function App() {
                 Indian Jurisprudence • Consumer, Tenant & Employment Rights
               </div>
               <h1 className="hero-title">
-                {lang === 'hi' 
-                  ? 'अपनी कानूनी समस्या दर्ज करें — धाराएं एवं कानूनी नोटिस तुरंत प्राप्त करें' 
-                  : 'Verified Legal Rights & Statutory Notice Generator'}
+                Verified Legal Rights & Statutory Notice Generator
               </h1>
               <p className="hero-subtitle">
-                {lang === 'hi'
-                  ? 'भारत के कानूनों (BNS, उपभोक्ता संरक्षण अधिनियम, मॉडल टेनेंसी एक्ट) पर आधारित 100% सटीक कानूनी जानकारी।'
-                  : 'AI legal intake grounded in deterministic statutory knowledge bases. Eliminates hallucinated section numbers.'}
+                AI legal intake grounded in deterministic statutory knowledge bases. Eliminates hallucinated section numbers.
               </p>
             </div>
 
@@ -333,17 +314,17 @@ export default function App() {
               <div className="intake-header">
                 <h2 className="section-heading">
                   <Edit3 size={20} className="icon-accent-gold" />
-                  {lang === 'hi' ? 'मामले का विवरण दर्ज करें' : 'Describe Your Legal Issue'}
+                  Describe Your Legal Issue
                 </h2>
                 <span className="subtext-muted">
-                  {lang === 'hi' ? 'हिंदी या अंग्रेजी में लिखें' : 'Bilingual Natural Language Intake'}
+                  Natural Language Legal Intake
                 </span>
               </div>
 
               {/* Sample Prompts */}
               <div>
                 <div className="starter-label">
-                  {lang === 'hi' ? 'त्वरित उदाहरण चुनें:' : 'Select Sample Case Prompt:'}
+                  Select Sample Case Prompt:
                 </div>
                 <div className="prompt-starters">
                   {SAMPLE_STARTERS.map((starter, i) => (
@@ -351,7 +332,7 @@ export default function App() {
                       key={i}
                       type="button"
                       className="starter-chip"
-                      onClick={() => setInputText(lang === 'hi' ? starter.text_hi : starter.text_en)}
+                      onClick={() => setInputText(starter.text)}
                     >
                       <ChevronRight size={13} className="icon-accent-gold" />
                       {starter.label}
@@ -363,11 +344,7 @@ export default function App() {
               <form onSubmit={handleIntakeSubmit}>
                 <textarea
                   className="intake-textarea"
-                  placeholder={
-                    lang === 'hi'
-                      ? "उदाहरण: सुपरमार्केट ने ₹300 एमआरपी वाले सामान के ₹450 वसूले और रसीद देने से मना कर दिया..."
-                      : "Example: A local supermarket charged me ₹450 for a packaged food item with a printed MRP of ₹300 and refused cash memo receipt..."
-                  }
+                  placeholder="Example: A local supermarket charged me ₹450 for a packaged food item with a printed MRP of ₹300 and refused cash memo receipt..."
                   value={inputText}
                   onChange={e => setInputText(e.target.value)}
                 />
@@ -381,12 +358,12 @@ export default function App() {
                     {loading ? (
                       <>
                         <RefreshCw size={18} className="animate-spin" />
-                        {lang === 'hi' ? 'सत्यापन एवं विश्लेषण जारी है...' : 'Analyzing Case Facts & Searching Statutes...'}
+                        Analyzing Case Facts & Searching Statutes...
                       </>
                     ) : (
                       <>
                         <Sparkles size={18} />
-                        {lang === 'hi' ? 'कानूनी अधिकार खोजें' : 'Analyze Legal Rights & Generate Report'}
+                        Analyze Legal Rights & Generate Report
                       </>
                     )}
                   </button>
@@ -411,7 +388,7 @@ export default function App() {
               <div className="header-left">
                 <button className="btn-back" onClick={handleResetSearch}>
                   <ArrowLeft size={15} />
-                  {lang === 'hi' ? 'नया मामला' : 'New Legal Analysis'}
+                  New Legal Analysis
                 </button>
                 
                 <div className="case-title-meta">
@@ -495,7 +472,7 @@ export default function App() {
                 onClick={() => setActiveTab('rights')}
               >
                 <Sparkles size={17} />
-                {lang === 'hi' ? '1. कानूनी अधिकार एवं धाराएं' : '1. Legal Rights & Statutes'}
+                1. Legal Rights & Statutes
               </button>
 
               <button 
@@ -503,7 +480,7 @@ export default function App() {
                 onClick={() => setActiveTab('notice')}
               >
                 <FileText size={17} />
-                {lang === 'hi' ? '2. कानूनी नोटिस ड्राफ्ट (PDF)' : '2. Legal Notice Generator'}
+                2. Legal Notice Generator
               </button>
 
               <button 
@@ -511,7 +488,7 @@ export default function App() {
                 onClick={() => setActiveTab('chat')}
               >
                 <MessageSquare size={17} />
-                {lang === 'hi' ? '3. प्रश्नोत्तर चैट (RAG)' : '3. Statutory Q&A Assistant'}
+                3. Statutory Q&A Assistant
               </button>
 
               <button 
@@ -519,7 +496,7 @@ export default function App() {
                 onClick={() => setActiveTab('facts')}
               >
                 <UserCheck size={17} />
-                {lang === 'hi' ? '4. मुख्य तथ्य' : '4. Extracted Case Facts'}
+                4. Extracted Case Facts
               </button>
             </div>
 
@@ -532,7 +509,7 @@ export default function App() {
                   <div className="panel-header">
                     <div className="panel-title">
                       <Sparkles size={22} className="icon-accent-gold" />
-                      {lang === 'hi' ? 'आपके कानूनी अधिकार' : 'Verified Legal Rights Summary'}
+                      Verified Legal Rights Summary
                     </div>
                     <div className="header-actions">
                       <button 
@@ -572,7 +549,7 @@ export default function App() {
                   <div className="panel-header">
                     <div className="panel-title">
                       <Scale size={22} className="icon-accent-blue" />
-                      {lang === 'hi' ? 'कानूनी धाराएं एवं मंच विवरण' : 'Statute & Filing Details'}
+                      Statute & Filing Details
                     </div>
                     <span className="badge badge-code">
                       {kbEntry.law_code || 'Statutory Code'}
@@ -627,7 +604,7 @@ export default function App() {
                   <div className="panel-header">
                     <div className="panel-title">
                       <FileText size={22} className="icon-accent-purple" />
-                      {lang === 'hi' ? 'कानूनी नोटिस की जानकारी दर्ज करें' : 'Configure Statutory Legal Notice'}
+                      Configure Statutory Legal Notice
                     </div>
                     <span className="badge badge-purple">Ready to Print</span>
                   </div>
@@ -778,7 +755,7 @@ export default function App() {
                 <div className="panel-header">
                   <div className="panel-title">
                     <MessageSquare size={22} className="icon-accent-gold" />
-                    {lang === 'hi' ? 'कानूनी धारा Q&A चैट' : 'Grounded Statutory Q&A Assistant'}
+                    Grounded Statutory Q&A Assistant
                   </div>
                   <span className="badge badge-rag">
                     <Sparkles size={13} />
@@ -857,7 +834,7 @@ export default function App() {
                 <div className="panel-header">
                   <div className="panel-title">
                     <UserCheck size={22} className="icon-accent-emerald" />
-                    {lang === 'hi' ? 'मामले से निकाले गए मुख्य तथ्य' : 'NER Extracted Key Case Entities'}
+                    NER Extracted Key Case Entities
                   </div>
                   <span className="subtext-muted">Extracted automatically from your intake description</span>
                 </div>
