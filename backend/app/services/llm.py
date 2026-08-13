@@ -126,6 +126,17 @@ def call_gemini_api(prompt: str) -> str:
     return data["candidates"][0]["content"]["parts"][0]["text"].strip()
 
 
+def clean_llm_output(text: str) -> str:
+    if not text:
+        return ""
+    lines = text.splitlines()
+    clean_lines = [l for l in lines if not re.match(r'^(user\s+safety|safety\s+evaluation|safety\s+status|eval\s+result):', l.strip(), re.IGNORECASE)]
+    cleaned = "\n".join(clean_lines).strip()
+    if cleaned.lower() in ["safe", "user safety: safe", "user safety safe", ""] or len(cleaned) < 15:
+        return ""
+    return cleaned
+
+
 def generate_plain_explanation(kb_entry: Any, facts: List[Dict[str, Any]]) -> Dict[str, Any]:
     """
     Generates a plain-language rights explanation using LLMs strictly seeded with kb_entry.plain_summary_seed.
@@ -149,36 +160,36 @@ def generate_plain_explanation(kb_entry: Any, facts: List[Dict[str, Any]]) -> Di
 
     # 1. Try OpenRouter
     try:
-        raw_output = call_openrouter_api(prompt)
-        if verify_citation_guard(raw_output, kb_entry.section_number, kb_entry.act_name):
+        raw_output = clean_llm_output(call_openrouter_api(prompt))
+        if raw_output and verify_citation_guard(raw_output, kb_entry.section_number, kb_entry.act_name):
             explanation = raw_output
             provider_used = "openrouter_free"
         else:
-            print("[LLM GUARD] OpenRouter response failed citation check. Retrying with Groq...")
+            print("[LLM GUARD] OpenRouter response invalid or failed citation check. Retrying with Groq...")
     except Exception as e:
         print(f"[LLM] OpenRouter API failed: {e}")
 
     # 2. Try Groq
     if not explanation:
         try:
-            raw_output = call_groq_api(prompt)
-            if verify_citation_guard(raw_output, kb_entry.section_number, kb_entry.act_name):
+            raw_output = clean_llm_output(call_groq_api(prompt))
+            if raw_output and verify_citation_guard(raw_output, kb_entry.section_number, kb_entry.act_name):
                 explanation = raw_output
                 provider_used = "groq"
             else:
-                print("[LLM GUARD] Groq response failed citation check. Retrying with Gemini...")
+                print("[LLM GUARD] Groq response invalid or failed citation check. Retrying with Gemini...")
         except Exception as e:
             print(f"[LLM] Groq API unavailable: {e}")
 
     # 3. Try Gemini
     if not explanation:
         try:
-            raw_output = call_gemini_api(prompt)
-            if verify_citation_guard(raw_output, kb_entry.section_number, kb_entry.act_name):
+            raw_output = clean_llm_output(call_gemini_api(prompt))
+            if raw_output and verify_citation_guard(raw_output, kb_entry.section_number, kb_entry.act_name):
                 explanation = raw_output
                 provider_used = "gemini"
             else:
-                print("[LLM GUARD] Gemini response failed citation check.")
+                print("[LLM GUARD] Gemini response invalid or failed citation check.")
         except Exception as e:
             print(f"[LLM] Gemini API unavailable: {e}")
 

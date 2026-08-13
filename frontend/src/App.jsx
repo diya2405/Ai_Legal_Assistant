@@ -586,7 +586,6 @@ export default function App() {
 
                   <div className="panel-footer-meta">
                     <span>Knowledge Base Source: Bare Act Verification</span>
-                    <span>Provider: <strong className="text-emerald">{explanationData?.provider_used || 'KB Seed'}</strong></span>
                   </div>
                 </div>
 
