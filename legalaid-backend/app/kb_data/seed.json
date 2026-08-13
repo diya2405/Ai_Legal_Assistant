@@ -1,0 +1,93 @@
+[
+  {
+    "domain": "consumer",
+    "issue_type": "defective_goods",
+    "act_name": "Consumer Protection Act, 2019",
+    "section_number": "Section 2(10)",
+    "section_text_plain": "Defines a 'defect' as any fault, imperfection, or shortcoming in the quality, quantity, potency, purity, or standard which is required to be maintained by or under any law for the time being in force or under any contract, express or implied.",
+    "remedy_forum": "District Consumer Disputes Redressal Commission",
+    "limitation_period": "2 years from the date on which the cause of action arises.",
+    "notice_template_id": "tpl_consumer_defect",
+    "law_code": "N/A",
+    "source_url": "https://www.indiacode.nic.in/handle/123456789/15256",
+    "last_verified_date": "2024-05-10"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_in_service",
+    "act_name": "Consumer Protection Act, 2019",
+    "section_number": "Section 2(11)",
+    "section_text_plain": "Defines 'deficiency' as any fault, imperfection, shortcoming or inadequacy in the quality, nature and manner of performance which is required to be maintained by or under any law or undertaken to be performed by a person in pursuance of a contract.",
+    "remedy_forum": "District Consumer Disputes Redressal Commission",
+    "limitation_period": "2 years from the date on which the cause of action arises.",
+    "notice_template_id": "tpl_consumer_deficiency",
+    "law_code": "N/A",
+    "source_url": "https://www.indiacode.nic.in/handle/123456789/15256",
+    "last_verified_date": "2024-05-10"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "eviction_without_notice",
+    "act_name": "Transfer of Property Act, 1882",
+    "section_number": "Section 106",
+    "section_text_plain": "Provides that in the absence of a written contract or local usage to the contrary, a lease of immovable property for agricultural or manufacturing purposes shall be deemed to be a lease from year to year, terminable, on the part of either lessor or lessee, by six months' notice; and a lease of immovable property for any other purpose shall be deemed to be a lease from month to month, terminable, on the part of either lessor or lessee, by fifteen days' notice.",
+    "remedy_forum": "Rent Control Court / Civil Court",
+    "limitation_period": "12 years for recovery of possession under Article 65 of Limitation Act.",
+    "notice_template_id": "tpl_tenant_eviction",
+    "law_code": "N/A",
+    "source_url": "https://www.indiacode.nic.in/handle/123456789/2338",
+    "last_verified_date": "2024-05-15"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "security_deposit_withheld",
+    "act_name": "Specific Relief Act, 1963",
+    "section_number": "Section 10",
+    "section_text_plain": "Specific performance of a contract can be enforced. A tenancy agreement is a contract, and failure to return the deposit is a breach.",
+    "remedy_forum": "Civil Court / Rent Control Court",
+    "limitation_period": "3 years from the date the deposit became refundable.",
+    "notice_template_id": "tpl_tenant_deposit",
+    "law_code": "N/A",
+    "source_url": "https://www.indiacode.nic.in/handle/123456789/1583",
+    "last_verified_date": "2024-05-15"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "act_name": "Payment of Wages Act, 1936",
+    "section_number": "Section 15",
+    "section_text_plain": "Deals with claims arising out of deductions from wages or delay in payment of wages and penalty for malicious or vexatious claims.",
+    "remedy_forum": "Authority under the Payment of Wages Act / Labour Court",
+    "limitation_period": "12 months from the date on which the deduction from wages was made or from the date on which the payment of the wages was due.",
+    "notice_template_id": "tpl_labor_unpaid",
+    "law_code": "N/A",
+    "source_url": "https://www.indiacode.nic.in/handle/123456789/2381",
+    "last_verified_date": "2024-05-20"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "act_name": "Industrial Disputes Act, 1947",
+    "section_number": "Section 2A",
+    "section_text_plain": "Provides that the dismissal, retrenchment, or termination of an individual workman shall be deemed to be an industrial dispute.",
+    "remedy_forum": "Labour Court / Industrial Tribunal",
+    "limitation_period": "3 years from the date of discharge, dismissal, retrenchment or otherwise termination of service.",
+    "notice_template_id": "tpl_labor_termination",
+    "law_code": "N/A",
+    "source_url": "https://www.indiacode.nic.in/handle/123456789/17112",
+    "last_verified_date": "2024-05-20"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "workplace_harassment_criminal",
+    "act_name": "Bharatiya Nyaya Sanhita, 2023",
+    "section_number": "Section 74",
+    "section_text_plain": "Assault or use of criminal force to woman with intent to outrage her modesty.",
+    "remedy_forum": "Police Station / Criminal Court",
+    "limitation_period": "Subject to Section 468 of CrPC / BNSS (generally 3 years for offenses punishable with imprisonment up to 3 years).",
+    "notice_template_id": "tpl_criminal_harassment",
+    "law_code": "BNS",
+    "source_url": "https://www.indiacode.nic.in/handle/123456789/17855",
+    "last_verified_date": "2024-06-01"
+  }
+]

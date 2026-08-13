@@ -1,0 +1,52 @@
+{
+  "evaluation_date": "2026-08-14T01:02:10.936580",
+  "total_scenarios_evaluated": 5,
+  "metrics": {
+    "entity_extraction_accuracy_pct": 100.0,
+    "hallucination_free_citation_rate_pct": 100.0,
+    "citation_verifiability_rate_pct": 100.0,
+    "average_pipeline_latency_ms": 8916.93
+  },
+  "details": [
+    {
+      "scenario_id": 1,
+      "category": "Consumer Protection",
+      "entity_extraction_passed": true,
+      "hallucination_free": true,
+      "citations_count": 1,
+      "latency_ms": 8491.16
+    },
+    {
+      "scenario_id": 2,
+      "category": "Labor & Wages",
+      "entity_extraction_passed": true,
+      "hallucination_free": true,
+      "citations_count": 3,
+      "latency_ms": 8827.97
+    },
+    {
+      "scenario_id": 3,
+      "category": "Tenant Rights",
+      "entity_extraction_passed": true,
+      "hallucination_free": true,
+      "citations_count": 2,
+      "latency_ms": 8665.85
+    },
+    {
+      "scenario_id": 4,
+      "category": "Consumer Service Deficiency",
+      "entity_extraction_passed": true,
+      "hallucination_free": true,
+      "citations_count": 2,
+      "latency_ms": 9328.1
+    },
+    {
+      "scenario_id": 5,
+      "category": "Consumer Warranty Dispute",
+      "entity_extraction_passed": true,
+      "hallucination_free": true,
+      "citations_count": 2,
+      "latency_ms": 9271.56
+    }
+  ]
+}

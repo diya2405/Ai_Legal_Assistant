@@ -1,0 +1,27 @@
+# Python / Virtual Environment
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Node / React
+node_modules/
+dist/
+build/
+.output/
+
+# Environment Variables & Secrets
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE & System
+.vscode/
+.idea/
+.DS_Store
+*.log

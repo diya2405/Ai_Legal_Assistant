@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Formal Legal Notice</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm 20mm 20mm 20mm;
+        }
+        body {
+            font-family: "Times New Roman", Times, Georgia, serif;
+            color: #1a1a1a;
+            line-height: 1.6;
+            font-size: 11pt;
+        }
+        .dispatch-header {
+            text-align: right;
+            font-weight: bold;
+            font-size: 9.5pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #333333;
+            border-bottom: 1px solid #000000;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+        .notice-title-box {
+            text-align: center;
+            margin: 15px 0 20px 0;
+            padding: 8px;
+            border: 1.5px solid #000000;
+            background-color: #f8f8f8;
+        }
+        .notice-title-box h1 {
+            margin: 0;
+            font-size: 15pt;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-family: "Times New Roman", Times, serif;
+            font-weight: bold;
+        }
+        .parties-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .parties-table td {
+            vertical-align: top;
+            width: 50%;
+            padding: 5px;
+        }
+        .party-box {
+            border: 1px solid #cccccc;
+            padding: 10px;
+            background-color: #fafafa;
+            min-height: 90px;
+        }
+        .party-title {
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 9.5pt;
+            color: #1a365d;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 3px;
+            margin-bottom: 6px;
+        }
+        .subject-line {
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 15px 0;
+            padding: 8px 10px;
+            background-color: #edf2f7;
+            border-left: 4px solid #2b6cb0;
+            font-size: 10.5pt;
+        }
+        .heading {
+            font-weight: bold;
+            font-size: 11pt;
+            text-transform: uppercase;
+            margin-top: 18px;
+            margin-bottom: 6px;
+            border-bottom: 1px solid #dddddd;
+            padding-bottom: 2px;
+        }
+        p {
+            margin: 0 0 10px 0;
+            text-align: justify;
+            text-justify: inter-word;
+        }
+        .financial-box {
+            background-color: #fffaf0;
+            border: 1px solid #fbd38d;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 10.5pt;
+        }
+        .citation-box {
+            background-color: #f0fff4;
+            border: 1px solid #9ae6b4;
+            padding: 10px 12px;
+            margin-bottom: 10px;
+        }
+        .citation-title {
+            font-weight: bold;
+            color: #22543d;
+        }
+        .ultimatum-box {
+            background-color: #fff5f5;
+            border: 1.5px solid #feb2b2;
+            padding: 12px;
+            margin-top: 15px;
+            font-size: 10.5pt;
+        }
+        .doc-list {
+            margin: 5px 0 10px 20px;
+            padding: 0;
+        }
+        .doc-list li {
+            margin-bottom: 4px;
+        }
+        .signature-section {
+            margin-top: 40px;
+            width: 100%;
+        }
+        .signature-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .signature-table td {
+            vertical-align: bottom;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dispatch-header">
+        BY REGISTERED POST A.D. / SPEED POST / EMAIL REGISTRATION
+    </div>
+
+    <table style="width: 100%; margin-bottom: 10px;">
+        <tr>
+            <td style="text-align: left; font-size: 10pt;"><strong>Ref No:</strong> LGL/{{ date_today.replace('-', '') }}/NOTICE</td>
+            <td style="text-align: right; font-size: 10pt;"><strong>Date:</strong> {{ date_today }}</td>
+        </tr>
+    </table>
+
+    <div class="notice-title-box">
+        <h1>{% if tone == 'formal' %}STRICT LEGAL DEMAND NOTICE{% else %}REQUISITION NOTICE & RECOVERY DEMAND{% endif %}</h1>
+    </div>
+
+    <!-- Parties Section -->
+    <table class="parties-table">
+        <tr>
+            <td>
+                <div class="party-box">
+                    <div class="party-title">FROM (COMPLAINANT / ISSUER):</div>
+                    <strong>{{ complainant_name }}</strong><br>
+                    {{ complainant_address }}
+                </div>
+            </td>
+            <td>
+                <div class="party-box">
+                    <div class="party-title">TO (OPPOSING PARTY / RECIPIENT):</div>
+                    <strong>{{ opponent_name }}</strong><br>
+                    {{ opponent_address }}
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <div class="subject-line">
+        SUBJECT: LEGAL NOTICE FOR RECOVERY OF DISPUTED AMOUNT & DEFICIENCY OF SERVICE / NON-COMPLIANCE
+    </div>
+
+    <p>Sir/Madam,</p>
+    <p>Under instructions and authorization from the Complainant named above, this Legal Notice is hereby served upon you as follows:</p>
+
+    <!-- Section 1: Facts -->
+    <div class="heading">1. STATEMENT OF FACTS & CAUSE OF ACTION</div>
+    <p>{{ intake_raw_text }}</p>
+
+    <!-- Section 2: Financial Claim -->
+    {% if amount_claimed %}
+    <div class="heading">2. FINANCIAL CLAIM & DISPUTE VALUE</div>
+    <div class="financial-box">
+        <p><strong>Total Financial Claim Demanded:</strong> Rs. {{ amount_claimed }}/-</p>
+        <p style="font-size: 9.5pt; color: #4a5568; margin-top: 4px;">
+            The above claim represents the principal financial loss/dispute value arising out of your default, failure, or deficiency of service.
+        </p>
+    </div>
+    {% endif %}
+
+    <!-- Section 3: Legal Citations -->
+    <div class="heading">3. STATUTORY PROVISIONS & LEGAL GROUNDS</div>
+    {% for citation in citations %}
+    <div class="citation-box">
+        <div class="citation-title">{{ citation.act_name }} — Section {{ citation.section_number }} (Code: {{ citation.law_code }})</div>
+        <p style="margin-top: 4px; font-size: 10pt;">{{ citation.section_text_plain }}</p>
+    </div>
+    {% else %}
+    <div class="citation-box">
+        <div class="citation-title">Consumer Protection Act, 2019 & Statutory Safeguards</div>
+        <p style="margin-top: 4px; font-size: 10pt;">Under applicable Indian law, every consumer and aggrieved party is protected against unfair trade practices, defective goods, and deficiency in service.</p>
+    </div>
+    {% endfor %}
+
+    <!-- Section 4: Annexed Documents -->
+    <div class="heading">4. LIST OF SUPPORTING EVIDENCE & ANNEXURES</div>
+    <p>The Complainant relies upon the following supporting documents in proof of the claim:</p>
+    <ul class="doc-list">
+        <li><strong>Annexure A:</strong> Purchase Invoice / Work Order / Contract Agreement</li>
+        <li><strong>Annexure B:</strong> Payment Proof / Bank Transaction Statement</li>
+        <li><strong>Annexure C:</strong> Written Communications (Email transcripts / WhatsApp messages / Service sheets)</li>
+    </ul>
+
+    <!-- Section 5: Demand & Ultimatum -->
+    <div class="heading">5. DEMAND & STATUTORY ULTIMATUM</div>
+    <div class="ultimatum-box">
+        {% if tone == 'formal' %}
+        <p><strong>TAKE NOTICE THAT</strong> you are hereby called upon to satisfy the above claim and pay/refund the sum of <strong>Rs. {{ amount_claimed or 'Disputed Amount' }}/-</strong> along with resolution of grievance within <strong>15 (FIFTEEN) DAYS</strong> from receipt of this notice.</p>
+        <p style="margin-top: 6px;">
+            <strong>FAILURE TO COMPLY:</strong> If you fail to comply within the stipulated 15 days, legal proceedings will be immediately instituted against you before the <strong>{{ remedy_forum or 'Appropriate Consumer Forum / Court' }}</strong> under the applicable limitation period ({{ limitation_period or '2 Years' }}), seeking full recovery, interest, and legal costs at your sole risk and responsibility.
+        </p>
+        {% else %}
+        <p>You are hereby requested to kindly resolve this grievance and refund/rectify the matter within <strong>15 DAYS</strong> of receipt of this requisition notice. Should this remain unaddressed, formal litigation proceedings will be initiated before the <strong>{{ remedy_forum or 'Appropriate Legal Forum' }}</strong>.</p>
+        {% endif %}
+    </div>
+
+    <!-- Signature -->
+    <div class="signature-section">
+        <table class="signature-table">
+            <tr>
+                <td style="text-align: left;">
+                    <p style="font-size: 9pt; color: #718096;">Copy retained in records for legal proceedings.</p>
+                </td>
+                <td style="text-align: right;">
+                    <p>Yours faithfully,</p>
+                    <br><br>
+                    <p>__________________________<br>
+                    <strong>{{ complainant_name }}</strong><br>
+                    (Complainant / Aggrieved Party)</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>
