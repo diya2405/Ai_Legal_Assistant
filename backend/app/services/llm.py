@@ -3,6 +3,9 @@ import re
 import json
 import requests
 from typing import Dict, Any, List
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def verify_citation_guard(generated_text: str, kb_entry_section: str, kb_entry_act: str) -> bool:
     """
