@@ -1,0 +1,2552 @@
+[
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "landlord is refusing to return my security deposit of 10000 rupees after I vacated the flat"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "landlord is refusing to return my security deposit of 25000 rupees after I vacated the flat"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "landlord is refusing to return my security deposit of 50000 rupees after I vacated the flat"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "landlord is refusing to return my security deposit of 15000 rupees after I vacated the flat"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "landlord is refusing to return my security deposit of 30000 rupees after I vacated the flat"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "landlord is refusing to return my security deposit of 10000 rupees after I vacated the flat"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "vacated the rented house on 15 January but house owner holding deposit money and refusing refund"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "vacated the rented house on 10 February but house owner holding deposit money and refusing refund"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "vacated the rented house on 1 March but house owner holding deposit money and refusing refund"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "vacated the rented house on 20 November but house owner holding deposit money and refusing refund"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "vacated the rented house on 15 January but house owner holding deposit money and refusing refund"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "vacated the rented house on 10 February but house owner holding deposit money and refusing refund"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "house owner deducting arbitrary repair charges from my rental security deposit without receipts"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "house owner deducting arbitrary repair charges from my rental security deposit without receipts"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "house owner deducting arbitrary repair charges from my rental security deposit without receipts"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "house owner deducting arbitrary repair charges from my rental security deposit without receipts"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "house owner deducting arbitrary repair charges from my rental security deposit without receipts"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "house owner deducting arbitrary repair charges from my rental security deposit without receipts"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "refusing to refund security deposit despite flat handed over in clean condition with no damage"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "refusing to refund security deposit despite flat handed over in clean condition with no damage"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "refusing to refund security deposit despite flat handed over in clean condition with no damage"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "refusing to refund security deposit despite flat handed over in clean condition with no damage"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "refusing to refund security deposit despite flat handed over in clean condition with no damage"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "refusing to refund security deposit despite flat handed over in clean condition with no damage"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "landlord stopped answering my phone calls when I asked for my security deposit refund of 10000"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "landlord stopped answering my phone calls when I asked for my security deposit refund of 25000"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "landlord stopped answering my phone calls when I asked for my security deposit refund of 50000"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "landlord stopped answering my phone calls when I asked for my security deposit refund of 15000"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "landlord stopped answering my phone calls when I asked for my security deposit refund of 30000"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "landlord stopped answering my phone calls when I asked for my security deposit refund of 10000"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "owner keeping my security deposit claiming fake painting and cleaning charges"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "owner keeping my security deposit claiming fake painting and cleaning charges"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "owner keeping my security deposit claiming fake painting and cleaning charges"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "owner keeping my security deposit claiming fake painting and cleaning charges"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "owner keeping my security deposit claiming fake painting and cleaning charges"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "owner keeping my security deposit claiming fake painting and cleaning charges"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "मकान मालिक मेरी सिक्योरिटी डिपॉजिट का 10000 रुपये वापस नहीं कर रहा है"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "मकान मालिक मेरी सिक्योरिटी डिपॉजिट का 25000 रुपये वापस नहीं कर रहा है"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "मकान मालिक मेरी सिक्योरिटी डिपॉजिट का 50000 रुपये वापस नहीं कर रहा है"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "मकान मालिक मेरी सिक्योरिटी डिपॉजिट का 15000 रुपये वापस नहीं कर रहा है"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "मकान मालिक मेरी सिक्योरिटी डिपॉजिट का 30000 रुपये वापस नहीं कर रहा है"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "मकान मालिक मेरी सिक्योरिटी डिपॉजिट का 10000 रुपये वापस नहीं कर रहा है"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "कमरा खाली कर दिया पर सिक्योरिटी डिपॉजिट का पैसा नहीं मिला और मालिक फोन नहीं उठा रहा"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "कमरा खाली कर दिया पर सिक्योरिटी डिपॉजिट का पैसा नहीं मिला और मालिक फोन नहीं उठा रहा"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "कमरा खाली कर दिया पर सिक्योरिटी डिपॉजिट का पैसा नहीं मिला और मालिक फोन नहीं उठा रहा"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "कमरा खाली कर दिया पर सिक्योरिटी डिपॉजिट का पैसा नहीं मिला और मालिक फोन नहीं उठा रहा"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "कमरा खाली कर दिया पर सिक्योरिटी डिपॉजिट का पैसा नहीं मिला और मालिक फोन नहीं उठा रहा"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "कमरा खाली कर दिया पर सिक्योरिटी डिपॉजिट का पैसा नहीं मिला और मालिक फोन नहीं उठा रहा"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "मकान मालिक झूठा मरम्मत का खर्चा बताकर डिपॉजिट का पैसा काट रहा है"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "मकान मालिक झूठा मरम्मत का खर्चा बताकर डिपॉजिट का पैसा काट रहा है"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "मकान मालिक झूठा मरम्मत का खर्चा बताकर डिपॉजिट का पैसा काट रहा है"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "मकान मालिक झूठा मरम्मत का खर्चा बताकर डिपॉजिट का पैसा काट रहा है"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "मकान मालिक झूठा मरम्मत का खर्चा बताकर डिपॉजिट का पैसा काट रहा है"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "मकान मालिक झूठा मरम्मत का खर्चा बताकर डिपॉजिट का पैसा काट रहा है"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "owner deposit dene se mana kar raha hai flat khali kar diya hai 2 mahine pehle"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "owner deposit dene se mana kar raha hai flat khali kar diya hai 2 mahine pehle"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "owner deposit dene se mana kar raha hai flat khali kar diya hai 2 mahine pehle"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "owner deposit dene se mana kar raha hai flat khali kar diya hai 2 mahine pehle"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "owner deposit dene se mana kar raha hai flat khali kar diya hai 2 mahine pehle"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "deposit_not_returned",
+    "text": "owner deposit dene se mana kar raha hai flat khali kar diya hai 2 mahine pehle"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "landlord forced me out of the flat without giving any written notice period"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "landlord forced me out of the flat without giving any written notice period"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "landlord forced me out of the flat without giving any written notice period"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "landlord forced me out of the flat without giving any written notice period"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "landlord forced me out of the flat without giving any written notice period"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "landlord forced me out of the flat without giving any written notice period"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "owner locked the house and threw my personal belongings and furniture outside"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "owner locked the house and threw my personal belongings and furniture outside"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "owner locked the house and threw my personal belongings and furniture outside"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "owner locked the house and threw my personal belongings and furniture outside"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "owner locked the house and threw my personal belongings and furniture outside"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "owner locked the house and threw my personal belongings and furniture outside"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "landlord cut off water supply and electricity connection to force immediate illegal eviction"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "landlord cut off water supply and electricity connection to force immediate illegal eviction"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "landlord cut off water supply and electricity connection to force immediate illegal eviction"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "landlord cut off water supply and electricity connection to force immediate illegal eviction"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "landlord cut off water supply and electricity connection to force immediate illegal eviction"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "landlord cut off water supply and electricity connection to force immediate illegal eviction"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "threatening to kick me out immediately using local goons without court order"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "threatening to kick me out immediately using local goons without court order"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "threatening to kick me out immediately using local goons without court order"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "threatening to kick me out immediately using local goons without court order"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "threatening to kick me out immediately using local goons without court order"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "threatening to kick me out immediately using local goons without court order"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "landlord changed door locks while I was at work and denied entry into my rented apartment"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "landlord changed door locks while I was at work and denied entry into my rented apartment"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "landlord changed door locks while I was at work and denied entry into my rented apartment"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "landlord changed door locks while I was at work and denied entry into my rented apartment"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "landlord changed door locks while I was at work and denied entry into my rented apartment"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "landlord changed door locks while I was at work and denied entry into my rented apartment"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "owner harassing my family and demanding immediate eviction without valid legal notice"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "owner harassing my family and demanding immediate eviction without valid legal notice"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "owner harassing my family and demanding immediate eviction without valid legal notice"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "owner harassing my family and demanding immediate eviction without valid legal notice"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "owner harassing my family and demanding immediate eviction without valid legal notice"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "owner harassing my family and demanding immediate eviction without valid legal notice"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "मकान मालिक ने बिना नोटिस के जबरन घर से निकाल दिया और पानी बिजली बंद कर दी"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "मकान मालिक ने बिना नोटिस के जबरन घर से निकाल दिया और पानी बिजली बंद कर दी"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "मकान मालिक ने बिना नोटिस के जबरन घर से निकाल दिया और पानी बिजली बंद कर दी"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "मकान मालिक ने बिना नोटिस के जबरन घर से निकाल दिया और पानी बिजली बंद कर दी"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "मकान मालिक ने बिना नोटिस के जबरन घर से निकाल दिया और पानी बिजली बंद कर दी"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "मकान मालिक ने बिना नोटिस के जबरन घर से निकाल दिया और पानी बिजली बंद कर दी"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "घर का ताला तोड़कर सामान बाहर फेंक दिया और गुंडों से धमकी दिलवाई"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "घर का ताला तोड़कर सामान बाहर फेंक दिया और गुंडों से धमकी दिलवाई"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "घर का ताला तोड़कर सामान बाहर फेंक दिया और गुंडों से धमकी दिलवाई"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "घर का ताला तोड़कर सामान बाहर फेंक दिया और गुंडों से धमकी दिलवाई"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "घर का ताला तोड़कर सामान बाहर फेंक दिया और गुंडों से धमकी दिलवाई"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "घर का ताला तोड़कर सामान बाहर फेंक दिया और गुंडों से धमकी दिलवाई"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "बिना किसी नोटिस के कमरा खाली करने की धमकी दे रहे हैं"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "बिना किसी नोटिस के कमरा खाली करने की धमकी दे रहे हैं"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "बिना किसी नोटिस के कमरा खाली करने की धमकी दे रहे हैं"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "बिना किसी नोटिस के कमरा खाली करने की धमकी दे रहे हैं"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "बिना किसी नोटिस के कमरा खाली करने की धमकी दे रहे हैं"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "बिना किसी नोटिस के कमरा खाली करने की धमकी दे रहे हैं"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "owner ne bijli paani kaat diya aur zabardasti nikal diya bina notice ke"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "owner ne bijli paani kaat diya aur zabardasti nikal diya bina notice ke"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "owner ne bijli paani kaat diya aur zabardasti nikal diya bina notice ke"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "owner ne bijli paani kaat diya aur zabardasti nikal diya bina notice ke"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "owner ne bijli paani kaat diya aur zabardasti nikal diya bina notice ke"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "illegal_eviction",
+    "text": "owner ne bijli paani kaat diya aur zabardasti nikal diya bina notice ke"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "roof leaking continuously but landlord refuses to repair structural wall seepage"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "roof leaking continuously but landlord refuses to repair structural wall seepage"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "roof leaking continuously but landlord refuses to repair structural wall seepage"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "roof leaking continuously but landlord refuses to repair structural wall seepage"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "roof leaking continuously but landlord refuses to repair structural wall seepage"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "roof leaking continuously but landlord refuses to repair structural wall seepage"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "plumbing line broken and wall seepage ignored by flat owner despite written notices"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "plumbing line broken and wall seepage ignored by flat owner despite written notices"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "plumbing line broken and wall seepage ignored by flat owner despite written notices"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "plumbing line broken and wall seepage ignored by flat owner despite written notices"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "plumbing line broken and wall seepage ignored by flat owner despite written notices"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "plumbing line broken and wall seepage ignored by flat owner despite written notices"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "flat maintenance severely neglected by landlord despite repeated formal requests"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "flat maintenance severely neglected by landlord despite repeated formal requests"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "flat maintenance severely neglected by landlord despite repeated formal requests"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "flat maintenance severely neglected by landlord despite repeated formal requests"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "flat maintenance severely neglected by landlord despite repeated formal requests"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "flat maintenance severely neglected by landlord despite repeated formal requests"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "building main drain line blocked causing sewage backup but owner refusing repairs"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "building main drain line blocked causing sewage backup but owner refusing repairs"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "building main drain line blocked causing sewage backup but owner refusing repairs"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "building main drain line blocked causing sewage backup but owner refusing repairs"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "building main drain line blocked causing sewage backup but owner refusing repairs"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "building main drain line blocked causing sewage backup but owner refusing repairs"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "electrical wiring in rented flat damaged and unsafe owner refusing electrician costs"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "electrical wiring in rented flat damaged and unsafe owner refusing electrician costs"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "electrical wiring in rented flat damaged and unsafe owner refusing electrician costs"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "electrical wiring in rented flat damaged and unsafe owner refusing electrician costs"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "electrical wiring in rented flat damaged and unsafe owner refusing electrician costs"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "electrical wiring in rented flat damaged and unsafe owner refusing electrician costs"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "छत टपक रही है मकान मालिक सीपेज की रिपेयर नहीं करा रहा"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "छत टपक रही है मकान मालिक सीपेज की रिपेयर नहीं करा रहा"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "छत टपक रही है मकान मालिक सीपेज की रिपेयर नहीं करा रहा"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "छत टपक रही है मकान मालिक सीपेज की रिपेयर नहीं करा रहा"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "छत टपक रही है मकान मालिक सीपेज की रिपेयर नहीं करा रहा"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "छत टपक रही है मकान मालिक सीपेज की रिपेयर नहीं करा रहा"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "घर की मरम्मत नहीं करा रहे मालिक बार बार शिकायत करने के बाद भी"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "घर की मरम्मत नहीं करा रहे मालिक बार बार शिकायत करने के बाद भी"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "घर की मरम्मत नहीं करा रहे मालिक बार बार शिकायत करने के बाद भी"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "घर की मरम्मत नहीं करा रहे मालिक बार बार शिकायत करने के बाद भी"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "घर की मरम्मत नहीं करा रहे मालिक बार बार शिकायत करने के बाद भी"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "घर की मरम्मत नहीं करा रहे मालिक बार बार शिकायत करने के बाद भी"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "मकान मालिक पानी की पाइपलाइन और टॉयलेट लीकेज ठीक नहीं करवा रहा"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "मकान मालिक पानी की पाइपलाइन और टॉयलेट लीकेज ठीक नहीं करवा रहा"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "मकान मालिक पानी की पाइपलाइन और टॉयलेट लीकेज ठीक नहीं करवा रहा"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "मकान मालिक पानी की पाइपलाइन और टॉयलेट लीकेज ठीक नहीं करवा रहा"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "मकान मालिक पानी की पाइपलाइन और टॉयलेट लीकेज ठीक नहीं करवा रहा"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "मकान मालिक पानी की पाइपलाइन और टॉयलेट लीकेज ठीक नहीं करवा रहा"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "owner maintenance repair nahi karwa raha wall leakage ho raha hai"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "owner maintenance repair nahi karwa raha wall leakage ho raha hai"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "owner maintenance repair nahi karwa raha wall leakage ho raha hai"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "owner maintenance repair nahi karwa raha wall leakage ho raha hai"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "owner maintenance repair nahi karwa raha wall leakage ho raha hai"
+  },
+  {
+    "domain": "tenant",
+    "issue_type": "maintenance_neglect",
+    "text": "owner maintenance repair nahi karwa raha wall leakage ho raha hai"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "bought mobile phone online from seller but screen stopped working within 3 days"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "bought mobile phone online from seller but screen stopped working within 3 days"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "bought mobile phone online from seller but screen stopped working within 3 days"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "bought mobile phone online from seller but screen stopped working within 3 days"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "bought mobile phone online from seller but screen stopped working within 3 days"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "bought mobile phone online from seller but screen stopped working within 3 days"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "received defective laptop from electronic store seller refused replacement or warranty"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "received defective laptop from electronic store seller refused replacement or warranty"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "received defective laptop from electronic store seller refused replacement or warranty"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "received defective laptop from electronic store seller refused replacement or warranty"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "received defective laptop from electronic store seller refused replacement or warranty"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "received defective laptop from electronic store seller refused replacement or warranty"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "washing machine delivered broken on arrival warranty claim ignored by customer care"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "washing machine delivered broken on arrival warranty claim ignored by customer care"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "washing machine delivered broken on arrival warranty claim ignored by customer care"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "washing machine delivered broken on arrival warranty claim ignored by customer care"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "washing machine delivered broken on arrival warranty claim ignored by customer care"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "washing machine delivered broken on arrival warranty claim ignored by customer care"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "purchased refrigerator which stopped cooling in 2 days brand refusing full refund"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "purchased refrigerator which stopped cooling in 2 days brand refusing full refund"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "purchased refrigerator which stopped cooling in 2 days brand refusing full refund"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "purchased refrigerator which stopped cooling in 2 days brand refusing full refund"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "purchased refrigerator which stopped cooling in 2 days brand refusing full refund"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "purchased refrigerator which stopped cooling in 2 days brand refusing full refund"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "smart TV screen display dead on arrival store owner refusing cash refund"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "smart TV screen display dead on arrival store owner refusing cash refund"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "smart TV screen display dead on arrival store owner refusing cash refund"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "smart TV screen display dead on arrival store owner refusing cash refund"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "smart TV screen display dead on arrival store owner refusing cash refund"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "smart TV screen display dead on arrival store owner refusing cash refund"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "delivered expired packaged food product store seller refused money return"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "delivered expired packaged food product store seller refused money return"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "delivered expired packaged food product store seller refused money return"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "delivered expired packaged food product store seller refused money return"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "delivered expired packaged food product store seller refused money return"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "delivered expired packaged food product store seller refused money return"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "नया मोबाइल खरीदा पर वो खराब निकला दुकानदार बदल कर नहीं दे रहा"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "नया मोबाइल खरीदा पर वो खराब निकला दुकानदार बदल कर नहीं दे रहा"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "नया मोबाइल खरीदा पर वो खराब निकला दुकानदार बदल कर नहीं दे रहा"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "नया मोबाइल खरीदा पर वो खराब निकला दुकानदार बदल कर नहीं दे रहा"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "नया मोबाइल खरीदा पर वो खराब निकला दुकानदार बदल कर नहीं दे रहा"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "नया मोबाइल खरीदा पर वो खराब निकला दुकानदार बदल कर नहीं दे रहा"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "सामान टूटा हुआ मिला और कंपनी वारंटी क्लेम देने से मना कर रही है"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "सामान टूटा हुआ मिला और कंपनी वारंटी क्लेम देने से मना कर रही है"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "सामान टूटा हुआ मिला और कंपनी वारंटी क्लेम देने से मना कर रही है"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "सामान टूटा हुआ मिला और कंपनी वारंटी क्लेम देने से मना कर रही है"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "सामान टूटा हुआ मिला और कंपनी वारंटी क्लेम देने से मना कर रही है"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "सामान टूटा हुआ मिला और कंपनी वारंटी क्लेम देने से मना कर रही है"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "दुकानदार ने खराब टीवी बेच दिया और पैसे वापस लौटाने से इंकार कर दिया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "दुकानदार ने खराब टीवी बेच दिया और पैसे वापस लौटाने से इंकार कर दिया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "दुकानदार ने खराब टीवी बेच दिया और पैसे वापस लौटाने से इंकार कर दिया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "दुकानदार ने खराब टीवी बेच दिया और पैसे वापस लौटाने से इंकार कर दिया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "दुकानदार ने खराब टीवी बेच दिया और पैसे वापस लौटाने से इंकार कर दिया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "दुकानदार ने खराब टीवी बेच दिया और पैसे वापस लौटाने से इंकार कर दिया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "defective electronic item received online seller refusing refund or replacement"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "defective electronic item received online seller refusing refund or replacement"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "defective electronic item received online seller refusing refund or replacement"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "defective electronic item received online seller refusing refund or replacement"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "defective electronic item received online seller refusing refund or replacement"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "defective_product",
+    "text": "defective electronic item received online seller refusing refund or replacement"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "paid authorized service center for AC repair but repair work not completed properly"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "paid authorized service center for AC repair but repair work not completed properly"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "paid authorized service center for AC repair but repair work not completed properly"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "paid authorized service center for AC repair but repair work not completed properly"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "paid authorized service center for AC repair but repair work not completed properly"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "paid authorized service center for AC repair but repair work not completed properly"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "internet broadband provider charged monthly bill but service remained inactive for weeks"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "internet broadband provider charged monthly bill but service remained inactive for weeks"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "internet broadband provider charged monthly bill but service remained inactive for weeks"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "internet broadband provider charged monthly bill but service remained inactive for weeks"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "internet broadband provider charged monthly bill but service remained inactive for weeks"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "internet broadband provider charged monthly bill but service remained inactive for weeks"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "flight cancelled by airline company customer support refusing full ticket refund"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "flight cancelled by airline company customer support refusing full ticket refund"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "flight cancelled by airline company customer support refusing full ticket refund"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "flight cancelled by airline company customer support refusing full ticket refund"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "flight cancelled by airline company customer support refusing full ticket refund"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "flight cancelled by airline company customer support refusing full ticket refund"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "hospital charged full surgery package amount but provided negligent medical service"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "hospital charged full surgery package amount but provided negligent medical service"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "hospital charged full surgery package amount but provided negligent medical service"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "hospital charged full surgery package amount but provided negligent medical service"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "hospital charged full surgery package amount but provided negligent medical service"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "hospital charged full surgery package amount but provided negligent medical service"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "telecom operator deducted money for value added services without consumer consent"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "telecom operator deducted money for value added services without consumer consent"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "telecom operator deducted money for value added services without consumer consent"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "telecom operator deducted money for value added services without consumer consent"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "telecom operator deducted money for value added services without consumer consent"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "telecom operator deducted money for value added services without consumer consent"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "bank charged improper mortgage escrow processing fees without prior disclosure"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "bank charged improper mortgage escrow processing fees without prior disclosure"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "bank charged improper mortgage escrow processing fees without prior disclosure"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "bank charged improper mortgage escrow processing fees without prior disclosure"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "bank charged improper mortgage escrow processing fees without prior disclosure"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "bank charged improper mortgage escrow processing fees without prior disclosure"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "mortgage servicing company mishandled monthly payment processing causing unfair late fee"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "mortgage servicing company mishandled monthly payment processing causing unfair late fee"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "mortgage servicing company mishandled monthly payment processing causing unfair late fee"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "mortgage servicing company mishandled monthly payment processing causing unfair late fee"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "mortgage servicing company mishandled monthly payment processing causing unfair late fee"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "mortgage servicing company mishandled monthly payment processing causing unfair late fee"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "सर्विस सेंटर ने रिपेयर के पैसे ले लिए पर काम ठीक से नहीं किया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "सर्विस सेंटर ने रिपेयर के पैसे ले लिए पर काम ठीक से नहीं किया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "सर्विस सेंटर ने रिपेयर के पैसे ले लिए पर काम ठीक से नहीं किया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "सर्विस सेंटर ने रिपेयर के पैसे ले लिए पर काम ठीक से नहीं किया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "सर्विस सेंटर ने रिपेयर के पैसे ले लिए पर काम ठीक से नहीं किया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "सर्विस सेंटर ने रिपेयर के पैसे ले लिए पर काम ठीक से नहीं किया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "पैसा जमा किया पर ब्रॉडबैंड सेवा नहीं मिली कंपनी रिफंड नहीं दे रही"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "पैसा जमा किया पर ब्रॉडबैंड सेवा नहीं मिली कंपनी रिफंड नहीं दे रही"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "पैसा जमा किया पर ब्रॉडबैंड सेवा नहीं मिली कंपनी रिफंड नहीं दे रही"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "पैसा जमा किया पर ब्रॉडबैंड सेवा नहीं मिली कंपनी रिफंड नहीं दे रही"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "पैसा जमा किया पर ब्रॉडबैंड सेवा नहीं मिली कंपनी रिफंड नहीं दे रही"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "पैसा जमा किया पर ब्रॉडबैंड सेवा नहीं मिली कंपनी रिफंड नहीं दे रही"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "एयरलाइन ने फ्लाइट टिकट रद्द कर दिया पर रिफंड का पैसा वापस नहीं दिया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "एयरलाइन ने फ्लाइट टिकट रद्द कर दिया पर रिफंड का पैसा वापस नहीं दिया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "एयरलाइन ने फ्लाइट टिकट रद्द कर दिया पर रिफंड का पैसा वापस नहीं दिया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "एयरलाइन ने फ्लाइट टिकट रद्द कर दिया पर रिफंड का पैसा वापस नहीं दिया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "एयरलाइन ने फ्लाइट टिकट रद्द कर दिया पर रिफंड का पैसा वापस नहीं दिया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "deficiency_of_service",
+    "text": "एयरलाइन ने फ्लाइट टिकट रद्द कर दिया पर रिफंड का पैसा वापस नहीं दिया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "retail store charged price higher than printed maximum retail price MRP on product"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "retail store charged price higher than printed maximum retail price MRP on product"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "retail store charged price higher than printed maximum retail price MRP on product"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "retail store charged price higher than printed maximum retail price MRP on product"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "retail store charged price higher than printed maximum retail price MRP on product"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "retail store charged price higher than printed maximum retail price MRP on product"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "false advertisement and misleading promotional claims made by cosmetic product brand"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "false advertisement and misleading promotional claims made by cosmetic product brand"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "false advertisement and misleading promotional claims made by cosmetic product brand"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "false advertisement and misleading promotional claims made by cosmetic product brand"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "false advertisement and misleading promotional claims made by cosmetic product brand"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "false advertisement and misleading promotional claims made by cosmetic product brand"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "hidden service charges added to restaurant bill without prior disclosure or consent"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "hidden service charges added to restaurant bill without prior disclosure or consent"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "hidden service charges added to restaurant bill without prior disclosure or consent"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "hidden service charges added to restaurant bill without prior disclosure or consent"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "hidden service charges added to restaurant bill without prior disclosure or consent"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "hidden service charges added to restaurant bill without prior disclosure or consent"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "mortgage lender added deceptive hidden insurance premium to monthly loan statement"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "mortgage lender added deceptive hidden insurance premium to monthly loan statement"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "mortgage lender added deceptive hidden insurance premium to monthly loan statement"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "mortgage lender added deceptive hidden insurance premium to monthly loan statement"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "mortgage lender added deceptive hidden insurance premium to monthly loan statement"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "mortgage lender added deceptive hidden insurance premium to monthly loan statement"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "telecom company billing wrong tariff rates contrary to published advertisement offer"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "telecom company billing wrong tariff rates contrary to published advertisement offer"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "telecom company billing wrong tariff rates contrary to published advertisement offer"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "telecom company billing wrong tariff rates contrary to published advertisement offer"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "telecom company billing wrong tariff rates contrary to published advertisement offer"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "telecom company billing wrong tariff rates contrary to published advertisement offer"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "car dealership charged hidden handling charges above ex-showroom price"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "car dealership charged hidden handling charges above ex-showroom price"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "car dealership charged hidden handling charges above ex-showroom price"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "car dealership charged hidden handling charges above ex-showroom price"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "car dealership charged hidden handling charges above ex-showroom price"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "car dealership charged hidden handling charges above ex-showroom price"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "एमआरपी से ज्यादा पैसे लिए दुकान वाले ने प्रोडक्ट पर"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "एमआरपी से ज्यादा पैसे लिए दुकान वाले ने प्रोडक्ट पर"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "एमआरपी से ज्यादा पैसे लिए दुकान वाले ने प्रोडक्ट पर"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "एमआरपी से ज्यादा पैसे लिए दुकान वाले ने प्रोडक्ट पर"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "एमआरपी से ज्यादा पैसे लिए दुकान वाले ने प्रोडक्ट पर"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "एमआरपी से ज्यादा पैसे लिए दुकान वाले ने प्रोडक्ट पर"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "झूठा और भ्रामक विज्ञापन देकर ग्राहकों को गुमराह किया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "झूठा और भ्रामक विज्ञापन देकर ग्राहकों को गुमराह किया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "झूठा और भ्रामक विज्ञापन देकर ग्राहकों को गुमराह किया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "झूठा और भ्रामक विज्ञापन देकर ग्राहकों को गुमराह किया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "झूठा और भ्रामक विज्ञापन देकर ग्राहकों को गुमराह किया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "झूठा और भ्रामक विज्ञापन देकर ग्राहकों को गुमराह किया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "बिल में बिना बताए छिपा हुआ सर्विस चार्ज जोड़ दिया गया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "बिल में बिना बताए छिपा हुआ सर्विस चार्ज जोड़ दिया गया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "बिल में बिना बताए छिपा हुआ सर्विस चार्ज जोड़ दिया गया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "बिल में बिना बताए छिपा हुआ सर्विस चार्ज जोड़ दिया गया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "बिल में बिना बताए छिपा हुआ सर्विस चार्ज जोड़ दिया गया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "बिल में बिना बताए छिपा हुआ सर्विस चार्ज जोड़ दिया गया"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "mrp se zyada price charge kiya store waale ne bill par"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "mrp se zyada price charge kiya store waale ne bill par"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "mrp se zyada price charge kiya store waale ne bill par"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "mrp se zyada price charge kiya store waale ne bill par"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "mrp se zyada price charge kiya store waale ne bill par"
+  },
+  {
+    "domain": "consumer",
+    "issue_type": "unfair_trade_practice",
+    "text": "mrp se zyada price charge kiya store waale ne bill par"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "employer delayed monthly salary for 3 consecutive months without explanation"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "employer delayed monthly salary for 3 consecutive months without explanation"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "employer delayed monthly salary for 3 consecutive months without explanation"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "employer delayed monthly salary for 3 consecutive months without explanation"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "employer delayed monthly salary for 3 consecutive months without explanation"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "employer delayed monthly salary for 3 consecutive months without explanation"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "company withholding earned monthly wages after employee submitted resignation"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "company withholding earned monthly wages after employee submitted resignation"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "company withholding earned monthly wages after employee submitted resignation"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "company withholding earned monthly wages after employee submitted resignation"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "company withholding earned monthly wages after employee submitted resignation"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "company withholding earned monthly wages after employee submitted resignation"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "salary deducted arbitrarily by employer without any performance review or reason"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "salary deducted arbitrarily by employer without any performance review or reason"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "salary deducted arbitrarily by employer without any performance review or reason"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "salary deducted arbitrarily by employer without any performance review or reason"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "salary deducted arbitrarily by employer without any performance review or reason"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "salary deducted arbitrarily by employer without any performance review or reason"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "worked for 6 months as factory technician but owner refused to pay remaining wages"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "worked for 6 months as factory technician but owner refused to pay remaining wages"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "worked for 6 months as factory technician but owner refused to pay remaining wages"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "worked for 6 months as factory technician but owner refused to pay remaining wages"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "worked for 6 months as factory technician but owner refused to pay remaining wages"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "worked for 6 months as factory technician but owner refused to pay remaining wages"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "company management stopped paying monthly salary claiming financial loss"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "company management stopped paying monthly salary claiming financial loss"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "company management stopped paying monthly salary claiming financial loss"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "company management stopped paying monthly salary claiming financial loss"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "company management stopped paying monthly salary claiming financial loss"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "company management stopped paying monthly salary claiming financial loss"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "employer paying wages far below statutory minimum wage rate"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "employer paying wages far below statutory minimum wage rate"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "employer paying wages far below statutory minimum wage rate"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "employer paying wages far below statutory minimum wage rate"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "employer paying wages far below statutory minimum wage rate"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "employer paying wages far below statutory minimum wage rate"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "कंपनी 3 महीने से मेरी सैलरी नहीं दे रही है काम कराने के बाद"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "कंपनी 3 महीने से मेरी सैलरी नहीं दे रही है काम कराने के बाद"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "कंपनी 3 महीने से मेरी सैलरी नहीं दे रही है काम कराने के बाद"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "कंपनी 3 महीने से मेरी सैलरी नहीं दे रही है काम कराने के बाद"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "कंपनी 3 महीने से मेरी सैलरी नहीं दे रही है काम कराने के बाद"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "कंपनी 3 महीने से मेरी सैलरी नहीं दे रही है काम कराने के बाद"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "मालिक पूरा महीना काम कराने के बाद भी वेतन देने से मना कर रहा है"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "मालिक पूरा महीना काम कराने के बाद भी वेतन देने से मना कर रहा है"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "मालिक पूरा महीना काम कराने के बाद भी वेतन देने से मना कर रहा है"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "मालिक पूरा महीना काम कराने के बाद भी वेतन देने से मना कर रहा है"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "मालिक पूरा महीना काम कराने के बाद भी वेतन देने से मना कर रहा है"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "मालिक पूरा महीना काम कराने के बाद भी वेतन देने से मना कर रहा है"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "बिना किसी कारण के तनख्वाह काट ली गई है"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "बिना किसी कारण के तनख्वाह काट ली गई है"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "बिना किसी कारण के तनख्वाह काट ली गई है"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "बिना किसी कारण के तनख्वाह काट ली गई है"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "बिना किसी कारण के तनख्वाह काट ली गई है"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "बिना किसी कारण के तनख्वाह काट ली गई है"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "employer salary nahi de raha hai 2 mahine se salary hold kar li hai"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "employer salary nahi de raha hai 2 mahine se salary hold kar li hai"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "employer salary nahi de raha hai 2 mahine se salary hold kar li hai"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "employer salary nahi de raha hai 2 mahine se salary hold kar li hai"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "employer salary nahi de raha hai 2 mahine se salary hold kar li hai"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "unpaid_wages",
+    "text": "employer salary nahi de raha hai 2 mahine se salary hold kar li hai"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "fired suddenly from job without 1 month notice period or statutory severance pay"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "fired suddenly from job without 1 month notice period or statutory severance pay"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "fired suddenly from job without 1 month notice period or statutory severance pay"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "fired suddenly from job without 1 month notice period or statutory severance pay"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "fired suddenly from job without 1 month notice period or statutory severance pay"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "fired suddenly from job without 1 month notice period or statutory severance pay"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "terminated illegally from company without giving any written reason or inquiry"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "terminated illegally from company without giving any written reason or inquiry"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "terminated illegally from company without giving any written reason or inquiry"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "terminated illegally from company without giving any written reason or inquiry"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "terminated illegally from company without giving any written reason or inquiry"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "terminated illegally from company without giving any written reason or inquiry"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "boss forced me to submit immediate resignation under threat without notice pay"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "boss forced me to submit immediate resignation under threat without notice pay"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "boss forced me to submit immediate resignation under threat without notice pay"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "boss forced me to submit immediate resignation under threat without notice pay"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "boss forced me to submit immediate resignation under threat without notice pay"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "boss forced me to submit immediate resignation under threat without notice pay"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "company terminated employment without paying statutory retrenchment compensation"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "company terminated employment without paying statutory retrenchment compensation"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "company terminated employment without paying statutory retrenchment compensation"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "company terminated employment without paying statutory retrenchment compensation"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "company terminated employment without paying statutory retrenchment compensation"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "company terminated employment without paying statutory retrenchment compensation"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "wrongfully dismissed from service after complaining about unsafe working conditions"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "wrongfully dismissed from service after complaining about unsafe working conditions"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "wrongfully dismissed from service after complaining about unsafe working conditions"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "wrongfully dismissed from service after complaining about unsafe working conditions"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "wrongfully dismissed from service after complaining about unsafe working conditions"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "wrongfully dismissed from service after complaining about unsafe working conditions"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "अचानक नौकरी से निकाल दिया गया बिना किसी नोटिस या रिट्रेंचमेंट पे के"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "अचानक नौकरी से निकाल दिया गया बिना किसी नोटिस या रिट्रेंचमेंट पे के"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "अचानक नौकरी से निकाल दिया गया बिना किसी नोटिस या रिट्रेंचमेंट पे के"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "अचानक नौकरी से निकाल दिया गया बिना किसी नोटिस या रिट्रेंचमेंट पे के"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "अचानक नौकरी से निकाल दिया गया बिना किसी नोटिस या रिट्रेंचमेंट पे के"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "अचानक नौकरी से निकाल दिया गया बिना किसी नोटिस या रिट्रेंचमेंट पे के"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "बिना किसी कारण के कंपनी से तुरंत बर्खास्त कर दिया गया"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "बिना किसी कारण के कंपनी से तुरंत बर्खास्त कर दिया गया"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "बिना किसी कारण के कंपनी से तुरंत बर्खास्त कर दिया गया"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "बिना किसी कारण के कंपनी से तुरंत बर्खास्त कर दिया गया"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "बिना किसी कारण के कंपनी से तुरंत बर्खास्त कर दिया गया"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "बिना किसी कारण के कंपनी से तुरंत बर्खास्त कर दिया गया"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "जबरदस्ती इस्तीफा देने पर मजबूर किया गया बिना नोटिस सैलरी दिए"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "जबरदस्ती इस्तीफा देने पर मजबूर किया गया बिना नोटिस सैलरी दिए"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "जबरदस्ती इस्तीफा देने पर मजबूर किया गया बिना नोटिस सैलरी दिए"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "जबरदस्ती इस्तीफा देने पर मजबूर किया गया बिना नोटिस सैलरी दिए"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "जबरदस्ती इस्तीफा देने पर मजबूर किया गया बिना नोटिस सैलरी दिए"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "जबरदस्ती इस्तीफा देने पर मजबूर किया गया बिना नोटिस सैलरी दिए"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "company ne suddenly terminate kar diya bina notice period pay ke"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "company ne suddenly terminate kar diya bina notice period pay ke"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "company ne suddenly terminate kar diya bina notice period pay ke"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "company ne suddenly terminate kar diya bina notice period pay ke"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "company ne suddenly terminate kar diya bina notice period pay ke"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "wrongful_termination",
+    "text": "company ne suddenly terminate kar diya bina notice period pay ke"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "employer forced 12 hour daily shifts without paying overtime wages at double rate"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "employer forced 12 hour daily shifts without paying overtime wages at double rate"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "employer forced 12 hour daily shifts without paying overtime wages at double rate"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "employer forced 12 hour daily shifts without paying overtime wages at double rate"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "employer forced 12 hour daily shifts without paying overtime wages at double rate"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "employer forced 12 hour daily shifts without paying overtime wages at double rate"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "denied extra overtime payment for weekend and holiday work hours by factory manager"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "denied extra overtime payment for weekend and holiday work hours by factory manager"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "denied extra overtime payment for weekend and holiday work hours by factory manager"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "denied extra overtime payment for weekend and holiday work hours by factory manager"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "denied extra overtime payment for weekend and holiday work hours by factory manager"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "denied extra overtime payment for weekend and holiday work hours by factory manager"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "company refused to pay statutory overtime rate for extra hours worked beyond 8 hours"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "company refused to pay statutory overtime rate for extra hours worked beyond 8 hours"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "company refused to pay statutory overtime rate for extra hours worked beyond 8 hours"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "company refused to pay statutory overtime rate for extra hours worked beyond 8 hours"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "company refused to pay statutory overtime rate for extra hours worked beyond 8 hours"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "company refused to pay statutory overtime rate for extra hours worked beyond 8 hours"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "made to work 60 hours weekly without any overtime compensation or rest day"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "made to work 60 hours weekly without any overtime compensation or rest day"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "made to work 60 hours weekly without any overtime compensation or rest day"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "made to work 60 hours weekly without any overtime compensation or rest day"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "made to work 60 hours weekly without any overtime compensation or rest day"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "made to work 60 hours weekly without any overtime compensation or rest day"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "12-12 घंटे काम कराया पर ओवरटाइम का पैसा देने से मना कर दिया"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "12-12 घंटे काम कराया पर ओवरटाइम का पैसा देने से मना कर दिया"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "12-12 घंटे काम कराया पर ओवरटाइम का पैसा देने से मना कर दिया"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "12-12 घंटे काम कराया पर ओवरटाइम का पैसा देने से मना कर दिया"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "12-12 घंटे काम कराया पर ओवरटाइम का पैसा देने से मना कर दिया"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "12-12 घंटे काम कराया पर ओवरटाइम का पैसा देने से मना कर दिया"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "अतिरिक्त काम का वेतन देने से कंपनी मना कर रही है"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "अतिरिक्त काम का वेतन देने से कंपनी मना कर रही है"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "अतिरिक्त काम का वेतन देने से कंपनी मना कर रही है"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "अतिरिक्त काम का वेतन देने से कंपनी मना कर रही है"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "अतिरिक्त काम का वेतन देने से कंपनी मना कर रही है"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "अतिरिक्त काम का वेतन देने से कंपनी मना कर रही है"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "daily 12 hours kaam karwaya par overtime pay nahi diya manager ne"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "daily 12 hours kaam karwaya par overtime pay nahi diya manager ne"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "daily 12 hours kaam karwaya par overtime pay nahi diya manager ne"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "daily 12 hours kaam karwaya par overtime pay nahi diya manager ne"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "daily 12 hours kaam karwaya par overtime pay nahi diya manager ne"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "overtime_denial",
+    "text": "daily 12 hours kaam karwaya par overtime pay nahi diya manager ne"
+  }
+]

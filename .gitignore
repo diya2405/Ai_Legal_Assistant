@@ -1,0 +1,33 @@
+# Node dependencies & build output
+node_modules/
+dist/
+build/
+
+# Python cache & virtualenv
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+venv/
+.venv/
+env/
+
+# Environment files
+.env
+.env.local
+
+# Databases & cache models
+*.db
+*.sqlite3
+*.pkl
+
+# Generated PDFs & runtime outputs
+backend/generated_pdfs/
+generated_pdfs/
+
+# IDE / OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
