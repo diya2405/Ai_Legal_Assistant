@@ -129,10 +129,13 @@ def call_gemini_api(prompt: str) -> str:
 def clean_llm_output(text: str) -> str:
     if not text:
         return ""
+    lower = text.lower()
+    if "user safety" in lower or "safety evaluation" in lower or "safety status" in lower or lower.strip() == "safe":
+        return ""
     lines = text.splitlines()
     clean_lines = [l for l in lines if not re.match(r'^(user\s+safety|safety\s+evaluation|safety\s+status|eval\s+result):', l.strip(), re.IGNORECASE)]
     cleaned = "\n".join(clean_lines).strip()
-    if cleaned.lower() in ["safe", "user safety: safe", "user safety safe", ""] or len(cleaned) < 15:
+    if len(cleaned) < 25 or cleaned.lower() in ["safe", "user safety: safe", "user safety safe"]:
         return ""
     return cleaned
 
