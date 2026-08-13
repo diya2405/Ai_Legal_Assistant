@@ -7,7 +7,7 @@ import type {
   GenerateDocumentResponse
 } from '../types';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8002';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://legalaid-backend-4t0w.onrender.com';
 
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,
