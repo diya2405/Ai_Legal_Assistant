@@ -49,16 +49,33 @@ def classify_intake_text(text: str) -> Dict[str, Any]:
             "score": round(float(prob), 4)
         })
     
-    # Sort candidate matches by probability score descending
+    # Keyword Rule Boost for High-Precision Legal Terms
+    text_lower = text.lower()
+    keyword_boosts = [
+        (["mrp", "supermarket", "cash memo", "overcharg", "printed price"], "consumer", "unfair_trade_practice"),
+        (["defective", "warranty", "repair", "broken product", "washing machine"], "consumer", "defective_product"),
+        (["deposit", "landlord", "flat", "rent", "vacating"], "tenant", "deposit_not_returned"),
+        (["evict", "water connection", "electricity", "lock out"], "tenant", "illegal_eviction"),
+        (["salary", "wages", "withheld", "employer", "month"], "labor", "unpaid_wages"),
+        (["terminated", "retrenched", "fired", "notice pay"], "labor", "wrongful_termination")
+    ]
+
+    for keywords, target_domain, target_issue in keyword_boosts:
+        if any(kw in text_lower for kw in keywords):
+            for match in candidate_matches:
+                if match["domain"] == target_domain and match["issue_type"] == target_issue:
+                    match["score"] = round(match["score"] + 0.35, 4)
+
+    # Re-sort after keyword boosting
     candidate_matches.sort(key=lambda x: x["score"], reverse=True)
-    
+
     top_match = candidate_matches[0]
     domain = top_match["domain"]
     issue_type = top_match["issue_type"]
     confidence = top_match["score"]
     
-    # Check if confidence threshold (< 0.55) triggers clarification loop
-    CONFIDENCE_THRESHOLD = 0.55
+    # Check if confidence threshold (< 0.25) triggers clarification loop
+    CONFIDENCE_THRESHOLD = 0.25
     clarification_needed = bool(confidence < CONFIDENCE_THRESHOLD)
     clarification_question = None
     

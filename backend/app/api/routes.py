@@ -127,25 +127,24 @@ def process_intake(req: IntakeRequest, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(cls_obj)
 
-    # 4. Lookup KB if classification confidence is sufficient
+    # 4. Lookup KB entry for the classified domain & issue_type
+    kb_entry = get_kb_entry(db, cls_res["domain"], cls_res["issue_type"])
     kb_data = None
-    if not cls_res["clarification_needed"]:
-        kb_entry = get_kb_entry(db, cls_res["domain"], cls_res["issue_type"])
-        if kb_entry:
-            kb_data = {
-                "id": kb_entry.id,
-                "domain": kb_entry.domain,
-                "issue_type": kb_entry.issue_type,
-                "law_code": kb_entry.law_code,
-                "act_name": kb_entry.act_name,
-                "section_number": kb_entry.section_number,
-                "section_text_plain": kb_entry.section_text_plain,
-                "plain_summary_seed": kb_entry.plain_summary_seed,
-                "remedy_forum": kb_entry.remedy_forum,
-                "limitation_period": kb_entry.limitation_period,
-                "source_url": kb_entry.source_url,
-                "last_verified_date": str(kb_entry.last_verified_date)
-            }
+    if kb_entry:
+        kb_data = {
+            "id": kb_entry.id,
+            "domain": kb_entry.domain,
+            "issue_type": kb_entry.issue_type,
+            "law_code": kb_entry.law_code,
+            "act_name": kb_entry.act_name,
+            "section_number": kb_entry.section_number,
+            "section_text_plain": kb_entry.section_text_plain,
+            "plain_summary_seed": kb_entry.plain_summary_seed,
+            "remedy_forum": kb_entry.remedy_forum,
+            "limitation_period": kb_entry.limitation_period,
+            "source_url": kb_entry.source_url,
+            "last_verified_date": str(kb_entry.last_verified_date)
+        }
 
     return {
         "intake_id": intake_obj.id,
