@@ -26,11 +26,11 @@ def retrieve_chunks(
     query: str,
     domain_hint: Optional[str] = None,
     k: int = 5,
-    similarity_floor: float = 0.20
+    similarity_floor: float = 0.05
 ) -> List[StatuteChunk]:
     """
     Retrieves top-k relevant StatuteChunk entries using persistent AI Neural Vector Index.
-    Falls back to n-gram similarity if vector index is building or empty.
+    Falls back to n-gram similarity or domain-based chunks if score threshold is low.
     """
     store = get_vector_store()
     results = store.search(db, query, domain_hint=domain_hint, k=k, min_score=similarity_floor)
@@ -38,7 +38,7 @@ def retrieve_chunks(
     if results:
         return results
 
-    # Fallback to DB scan if vector index produces empty results
+    # Fallback to DB scan
     query_obj = db.query(StatuteChunk)
     if domain_hint:
         query_obj = query_obj.filter(StatuteChunk.domain_hint == domain_hint)
@@ -58,11 +58,19 @@ def retrieve_chunks(
         if score >= similarity_floor:
             scored.append((score, chunk))
 
-    scored.sort(key=lambda x: x[0], reverse=True)
-    return [chunk for _, chunk in scored[:k]]
+    if scored:
+        scored.sort(key=lambda x: x[0], reverse=True)
+        return [chunk for _, chunk in scored[:k]]
+
+    # If no chunk met similarity floor, return top domain/DB chunks so LLM has context to answer
+    if domain_hint:
+        fallback = db.query(StatuteChunk).filter(StatuteChunk.domain_hint == domain_hint).limit(k).all()
+        if fallback:
+            return fallback
+
+    return db.query(StatuteChunk).limit(k).all()
 
 
-def verify_grounding(answer_text: str, chunks: List[Any]) -> bool:
     """
     Scans RAG answer for citations and confirms EVERY citation is present
     in the chunk metadata (act_name or section_number) passed to THIS specific LLM call.

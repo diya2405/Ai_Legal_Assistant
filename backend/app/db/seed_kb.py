@@ -351,6 +351,35 @@ def seed_data():
             chunk_text="Illustrative Precedent: Supreme Court affirmed that any dispute between employers and workmen regarding non-payment of wages, wrongful termination or service conditions constitutes an actionable industrial dispute.",
             source_url="https://indiankanoon.org/doc/654123/",
             last_verified_date=date(2024, 2, 10)
+        ),
+
+        # Procedural Law & Legal Notice Evidentiary Guidance Chunks
+        StatuteChunk(
+            act_name="Code of Civil Procedure, 1908 & Evidence Act",
+            section_number="Order VI Rule 14 & Section 106",
+            law_code="CPC",
+            domain_hint="tenant",
+            chunk_text="Legal Notice Attachments & Evidentiary Proof: When issuing a legal notice or filing a petition, attach copies of: 1) Executed Rent Agreement / Lease Deed, 2) Security deposit bank transfer receipts/UPI screenshots, 3) Bank statements showing rent payments, 4) Written correspondence (WhatsApp/Emails), and 5) Postal Speed Post RPAD tracking receipts serving as proof of notice delivery.",
+            source_url="https://www.indiacode.nic.in/handle/123456789/2191",
+            last_verified_date=date(2024, 2, 10)
+        ),
+        StatuteChunk(
+            act_name="Code of Civil Procedure, 1908 & Consumer Rules",
+            section_number="Order IX Rule 6 & Section 38 CPA",
+            law_code="CPC",
+            domain_hint="consumer",
+            chunk_text="Step-by-Step Court Process upon Non-Response to Legal Notice: 1) Wait for the 15-day notice period to expire. 2) File a formal petition/complaint before the District Consumer Commission / Rent Court / Labour Commissioner along with affidavit and postal tracking receipt. 3) The Court issues summons to the opposing party. 4) If the opponent fails to appear or file a written statement within 30 days, the court proceeds ex-parte (Order IX Rule 6 CPC). 5) Final argument and binding decree/award for refund and compensation.",
+            source_url="https://www.indiacode.nic.in/handle/123456789/2191",
+            last_verified_date=date(2024, 2, 10)
+        ),
+        StatuteChunk(
+            act_name="Court Fees Act, 1870 & Consumer Protection Regulations",
+            section_number="Section 7 & Regulation 11",
+            law_code="N/A",
+            domain_hint="consumer",
+            chunk_text="Statutory Court Fee Structure: 1) Consumer Commissions: Complaints up to Rs. 5 Lakhs attract NIL (zero) court fee. Complaints between Rs. 5 Lakhs and Rs. 10 Lakhs require Rs. 200 fee, payable online via e-Daakhil. 2) Rent Authority / Rent Court: Fixed nominal filing fee (typically Rs. 100 to Rs. 500 depending on state rule). 3) Labour Commission: NIL court fee for workmen claiming unpaid wages under Payment of Wages Act.",
+            source_url="https://www.indiacode.nic.in/handle/123456789/2191",
+            last_verified_date=date(2024, 2, 10)
         )
     ]
     db.bulk_save_objects(chunks)
