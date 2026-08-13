@@ -90,12 +90,14 @@ export default function App() {
   const [expLoading, setExpLoading] = useState(false);
   const [copiedExp, setCopiedExp] = useState(false);
 
-  // Document state
+  // Document state (100% Editable Notice)
   const [docTone, setDocTone] = useState('formal_notice');
   const [userName, setUserName] = useState('');
   const [userAddress, setUserAddress] = useState('');
   const [opposingName, setOpposingName] = useState('');
   const [opposingAddress, setOpposingAddress] = useState('');
+  const [customSubject, setCustomSubject] = useState('');
+  const [customBody, setCustomBody] = useState('');
   const [generatedDoc, setGeneratedDoc] = useState(null);
   const [docLoading, setDocLoading] = useState(false);
 
@@ -115,6 +117,24 @@ export default function App() {
       .then(data => setSessionId(data.session_id))
       .catch(err => console.error("Session init failed:", err));
   }, []);
+
+  // Pre-fill editable document content when KB Entry is loaded
+  useEffect(() => {
+    if (kbEntry) {
+      setCustomSubject(`STATUTORY DEMAND NOTICE UNDER ${kbEntry.act_name.toUpperCase()} (${kbEntry.section_number})`);
+      setCustomBody(
+        `1. STATEMENT OF FACTS:\n` +
+        `The undersigned submits that a legal dispute has arisen regarding ${kbEntry.issue_type.replace(/_/g, ' ')} under your jurisdiction. Despite repeated verbal and written requests, the grievance remains unresolved.\n\n` +
+        `2. APPLICABLE LAW & STATUTORY PROVISIONS (${kbEntry.law_code || 'Statute'}):\n` +
+        `Take notice that under ${kbEntry.act_name} (${kbEntry.section_number}), the law provides:\n` +
+        `"${kbEntry.section_text_plain}"\n\n` +
+        `Remedy Forum: ${kbEntry.remedy_forum}\n` +
+        `Statutory Limitation Period: ${kbEntry.limitation_period}\n\n` +
+        `3. DEMAND & RELIEF SOUGHT:\n` +
+        `You are hereby called upon to comply with your statutory obligations within 15 days of service of this notice, failing which formal legal proceedings will be initiated before ${kbEntry.remedy_forum} at your sole risk, cost, and consequence.`
+      );
+    }
+  }, [kbEntry]);
 
   // Handle Intake submission
   const handleIntakeSubmit = async (e) => {
@@ -211,7 +231,9 @@ export default function App() {
           user_name: userName || 'First Citizen',
           user_address: userAddress || 'Resident Address',
           opposing_name: opposingName || 'Opposing Party',
-          opposing_address: opposingAddress || 'Opposing Address'
+          opposing_address: opposingAddress || 'Opposing Address',
+          custom_subject: customSubject,
+          custom_body: customBody
         })
       });
       const data = await res.json();
@@ -480,7 +502,7 @@ export default function App() {
                 onClick={() => setActiveTab('notice')}
               >
                 <FileText size={17} />
-                2. Legal Notice Generator
+                2. Legal Notice Generator (Editable)
               </button>
 
               <button 
@@ -500,16 +522,40 @@ export default function App() {
               </button>
             </div>
 
-            {/* TAB 1: Rights Explanation & Statute Details */}
+            {/* TAB 1: Rights Explanation & Original Quoted Law */}
             {activeTab === 'rights' && (
-              <div className="tab-content-grid animate-fadeIn">
+              <div className="tab-content-stack animate-fadeIn">
                 
-                {/* Rights Explanation Card */}
+                {/* 1. Official Bare Act Law Quoted */}
+                <div className="glass-card panel-card bare-act-quote-card">
+                  <div className="panel-header">
+                    <div className="panel-title">
+                      <Scale size={22} className="icon-accent-gold" />
+                      Official Statutory Bare Act Law Quoted
+                    </div>
+                    <span className="badge badge-code">
+                      {kbEntry.act_name} ({kbEntry.section_number})
+                    </span>
+                  </div>
+
+                  <div className="official-law-quote-box">
+                    <div className="quote-header-tag">VERBATIM STATUTORY PROVISION EXCERPT:</div>
+                    <p className="law-quote-text">"{kbEntry.section_text_plain}"</p>
+                  </div>
+
+                  <div className="statute-meta-footer">
+                    <span><strong>Filing Forum:</strong> {kbEntry.remedy_forum}</span>
+                    <span><strong>Limitation Period:</strong> {kbEntry.limitation_period}</span>
+                    <span><strong>Statutory Code:</strong> {kbEntry.law_code || 'Enacted Law'}</span>
+                  </div>
+                </div>
+
+                {/* 2. Simplified Plain-Language Explanation (Below the Quoted Law) */}
                 <div className="glass-card panel-card hero-explanation-panel">
                   <div className="panel-header">
                     <div className="panel-title">
-                      <Sparkles size={22} className="icon-accent-gold" />
-                      Verified Legal Rights Summary
+                      <Sparkles size={22} className="icon-accent-blue" />
+                      Simplified Plain-Language Explanation
                     </div>
                     <div className="header-actions">
                       <button 
@@ -544,69 +590,29 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* Statute Details Card */}
-                <div className="glass-card panel-card">
-                  <div className="panel-header">
-                    <div className="panel-title">
-                      <Scale size={22} className="icon-accent-blue" />
-                      Statute & Filing Details
-                    </div>
-                    <span className="badge badge-code">
-                      {kbEntry.law_code || 'Statutory Code'}
-                    </span>
-                  </div>
-
-                  <div className="details-list">
-                    <div className="detail-item">
-                      <div className="detail-label">Enacted Statute Act</div>
-                      <div className="detail-value text-gold">{kbEntry.act_name}</div>
-                    </div>
-
-                    <div className="detail-item">
-                      <div className="detail-label">Specific Section Citation</div>
-                      <div className="detail-value font-mono text-pink">{kbEntry.section_number}</div>
-                    </div>
-
-                    <div className="detail-item">
-                      <div className="detail-label">Appropriate Filing Forum</div>
-                      <div className="detail-value text-blue">
-                        <MapPin size={15} className="inline-icon" />
-                        {kbEntry.remedy_forum}
-                      </div>
-                    </div>
-
-                    <div className="detail-item">
-                      <div className="detail-label">Statutory Limitation Period</div>
-                      <div className="detail-value text-emerald">
-                        <Clock size={15} className="inline-icon" />
-                        {kbEntry.limitation_period}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Limitation Warning Alert */}
-                  <div className="limitation-alert-box">
-                    <AlertTriangle size={20} className="alert-icon" />
-                    <div>
-                      <strong>Limitation Warning:</strong> You must issue formal notice or file a claim within <strong>{kbEntry.limitation_period}</strong> from the cause of action. Delay may forfeit statutory remedies.
-                    </div>
+                {/* Limitation Warning Alert */}
+                <div className="limitation-alert-box">
+                  <AlertTriangle size={20} className="alert-icon" />
+                  <div>
+                    <strong>Limitation Period Warning:</strong> Under {kbEntry.act_name}, you must issue formal notice or initiate legal proceedings within <strong>{kbEntry.limitation_period}</strong> from the cause of action.
                   </div>
                 </div>
+
               </div>
             )}
 
-            {/* TAB 2: Legal Notice Generator */}
+            {/* TAB 2: Fully Editable Legal Notice Generator */}
             {activeTab === 'notice' && (
               <div className="tab-content-grid notice-tab-layout animate-fadeIn">
                 
-                {/* Form Inputs Panel */}
+                {/* Form Inputs & Full Body Editor Panel */}
                 <div className="glass-card panel-card">
                   <div className="panel-header">
                     <div className="panel-title">
                       <FileText size={22} className="icon-accent-purple" />
-                      Configure Statutory Legal Notice
+                      Configure & Edit Statutory Legal Notice
                     </div>
-                    <span className="badge badge-purple">Ready to Print</span>
+                    <span className="badge badge-purple">100% Fully Editable</span>
                   </div>
 
                   <div className="form-sections">
@@ -632,6 +638,7 @@ export default function App() {
                       </div>
                     </div>
 
+                    {/* Parties Personal Details */}
                     <div className="form-inputs-grid">
                       <div className="form-group">
                         <label className="form-label">Complainant / Litigant Name</label>
@@ -676,6 +683,29 @@ export default function App() {
                       </div>
                     </div>
 
+                    {/* Editable Notice Subject */}
+                    <div className="form-group">
+                      <label className="form-label">Notice Subject Line (Editable):</label>
+                      <input
+                        type="text"
+                        className="input-styled"
+                        value={customSubject}
+                        onChange={e => setCustomSubject(e.target.value)}
+                      />
+                    </div>
+
+                    {/* Editable Full Legal Notice Content / Body Textarea */}
+                    <div className="form-group">
+                      <label className="form-label">Editable Statutory Notice Body Content (Full Text):</label>
+                      <textarea
+                        className="intake-textarea notice-body-textarea"
+                        rows={10}
+                        value={customBody}
+                        onChange={e => setCustomBody(e.target.value)}
+                        placeholder="Edit the complete legal notice body, add specific invoice numbers, dates, or custom terms..."
+                      />
+                    </div>
+
                     <button 
                       className="btn-primary btn-notice-generate" 
                       onClick={handleGenerateDoc}
@@ -684,7 +714,7 @@ export default function App() {
                       {docLoading ? (
                         <>
                           <RefreshCw size={18} className="animate-spin" />
-                          Generating Official Legal PDF...
+                          Generating Official Custom Legal PDF...
                         </>
                       ) : (
                         <>
@@ -716,31 +746,33 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* PDF Paper Blueprint Mockup Card */}
+                {/* Live Real-Time PDF Paper Blueprint Mockup */}
                 <div className="glass-card panel-card pdf-preview-card">
                   <div className="panel-header">
                     <div className="panel-title">
                       <FileCheck size={20} className="icon-accent-blue" />
-                      Document Paper Blueprint
+                      Live Document Blueprint Preview
                     </div>
-                    <span className="pill pill-gold">Format: Legal PDF</span>
+                    <span className="pill pill-gold">Live Updating</span>
                   </div>
 
                   <div className="pdf-sheet">
-                    <div className="pdf-header">FORMAL STATUTORY LEGAL NOTICE</div>
+                    <div className="pdf-header">
+                      {docTone === 'request' ? 'REQUISITION & REFUND REQUEST NOTICE' : 'FORMAL STATUTORY LEGAL NOTICE'}
+                    </div>
                     <div className="pdf-divider"></div>
                     <div className="pdf-meta">
-                      <div><strong>FROM:</strong> {userName || 'Litigant Name'} ({userAddress || 'Address'})</div>
-                      <div><strong>TO:</strong> {opposingName || 'Opposing Party'} ({opposingAddress || 'Address'})</div>
+                      <div><strong>FROM:</strong> {userName || '[YOUR NAME]'} ({userAddress || '[YOUR ADDRESS]'})</div>
+                      <div><strong>TO:</strong> {opposingName || '[OPPOSING PARTY]'} ({opposingAddress || '[OPPOSING ADDRESS]'})</div>
                       <div><strong>DATE:</strong> {new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</div>
                     </div>
                     <div className="pdf-body-preview">
-                      <p><strong>SUBJECT:</strong> STATUTORY DEMAND NOTICE UNDER {kbEntry.act_name.toUpperCase()} ({kbEntry.section_number})</p>
+                      <p><strong>SUBJECT:</strong> {customSubject || `STATUTORY DEMAND NOTICE UNDER ${kbEntry.act_name.toUpperCase()}`}</p>
                       <br />
-                      <p>Sir/Madam,</p>
-                      <p>Under instructions from my client, notice is hereby served upon you regarding your failure to fulfill statutory obligations...</p>
-                      <br />
-                      <p><strong>RELIEF DEMANDED:</strong> Full compliance within 15 days, failing which formal proceedings will be filed in {kbEntry.remedy_forum}.</p>
+                      <p>Sir / Madam,</p>
+                      <div className="live-preview-body">
+                        {customBody || `1. STATEMENT OF FACTS:\nA dispute has arisen regarding ${kbEntry.issue_type.replace(/_/g, ' ')}...`}
+                      </div>
                     </div>
                     <div className="pdf-watermark">LEGAL DRAFT</div>
                   </div>

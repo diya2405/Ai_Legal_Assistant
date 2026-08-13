@@ -33,12 +33,14 @@ def generate_legal_pdf(
     user_name: str = "[YOUR NAME]",
     user_address: str = "[YOUR ADDRESS]",
     opposing_name: str = "[OPPOSING PARTY NAME]",
-    opposing_address: str = "[OPPOSING PARTY ADDRESS]"
+    opposing_address: str = "[OPPOSING PARTY ADDRESS]",
+    custom_subject: str = None,
+    custom_body: str = None
 ) -> str:
     """
     Generates a PDF document for the legal notice/complaint draft.
     Supports 'request' (polite demand) and 'formal_notice' (statutory notice) tones.
-    Embeds verbatim KB legal citations and mandatory disclaimer footer.
+    Embeds user's custom edited body text or default statutory draft.
     """
     pdf = LegalNoticePDF()
     pdf.add_page()
@@ -74,72 +76,81 @@ def generate_legal_pdf(
 
     # Subject
     pdf.set_font("Helvetica", "B", 11)
-    sub_text = f"SUBJECT: {tone.upper().replace('_', ' ')} REGARDING {kb_entry.issue_type.upper().replace('_', ' ')} AT {kb_entry.remedy_forum.upper()}"
-    pdf.multi_cell(0, 6, sub_text)
+    if custom_subject and custom_subject.strip():
+        sub_text = f"SUBJECT: {custom_subject.strip().upper()}"
+    else:
+        sub_text = f"SUBJECT: {tone.upper().replace('_', ' ')} REGARDING {kb_entry.issue_type.upper().replace('_', ' ')} AT {kb_entry.remedy_forum.upper()}"
+    pdf.multi_cell(0, 6, sanitize_pdf_text(sub_text))
     pdf.ln(4)
 
     # Salutation
     pdf.set_font("Helvetica", "", 10)
     pdf.cell(0, 6, "Dear Sir / Madam,", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
-    pdf.ln(2)
-
-    # Section 1: Statement of Facts
-    pdf.set_font("Helvetica", "B", 10)
-    pdf.cell(0, 6, "1. STATEMENT OF FACTS:", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
-    pdf.set_font("Helvetica", "", 10)
-    
-    facts_summary = []
-    for ent in entities:
-        facts_summary.append(f"  - {ent.get('entity_type', 'Fact').title()}: {ent.get('entity_value', '')}")
-    
-    if facts_summary:
-        facts_body = (
-            "The undersigned submits the following verified material facts regarding the dispute:\n" +
-            "\n".join(facts_summary) + "\n" +
-            "Despite repeated verbal and written requests, the grievance remains unresolved."
-        )
-    else:
-        facts_body = (
-            "The undersigned hereby states that a dispute has arisen in connection with " +
-            f"{kb_entry.issue_type.replace('_', ' ')} under your jurisdiction, causing financial loss and hardship."
-        )
-    
-    pdf.multi_cell(0, 5, sanitize_pdf_text(facts_body))
     pdf.ln(4)
 
-    # Section 2: Statutory Provisions & Applicable Law
-    pdf.set_font("Helvetica", "B", 10)
-    pdf.cell(0, 6, sanitize_pdf_text(f"2. APPLICABLE LAW & STATUTORY PROVISIONS ({kb_entry.law_code}):"), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
-    pdf.set_font("Helvetica", "", 10)
-    
-    statute_body = (
-        f"Take notice that under {kb_entry.act_name} ({kb_entry.section_number}), the law provides:\n\n"
-        f"\"{kb_entry.section_text_plain}\"\n\n"
-        f"Remedy Forum: {kb_entry.remedy_forum}\n"
-        f"Statutory Limitation Period: {kb_entry.limitation_period}"
-    )
-    pdf.multi_cell(0, 5, sanitize_pdf_text(statute_body))
-    pdf.ln(4)
-
-    # Section 3: Relief Sought & Call to Action
-    pdf.set_font("Helvetica", "B", 10)
-    pdf.cell(0, 6, "3. DEMAND & RELIEF SOUGHT:", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
-    pdf.set_font("Helvetica", "", 10)
-
-    if tone == "request":
-        demand_body = (
-            "You are hereby politely requested to amicably resolve this matter within 15 days from receipt of this communication "
-            "by providing full resolution / refund. Failing which, formal legal proceedings may be initiated."
-        )
+    # Body Content (Custom User Edit or Statutory Breakdown)
+    if custom_body and custom_body.strip():
+        pdf.set_font("Helvetica", "", 10)
+        pdf.multi_cell(0, 5, sanitize_pdf_text(custom_body.strip()))
+        pdf.ln(6)
     else:
-        demand_body = (
-            "You are hereby called upon to comply with your legal obligations within 15 days of service of this notice. "
-            f"Failing compliance, legal proceedings will be formally initiated before the {kb_entry.remedy_forum} "
-            "at your sole risk, cost, and consequence."
-        )
+        # Section 1: Statement of Facts
+        pdf.set_font("Helvetica", "B", 10)
+        pdf.cell(0, 6, "1. STATEMENT OF FACTS:", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+        pdf.set_font("Helvetica", "", 10)
+        
+        facts_summary = []
+        for ent in entities:
+            facts_summary.append(f"  - {ent.get('entity_type', 'Fact').title()}: {ent.get('entity_value', '')}")
+        
+        if facts_summary:
+            facts_body = (
+                "The undersigned submits the following verified material facts regarding the dispute:\n" +
+                "\n".join(facts_summary) + "\n" +
+                "Despite repeated verbal and written requests, the grievance remains unresolved."
+            )
+        else:
+            facts_body = (
+                "The undersigned hereby states that a dispute has arisen in connection with " +
+                f"{kb_entry.issue_type.replace('_', ' ')} under your jurisdiction, causing financial loss and hardship."
+            )
+        
+        pdf.multi_cell(0, 5, sanitize_pdf_text(facts_body))
+        pdf.ln(4)
 
-    pdf.multi_cell(0, 5, demand_body)
-    pdf.ln(10)
+        # Section 2: Statutory Provisions & Applicable Law
+        pdf.set_font("Helvetica", "B", 10)
+        pdf.cell(0, 6, sanitize_pdf_text(f"2. APPLICABLE LAW & STATUTORY PROVISIONS ({kb_entry.law_code}):"), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+        pdf.set_font("Helvetica", "", 10)
+        
+        statute_body = (
+            f"Take notice that under {kb_entry.act_name} ({kb_entry.section_number}), the law provides:\n\n"
+            f"\"{kb_entry.section_text_plain}\"\n\n"
+            f"Remedy Forum: {kb_entry.remedy_forum}\n"
+            f"Statutory Limitation Period: {kb_entry.limitation_period}"
+        )
+        pdf.multi_cell(0, 5, sanitize_pdf_text(statute_body))
+        pdf.ln(4)
+
+        # Section 3: Relief Sought & Call to Action
+        pdf.set_font("Helvetica", "B", 10)
+        pdf.cell(0, 6, "3. DEMAND & RELIEF SOUGHT:", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+        pdf.set_font("Helvetica", "", 10)
+
+        if tone == "request":
+            demand_body = (
+                "You are hereby politely requested to amicably resolve this matter within 15 days from receipt of this communication "
+                "by providing full resolution / refund. Failing which, formal legal proceedings may be initiated."
+            )
+        else:
+            demand_body = (
+                "You are hereby called upon to comply with your legal obligations within 15 days of service of this notice. "
+                f"Failing compliance, legal proceedings will be formally initiated before the {kb_entry.remedy_forum} "
+                "at your sole risk, cost, and consequence."
+            )
+
+        pdf.multi_cell(0, 5, sanitize_pdf_text(demand_body))
+        pdf.ln(6)
 
     # Signature Block
     pdf.set_font("Helvetica", "B", 10)

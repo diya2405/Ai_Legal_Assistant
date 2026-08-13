@@ -49,6 +49,8 @@ class DocumentGenerateRequest(BaseModel):
     user_address: Optional[str] = "Not Specified"
     opposing_name: Optional[str] = "Opposing Party"
     opposing_address: Optional[str] = "Not Specified"
+    custom_subject: Optional[str] = None
+    custom_body: Optional[str] = None
 
 class ChatMessageRequest(BaseModel):
     content: str
@@ -240,7 +242,9 @@ def generate_document(req: DocumentGenerateRequest, db: Session = Depends(get_db
         user_name=req.user_name or "Litigant",
         user_address=req.user_address or "Not Specified",
         opposing_name=req.opposing_name or "Opposing Party",
-        opposing_address=req.opposing_address or "Not Specified"
+        opposing_address=req.opposing_address or "Not Specified",
+        custom_subject=req.custom_subject,
+        custom_body=req.custom_body
     )
 
     doc_obj = Document(
