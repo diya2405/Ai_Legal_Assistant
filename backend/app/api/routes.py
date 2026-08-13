@@ -129,8 +129,17 @@ def process_intake(req: IntakeRequest, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(cls_obj)
 
-    # 4. Lookup KB entry for the classified domain & issue_type
+    # 4. Lookup KB entry for the classified domain & issue_type (with fallback guard)
     kb_entry = get_kb_entry(db, cls_res["domain"], cls_res["issue_type"])
+    if not kb_entry:
+        # Fallback to top candidate matches
+        for candidate in cls_res.get("candidate_matches", []):
+            kb_entry = get_kb_entry(db, candidate["domain"], candidate["issue_type"])
+            if kb_entry:
+                break
+    if not kb_entry:
+        # Ultimate fallback guard: return first available KB entry in database
+        kb_entry = db.query(KBEntry).first()
     kb_data = None
     if kb_entry:
         kb_data = {
