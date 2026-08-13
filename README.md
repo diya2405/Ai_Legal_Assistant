@@ -112,6 +112,27 @@ The Web Application will be live at `http://localhost:3000`.
 
 ---
 
+## 🚀 Deployment on Vercel
+
+The repository is configured for seamless Vercel deployment via `vercel.json` and Python serverless functions (`backend/api/index.py`).
+
+### Option A: Import via Vercel Dashboard (Recommended)
+
+1. Open [vercel.com/new](https://vercel.com/new).
+2. Connect your GitHub account and import **`diya2405/Ai_Legal_Assistant`**.
+3. Vercel automatically detects `vercel.json` and builds both the React Vite frontend and Python FastAPI backend serverless endpoints.
+4. Add environment variables in Vercel settings (e.g. `OPENROUTER_API_KEY`, `GROQ_API_KEY`, `GEMINI_API_KEY`).
+5. Click **Deploy**!
+
+### Option B: Deploy via Vercel CLI
+
+```bash
+# In the project root (e:\GDG):
+npx vercel --prod
+```
+
+---
+
 ## Testing & Verification
 
 Run the automated backend test suite:
