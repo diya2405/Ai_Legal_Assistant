@@ -113,7 +113,19 @@ def synthesize_smart_answer(query: str, chunks: List[Any]) -> str:
 
     q_lower = query.lower()
 
-    # Intent 1: Documents / Attachments
+    # Intent 1: Court Fees & Filing Costs (Check FIRST so "how much fee" matches here)
+    if any(k in q_lower for k in ["fee", "court fee", "cost", "charge", "expense", "how much", "filing fee"]):
+        fee_chunks = [c for c in chunks if any(w in c.chunk_text.lower() for w in ["fee", "daakhil", "court", "rupee", "rs"])]
+        primary = fee_chunks[0] if fee_chunks else chunks[0]
+        return (
+            f"**Statutory Court Fee & Filing Cost Structure** ({primary.act_name}):\n\n"
+            f"• **Consumer Commissions (DCDRC)**: Complaints for claims up to ₹5 Lakhs attract **NIL (Zero) Court Fee**. Claims between ₹5L and ₹10L require a nominal fee of ₹200 (payable online via e-Daakhil).\n\n"
+            f"• **Rent Authority / Rent Court**: Nominal statutory filing fee (typically ₹100 to ₹500 depending on state rules).\n\n"
+            f"• **Labour Commission**: **NIL Court Fee** for workmen filing wage recovery claims under the Payment of Wages Act.\n\n"
+            f"*Source Excerpt*: {primary.chunk_text}"
+        )
+
+    # Intent 2: Documents & Evidence Attachments
     if any(k in q_lower for k in ["document", "attach", "proof", "evidence", "receipt"]):
         doc_chunks = [c for c in chunks if any(w in c.chunk_text.lower() for w in ["attach", "proof", "evidence", "receipt"])]
         primary = doc_chunks[0] if doc_chunks else chunks[0]
@@ -125,8 +137,8 @@ def synthesize_smart_answer(query: str, chunks: List[Any]) -> str:
             f"• **4. Proof of Service**: Speed Post RPAD tracking delivery receipt serving as statutory proof of notice service."
         )
 
-    # Intent 2: Step-by-Step Court Process / Non-response
-    if any(k in q_lower for k in ["process", "step", "reply", "court", "procedure", "don't reply", "no response"]):
+    # Intent 3: Step-by-Step Court Process & Non-response (Excludes standalone "court" to prevent misfires)
+    if any(k in q_lower for k in ["process", "step", "reply", "procedure", "don't reply", "no response", "after notice", "court process"]):
         proc_chunks = [c for c in chunks if any(w in c.chunk_text.lower() for w in ["process", "ex-parte", "summons", "court"])]
         primary = proc_chunks[0] if proc_chunks else chunks[0]
         forum_name = getattr(primary, 'remedy_forum', 'the designated Court/Commission')
@@ -139,7 +151,7 @@ def synthesize_smart_answer(query: str, chunks: List[Any]) -> str:
             f"• **Step 5: Final Award / Decree**\nThe court issues a binding order directing refund, compensation, and penalty."
         )
 
-    # Intent 3: Compensation / Mental Agony / Interest
+    # Intent 4: Compensation / Mental Agony / Interest
     if any(k in q_lower for k in ["compensation", "mental agony", "interest", "damage", "penalty", "claim"]):
         comp_chunks = [c for c in chunks if any(w in c.chunk_text.lower() for w in ["compensation", "interest", "penalty", "damage"])]
         primary = comp_chunks[0] if comp_chunks else chunks[0]
@@ -149,15 +161,6 @@ def synthesize_smart_answer(query: str, chunks: List[Any]) -> str:
             f"• **Statutory Interest**: Interest on delayed payment (typically 6% to 12% p.a. from due date).\n\n"
             f"• **Compensation for Mental Agony**: Financial damages for mental harassment and operational inconvenience.\n\n"
             f"• **Litigation Costs**: Legal expenses incurred for issuing notice and filing the petition."
-        )
-
-    # Intent 4: Court Fees / Costs
-    if any(k in q_lower for k in ["fee", "cost", "charge", "expense"]):
-        fee_chunks = [c for c in chunks if any(w in c.chunk_text.lower() for w in ["fee", "daakhil", "court"])]
-        primary = fee_chunks[0] if fee_chunks else chunks[0]
-        return (
-            f"**Statutory Court Fee Structure** (under {primary.act_name}):\n\n"
-            f"{primary.chunk_text}"
         )
 
     # General Fallback: Multi-chunk structured synthesis

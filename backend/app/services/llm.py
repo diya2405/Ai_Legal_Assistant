@@ -37,10 +37,15 @@ def verify_citation_guard(generated_text: str, kb_entry_section: str, kb_entry_a
 
 def call_openrouter_api(prompt: str) -> str:
     openrouter_key = os.getenv("OPENROUTER_API_KEY")
-    model = os.getenv("OPENROUTER_MODEL", "google/gemma-4-31b-it:free")
-
     if not openrouter_key:
         raise ValueError("OPENROUTER_API_KEY not configured")
+
+    models_to_try = [
+        os.getenv("OPENROUTER_MODEL", "google/gemma-4-31b-it:free"),
+        "meta-llama/llama-3.2-3b-instruct:free",
+        "google/gemma-2-9b-it:free",
+        "mistralai/mistral-7b-instruct:free"
+    ]
 
     headers = {
         "Authorization": f"Bearer {openrouter_key}",
@@ -48,18 +53,28 @@ def call_openrouter_api(prompt: str) -> str:
         "HTTP-Referer": "http://localhost:3000",
         "X-Title": "LegalAId"
     }
-    payload = {
-        "model": model,
-        "messages": [
-            {"role": "system", "content": "You are a helpful Indian legal rights assistant explaining rights in simple, empathetic plain language to non-lawyers."},
-            {"role": "user", "content": prompt}
-        ],
-        "temperature": 0.3
-    }
-    res = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=payload, timeout=12)
-    res.raise_for_status()
-    data = res.json()
-    return data["choices"][0]["message"]["content"].strip()
+
+    last_err = None
+    for model in models_to_try:
+        try:
+            payload = {
+                "model": model,
+                "messages": [
+                    {"role": "system", "content": "You are a helpful Indian legal rights assistant explaining rights in simple, empathetic plain language to non-lawyers."},
+                    {"role": "user", "content": prompt}
+                ],
+                "temperature": 0.3
+            }
+            res = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=payload, timeout=10)
+            res.raise_for_status()
+            data = res.json()
+            return data["choices"][0]["message"]["content"].strip()
+        except Exception as e:
+            last_err = e
+            continue
+
+    if last_err:
+        raise last_err
 
 
 def call_groq_api(prompt: str) -> str:
