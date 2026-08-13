@@ -49,24 +49,7 @@ def classify_intake_text(text: str) -> Dict[str, Any]:
             "score": round(float(prob), 4)
         })
     
-    # Keyword Rule Boost for High-Precision Legal Terms
-    text_lower = text.lower()
-    keyword_boosts = [
-        (["mrp", "supermarket", "cash memo", "overcharg", "printed price", "soap", "soap bar", "fake item", "wrong item", "substituted", "flipkart", "amazon", "fraud", "cheating", "empty box", "different item"], "consumer", "unfair_trade_practice"),
-        (["defective", "warranty", "repair", "broken product", "washing machine"], "consumer", "defective_product"),
-        (["deposit", "landlord", "flat", "rent", "vacating"], "tenant", "deposit_not_returned"),
-        (["evict", "water connection", "electricity", "lock out"], "tenant", "illegal_eviction"),
-        (["salary", "wages", "withheld", "employer", "month"], "labor", "unpaid_wages"),
-        (["terminated", "retrenched", "fired", "notice pay"], "labor", "wrongful_termination")
-    ]
-
-    for keywords, target_domain, target_issue in keyword_boosts:
-        if any(kw in text_lower for kw in keywords):
-            for match in candidate_matches:
-                if match["domain"] == target_domain and match["issue_type"] == target_issue:
-                    match["score"] = round(match["score"] + 0.35, 4)
-
-    # Re-sort after keyword boosting
+    # Re-sort candidate matches by pure ML probability
     candidate_matches.sort(key=lambda x: x["score"], reverse=True)
 
     top_match = candidate_matches[0]
