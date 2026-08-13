@@ -205,12 +205,75 @@ def seed_data():
             notice_template_id="labor_overtime_notice",
             source_url="https://www.indiacode.nic.in/handle/123456789/2289",
             last_verified_date=date(2024, 2, 1)
+        ),
+
+        # --- CYBER & FINANCIAL FRAUD ---
+        KBEntry(
+            domain="cyber",
+            issue_type="upi_phishing_fraud",
+            law_code="IT Act / BNS",
+            act_name="Information Technology Act, 2000 & Bharatiya Nyaya Sanhita, 2023",
+            section_number="IT Act Section 66D / BNS Section 318",
+            section_text_plain=(
+                "Under Section 66D of Information Technology Act, 2000 and BNS Section 318, cheating by personation using a computer resource, "
+                "fake QR code fraud, or unauthorized UPI bank transaction is punishable with up to 3 years imprisonment and fine. "
+                "Under RBI Cyber Fraud Circulars, zero liability applies to victims reporting unauthorized electronic transactions within 3 days."
+            ),
+            plain_summary_seed=(
+                "If you were scammed via a fake QR code, UPI phishing link, or unauthorized bank deduction, you have the statutory right "
+                "to get your stolen funds frozen immediately by dialing Cyber Helpline 1930 and claiming zero customer liability from your bank."
+            ),
+            remedy_forum="Cyber Crime Helpline (1930 / cybercrime.gov.in) & Banking Ombudsman",
+            limitation_period="Report within 24 to 72 hours for immediate bank freeze",
+            notice_template_id="cyber_upi_fraud_notice",
+            source_url="https://www.indiacode.nic.in/handle/123456789/1999",
+            last_verified_date=date(2024, 2, 10)
+        ),
+
+        # --- REAL ESTATE & RERA ---
+        KBEntry(
+            domain="real_estate",
+            issue_type="builder_possession_delay",
+            law_code="RERA",
+            act_name="Real Estate (Regulation and Development) Act, 2016",
+            section_number="RERA Section 18(1)",
+            section_text_plain=(
+                "Under Section 18(1) of RERA Act, 2016, if the promoter fails to complete or give possession of an apartment in accordance "
+                "with the agreement for sale, the builder is liable on demand to return the full amount received with prescribed interest, "
+                "or pay monthly interest for every month of delay until possession is handed over."
+            ),
+            plain_summary_seed=(
+                "If your builder has delayed handing over possession of your flat past the agreed completion date, you have the legal right "
+                "to demand a 100% full refund with statutory interest or monthly delay compensation until flat delivery."
+            ),
+            remedy_forum="Real Estate Regulatory Authority (RERA) / Adjudicating Officer",
+            limitation_period="3 years from promised date of possession",
+            notice_template_id="rera_builder_delay_notice",
+            source_url="https://www.indiacode.nic.in/handle/123456789/2156",
+            last_verified_date=date(2024, 2, 10)
         )
     ]
     db.bulk_save_objects(entries)
 
     # --- EXPANDED STATUTE CHUNKS & PRECEDENTS FOR RAG VECTOR SEARCH ---
     chunks = [
+        # Cyber & IT Act Chunks
+        StatuteChunk(
+            act_name="Information Technology Act, 2000",
+            section_number="Section 66D",
+            law_code="IT Act",
+            domain_hint="cyber",
+            source_url="https://www.indiacode.nic.in/handle/123456789/1999",
+            chunk_text="Punishment for cheating by personation by using computer resource: Whoever, by means for any communication device or computer resource cheats by personation, shall be punished with imprisonment of either description for a term which may extend to three years and shall also be liable to fine which may extend to one lakh rupees."
+        ),
+        StatuteChunk(
+            act_name="Real Estate (Regulation and Development) Act, 2016",
+            section_number="Section 18",
+            law_code="RERA",
+            domain_hint="real_estate",
+            source_url="https://www.indiacode.nic.in/handle/123456789/2156",
+            chunk_text="Return of amount and compensation: If the promoter fails to complete or is unable to give possession of an apartment, plot or building in accordance with the terms of the agreement for sale, he shall be liable on demand to the allottees to return the amount received by him with interest at such rate as may be prescribed."
+        ),
         # Consumer Protection Act 2019 Chunks
         StatuteChunk(
             act_name="Consumer Protection Act, 2019",

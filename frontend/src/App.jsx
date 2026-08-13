@@ -10,6 +10,14 @@ const MANDATORY_DISCLAIMER = "LegalAId is an automated AI legal research assista
 
 const SAMPLE_STARTERS = [
   {
+    label: "Cyber UPI & QR Fraud",
+    text: "I was scammed on OLX via a fake QR code and ₹25,000 was fraudulently deducted from my Google Pay bank account."
+  },
+  {
+    label: "RERA Builder Flat Delay",
+    text: "My builder has delayed flat possession by 2 years past the agreed RERA date and is refusing to pay interest compensation or refund."
+  },
+  {
     label: "Tenant Security Deposit",
     text: "My landlord in Bangalore is refusing to return my security deposit of ₹45,000 after 2 months of vacating the flat."
   },
