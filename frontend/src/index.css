@@ -1199,3 +1199,32 @@ body {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+/* Formatted Message & Chat Step Box Styles */
+.chat-text {
+  white-space: pre-wrap;
+  line-height: 1.65;
+}
+
+.font-bold-highlight {
+  color: #93c5fd;
+  font-weight: 700;
+}
+
+.formatted-paragraph {
+  margin-bottom: 0.75rem;
+}
+
+.formatted-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.formatted-step-box {
+  background: rgba(15, 23, 42, 0.65);
+  border-left: 3px solid var(--accent-amber);
+  padding: 0.65rem 0.9rem;
+  border-radius: 8px;
+  margin-bottom: 0.65rem;
+  font-size: 0.93rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}

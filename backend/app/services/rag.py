@@ -119,24 +119,24 @@ def synthesize_smart_answer(query: str, chunks: List[Any]) -> str:
         primary = doc_chunks[0] if doc_chunks else chunks[0]
         return (
             f"**Required Documents & Evidence Attachments** (under {primary.act_name}):\n\n"
-            f"When issuing a formal legal notice or filing a claim, attach copies of:\n"
-            f"1. **Primary Contract / Deed**: Rent agreement / lease deed, invoice, or employment contract.\n"
-            f"2. **Financial Proof**: Security deposit bank transfer receipts, UPI screenshots, or wage slips.\n"
-            f"3. **Correspondence Records**: Written demand notices, WhatsApp chats, or email threads.\n"
-            f"4. **Proof of Service**: Speed Post RPAD tracking delivery receipt serving as statutory proof of notice service."
+            f"• **1. Executed Contract / Deed**: Rent agreement, lease deed, invoice, or employment contract.\n\n"
+            f"• **2. Financial Proof**: Security deposit bank transfer receipts, UPI payment screenshots, or wage slips.\n\n"
+            f"• **3. Written Correspondence**: Demand notices, WhatsApp chat logs, or email communications.\n\n"
+            f"• **4. Proof of Service**: Speed Post RPAD tracking delivery receipt serving as statutory proof of notice service."
         )
 
     # Intent 2: Step-by-Step Court Process / Non-response
     if any(k in q_lower for k in ["process", "step", "reply", "court", "procedure", "don't reply", "no response"]):
         proc_chunks = [c for c in chunks if any(w in c.chunk_text.lower() for w in ["process", "ex-parte", "summons", "court"])]
         primary = proc_chunks[0] if proc_chunks else chunks[0]
+        forum_name = getattr(primary, 'remedy_forum', 'the designated Court/Commission')
         return (
             f"**Step-by-Step Legal Procedure** (governed by {primary.act_name}):\n\n"
-            f"1. **Notice Expiry**: Wait for the statutory 15-day notice period to lapse after delivery.\n"
-            f"2. **Filing Petition**: Submit a formal petition before {primary.remedy_forum if hasattr(primary, 'remedy_forum') else 'the designated Court/Commission'} along with affidavit and postal tracking receipt.\n"
-            f"3. **Court Summons**: The Court issues formal summons notice to the opposing party.\n"
-            f"4. **Ex-Parte Order**: If the opponent fails to appear or submit a written defense within 30 days, the court proceeds ex-parte (Order IX Rule 6 CPC).\n"
-            f"5. **Final Award / Decree**: The court issues a binding order directing refund, compensation, and penalty."
+            f"• **Step 1: Notice Expiry**\nWait for the statutory 15-day notice period to lapse after delivery.\n\n"
+            f"• **Step 2: Filing Petition**\nSubmit a formal petition before {forum_name} along with your affidavit and postal tracking receipt.\n\n"
+            f"• **Step 3: Court Summons**\nThe Court issues formal summons notice to the opposing party.\n\n"
+            f"• **Step 4: Ex-Parte Order**\nIf the opponent fails to appear or submit a written defense within 30 days, the court proceeds ex-parte (Order IX Rule 6 CPC).\n\n"
+            f"• **Step 5: Final Award / Decree**\nThe court issues a binding order directing refund, compensation, and penalty."
         )
 
     # Intent 3: Compensation / Mental Agony / Interest
@@ -144,11 +144,10 @@ def synthesize_smart_answer(query: str, chunks: List[Any]) -> str:
         comp_chunks = [c for c in chunks if any(w in c.chunk_text.lower() for w in ["compensation", "interest", "penalty", "damage"])]
         primary = comp_chunks[0] if comp_chunks else chunks[0]
         return (
-            f"**Statutory Right to Claim Compensation & Interest**:\n\n"
-            f"Under {primary.act_name} ({primary.section_number}), you are legally entitled to claim:\n"
-            f"• **Principal Amount**: Full refund of withheld deposit, wages, or defective product value.\n"
-            f"• **Statutory Interest**: Interest on delayed payment (typically 6% to 12% p.a. from due date).\n"
-            f"• **Compensation for Mental Agony**: Financial damages for mental harassment and operational inconvenience.\n"
+            f"**Statutory Right to Claim Compensation & Interest** ({primary.act_name}):\n\n"
+            f"• **Principal Amount**: Full refund of withheld deposit, wages, or defective product value.\n\n"
+            f"• **Statutory Interest**: Interest on delayed payment (typically 6% to 12% p.a. from due date).\n\n"
+            f"• **Compensation for Mental Agony**: Financial damages for mental harassment and operational inconvenience.\n\n"
             f"• **Litigation Costs**: Legal expenses incurred for issuing notice and filing the petition."
         )
 
@@ -164,7 +163,7 @@ def synthesize_smart_answer(query: str, chunks: List[Any]) -> str:
     # General Fallback: Multi-chunk structured synthesis
     lines = [f"**Applicable Legal Guidance & Statutory Provisions** ({chunks[0].act_name}):\n"]
     for idx, c in enumerate(chunks[:3], 1):
-        lines.append(f"**{idx}. {c.act_name} ({c.section_number})**: {c.chunk_text}")
+        lines.append(f"**{idx}. {c.act_name} ({c.section_number})**:\n{c.chunk_text}\n")
     lines.append("\n*You may issue a formal legal notice or approach the designated forum for immediate relief.*")
     return "\n\n".join(lines)
 

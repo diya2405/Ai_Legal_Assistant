@@ -38,6 +38,35 @@ const SUGGESTED_CHAT_PROMPTS = [
   "Can I claim compensation for mental agony and interest?"
 ];
 
+function renderFormattedMessage(text) {
+  if (!text) return null;
+  const paragraphs = text.split('\n\n');
+  return paragraphs.map((para, pIdx) => {
+    const parts = para.split(/(\*\*.*?\*\*)/g);
+    const renderedParts = parts.map((part, idx) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return <strong key={idx} className="font-bold-highlight">{part.slice(2, -2)}</strong>;
+      }
+      return part;
+    });
+
+    const isStep = para.startsWith('•') || para.startsWith('Step') || /^\d+\./.test(para);
+    if (isStep) {
+      return (
+        <div key={pIdx} className="formatted-step-box">
+          {renderedParts}
+        </div>
+      );
+    }
+
+    return (
+      <p key={pIdx} className="formatted-paragraph">
+        {renderedParts}
+      </p>
+    );
+  });
+}
+
 export default function App() {
   const [lang, setLang] = useState('en'); // 'en' or 'hi'
   const [sessionId, setSessionId] = useState(null);
@@ -772,7 +801,7 @@ export default function App() {
                         {msg.role === 'user' ? 'YOU' : 'AI'}
                       </div>
                       <div className="chat-bubble-content">
-                        <div className="chat-text">{msg.content}</div>
+                        <div className="chat-text">{renderFormattedMessage(msg.content)}</div>
                         {msg.source_chunks && msg.source_chunks.length > 0 && (
                           <div className="chat-source-tag">
                             Source: <strong>{msg.source_chunks[0].act_name} ({msg.source_chunks[0].section_number})</strong>
