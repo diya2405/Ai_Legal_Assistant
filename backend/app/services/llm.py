@@ -41,10 +41,10 @@ def call_openrouter_api(prompt: str) -> str:
         raise ValueError("OPENROUTER_API_KEY not configured")
 
     models_to_try = [
+        "openrouter/free",
         os.getenv("OPENROUTER_MODEL", "google/gemma-4-31b-it:free"),
-        "meta-llama/llama-3.2-3b-instruct:free",
-        "google/gemma-2-9b-it:free",
-        "mistralai/mistral-7b-instruct:free"
+        "nvidia/nemotron-3-nano-30b-a3b:free",
+        "liquid/lfm-2.5-2.6b:free"
     ]
 
     headers = {
