@@ -22,6 +22,10 @@ const SAMPLE_STARTERS = [
     text: "I bought a washing machine for ₹25,000 but it was broken on arrival. Seller is refusing refund or warranty repair."
   },
   {
+    label: "Wrongful Employment Termination",
+    text: "I worked for 2 years as a software employee but the company fired me immediately today without giving 1 month notice period or paying retrenchment compensation."
+  },
+  {
     label: "Unpaid Salary Withheld",
     text: "My company has withheld my monthly salary of ₹35,000 for 3 consecutive months without any written reason."
   },
