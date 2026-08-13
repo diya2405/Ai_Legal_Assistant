@@ -534,7 +534,7 @@ export default function App() {
                     </div>
                   ) : (
                     <div className="explanation-body">
-                      {explanationData?.explanation || kbEntry.plain_summary_seed}
+                      {renderFormattedMessage(explanationData?.explanation || kbEntry?.plain_summary_seed)}
                     </div>
                   )}
 
