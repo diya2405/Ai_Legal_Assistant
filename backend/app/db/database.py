@@ -2,7 +2,10 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./legalaid.db")
+if os.getenv("VERCEL"):
+    DATABASE_URL = "sqlite:////tmp/legalaid.db"
+else:
+    DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./legalaid.db")
 
 # Sqlite requires check_same_thread=False for multithreaded FastAPI requests
 connect_args = {}

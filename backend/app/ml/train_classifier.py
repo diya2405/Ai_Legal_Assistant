@@ -47,7 +47,14 @@ def build_model_pipeline() -> Pipeline:
     return pipeline
 
 def train_and_save_model(dataset_path: str = DATASET_PATH, model_save_path: str = MODEL_PATH) -> Dict[str, Any]:
-    os.makedirs(os.path.dirname(model_save_path), exist_ok=True)
+    if os.getenv("VERCEL"):
+        model_save_path = "/tmp/classification_model.pkl"
+        
+    try:
+        os.makedirs(os.path.dirname(model_save_path), exist_ok=True)
+    except Exception:
+        model_save_path = "/tmp/classification_model.pkl"
+        os.makedirs(os.path.dirname(model_save_path), exist_ok=True)
     
     data = load_dataset(dataset_path)
     X = [item["text"] for item in data]
@@ -76,7 +83,12 @@ def train_and_save_model(dataset_path: str = DATASET_PATH, model_save_path: str 
         "metrics_report": report
     }
     
-    joblib.dump(model_payload, model_save_path)
+    try:
+        joblib.dump(model_payload, model_save_path)
+    except Exception:
+        model_save_path = "/tmp/classification_model.pkl"
+        joblib.dump(model_payload, model_save_path)
+
     print(f"================ ML MODEL TRAINING METRICS ================")
     print(f" Dataset Size: {len(X)} samples across {len(set(y))} classes")
     print(f" Training Accuracy: {train_acc * 100:.2f}%")
@@ -86,6 +98,9 @@ def train_and_save_model(dataset_path: str = DATASET_PATH, model_save_path: str 
     return model_payload
 
 def load_or_train_model(model_save_path: str = MODEL_PATH) -> Dict[str, Any]:
+    if os.getenv("VERCEL"):
+        model_save_path = "/tmp/classification_model.pkl"
+        
     if os.path.exists(model_save_path):
         try:
             return joblib.load(model_save_path)

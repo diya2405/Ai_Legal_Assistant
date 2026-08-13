@@ -240,7 +240,7 @@ def generate_document(req: DocumentGenerateRequest, db: Session = Depends(get_db
 
     doc_id = str(uuid.uuid4())
     pdf_filename = f"legal_notice_{doc_id[:8]}.pdf"
-    pdf_dir = os.path.join(os.getcwd(), "generated_pdfs")
+    pdf_dir = "/tmp/generated_pdfs" if os.getenv("VERCEL") else os.path.join(os.getcwd(), "generated_pdfs")
     pdf_path = os.path.join(pdf_dir, pdf_filename)
 
     generate_legal_pdf(
