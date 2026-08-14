@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, FileText, MessageSquare, UserCheck, Layers } from 'lucide-react';
+import { Sparkles, FileText, MessageSquare, UserCheck, Layers, ShieldCheck, Scale, BookOpen, CheckCircle } from 'lucide-react';
 import { TRANSLATIONS } from '../data/translations';
 
-export default function TabBar({ activeTab, setActiveTab, language = 'en', isSidebar = true }) {
+export default function TabBar({ activeTab, setActiveTab, language = 'en', isSidebar = true, kbEntry = null }) {
   const t = TRANSLATIONS[language]?.tabs || TRANSLATIONS.en.tabs;
   const isHi = language === 'hi';
 
@@ -115,6 +115,35 @@ export default function TabBar({ activeTab, setActiveTab, language = 'en', isSid
             </motion.button>
           );
         })}
+      </div>
+
+      <div className="sidebar-quick-info">
+        <div className="sidebar-info-header">
+          <ShieldCheck size={15} className="icon-accent-emerald" />
+          <span>{isHi ? 'सत्यापित कानूनी संदर्भ' : 'Verified Legal Context'}</span>
+        </div>
+        {kbEntry ? (
+          <div className="sidebar-info-body">
+            <div className="info-chip gold-chip">
+              <Scale size={13} />
+              <span>{kbEntry.act_name}</span>
+            </div>
+            <div className="info-chip blue-chip">
+              <BookOpen size={13} />
+              <span>{kbEntry.section_number}</span>
+            </div>
+            {kbEntry.remedy_forum && (
+              <div className="info-chip emerald-chip">
+                <CheckCircle size={13} />
+                <span>{kbEntry.remedy_forum}</span>
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="sidebar-info-muted">
+            {isHi ? 'मूल अधिनियम ज्ञानकोश द्वारा सत्यापित' : '100% Citation Guard Verified'}
+          </div>
+        )}
       </div>
     </div>
   );

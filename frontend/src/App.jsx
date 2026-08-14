@@ -369,6 +369,7 @@ export default function App() {
                     setActiveTab={handleTabSelect} 
                     language={language} 
                     isSidebar={true} 
+                    kbEntry={kbEntry}
                   />
                 </aside>
 
