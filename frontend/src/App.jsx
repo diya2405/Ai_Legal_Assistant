@@ -82,39 +82,72 @@ export default function App() {
     }
   }, [kbEntry]);
 
+  // Helper to ensure valid session ID
+  const getOrCreateSessionId = async () => {
+    if (sessionId) return sessionId;
+    try {
+      const res = await fetch('/api/session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({})
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data && data.session_id) {
+          setSessionId(data.session_id);
+          return data.session_id;
+        }
+      }
+    } catch (e) {
+      console.error("Session auto-create failed:", e);
+    }
+    const fallbackId = 'session-' + Date.now() + '-' + Math.random().toString(36).substring(2, 9);
+    setSessionId(fallbackId);
+    return fallbackId;
+  };
+
   // Handle Intake submission
   const handleIntakeSubmit = async (e) => {
     if (e) e.preventDefault();
-    if (!inputText.trim() || !sessionId) return;
+    if (!inputText.trim()) return;
 
     setLoading(true);
     setError(null);
     setExplanationData(null);
     setGeneratedDoc(null);
-    setActiveTab('rights');
+
+    const activeSessionId = await getOrCreateSessionId();
 
     try {
       const res = await fetch('/api/intake', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          session_id: sessionId,
+          session_id: activeSessionId,
           raw_text: inputText,
           language: 'en'
         })
       });
+
+      if (!res.ok) {
+        const errText = await res.text();
+        throw new Error(`API response error (${res.status}): ${errText || res.statusText}`);
+      }
+
       const data = await res.json();
       
       setIntakeData(data);
       setClassification(data.classification);
       setEntities(data.entities || []);
       setKbEntry(data.kb_entry);
+      setActiveTab('rights');
 
       if (data.kb_entry) {
         fetchExplanation(data.kb_entry.id, data.entities);
       }
     } catch (err) {
-      setError("Failed to process request. Please ensure the backend server is running at http://localhost:8000.");
+      console.error("Intake submission error:", err);
+      setError(err.message || "Failed to process legal intake. Please try again.");
     } finally {
       setLoading(false);
     }

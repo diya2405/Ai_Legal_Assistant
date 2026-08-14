@@ -87,10 +87,14 @@ def create_session(req: SessionCreateRequest, db: Session = Depends(get_db)):
 
 @router.post("/intake")
 def process_intake(req: IntakeRequest, db: Session = Depends(get_db)):
-    # 1. Store Intake
+    # 1. Store Intake (Auto-create session if missing)
     session_obj = db.query(DBSession).filter(DBSession.id == req.session_id).first()
     if not session_obj:
-        raise HTTPException(status_code=404, detail="Session not found")
+        token = str(uuid.uuid4())
+        session_obj = DBSession(id=req.session_id, session_token=token)
+        db.add(session_obj)
+        db.commit()
+        db.refresh(session_obj)
 
     intake_obj = Intake(
         session_id=req.session_id,
@@ -292,7 +296,11 @@ def download_document(doc_id: str, db: Session = Depends(get_db)):
 def chat_message(session_id: str, req: ChatMessageRequest, db: Session = Depends(get_db)):
     session_obj = db.query(DBSession).filter(DBSession.id == session_id).first()
     if not session_obj:
-        raise HTTPException(status_code=404, detail="Session not found")
+        token = str(uuid.uuid4())
+        session_obj = DBSession(id=session_id, session_token=token)
+        db.add(session_obj)
+        db.commit()
+        db.refresh(session_obj)
 
     # 1. Store user message
     user_msg = ChatMessage(

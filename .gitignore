@@ -22,6 +22,7 @@ env/
 *.sqlite3
 *.pkl
 !backend/app/ml/models/classification_model.pkl
+!backend/legalaid.db
 
 # Generated PDFs & runtime outputs
 backend/generated_pdfs/

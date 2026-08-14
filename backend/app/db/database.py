@@ -1,9 +1,20 @@
 import os
+import shutil
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
 if os.getenv("VERCEL"):
-    DATABASE_URL = "sqlite:////tmp/legalaid.db"
+    tmp_db_path = "/tmp/legalaid.db"
+    # Copy pre-seeded production database to /tmp if not present or uninitialized
+    if not os.path.exists(tmp_db_path) or os.path.getsize(tmp_db_path) < 10000:
+        base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        source_db = os.path.join(base_dir, "legalaid.db")
+        if os.path.exists(source_db):
+            try:
+                shutil.copy2(source_db, tmp_db_path)
+            except Exception as e:
+                print(f"[DB] Copy to /tmp error: {e}")
+    DATABASE_URL = f"sqlite:///{tmp_db_path}"
 else:
     DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./legalaid.db")
 
