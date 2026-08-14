@@ -1,10 +1,43 @@
 import re
 from typing import List, Dict, Any
 
+def is_valid_party_name(val: str) -> bool:
+    if not val or len(val) < 2:
+        return False
+    val_lower = val.lower().strip()
+    
+    # Common verb/stop phrases to reject
+    invalid_words = {
+        "is", "are", "was", "were", "be", "been", "being",
+        "refuse", "refused", "refusing", "refuses",
+        "deny", "denied", "denying", "denies",
+        "fail", "failed", "failing", "fails",
+        "pay", "paid", "paying", "pays",
+        "return", "returned", "returning", "returns",
+        "give", "gave", "giving", "gives",
+        "take", "took", "taking", "takes",
+        "not", "no", "did", "does", "has", "have", "had"
+    }
+    
+    tokens = re.findall(r'\w+', val_lower)
+    if not tokens:
+        return False
+        
+    # Reject if any token is a prohibited action verb
+    if any(t in invalid_words for t in tokens):
+        return False
+        
+    # Reject generic pronoun/stop phrases
+    if val_lower in {"he", "she", "they", "it", "this", "that", "someone", "my", "your", "his", "her"}:
+        return False
+
+    return True
+
+
 def extract_entities(text: str) -> List[Dict[str, Any]]:
     """
     Extracts structured entities (dates, monetary amounts, party names, addresses) from intake text.
-    Returns list of dicts: {'entity_type': ..., 'entity_value': ..., 'confirmed_by_user': False}
+    Filters out invalid verb phrases and provides clean defaults.
     """
     entities = []
 
@@ -42,7 +75,23 @@ def extract_entities(text: str) -> List[Dict[str, Any]]:
                     "confirmed_by_user": False
                 })
 
-    # 3. Party Names & Addresses (Heuristic / spaCy if available)
+    # 3. Party Names & Addresses
+    found_party = False
+    
+    # Explicit pattern matching for owner/landlord/employer/builder/company names
+    owner_match = re.search(
+        r'(?:landlord|owner|employer|company|builder|store|seller|respondent|opponent|accused)\s+(?:named\s+|called\s+)?([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)',
+        text, re.IGNORECASE
+    )
+    if owner_match and is_valid_party_name(owner_match.group(1)):
+        val = owner_match.group(1).strip()
+        entities.append({
+            "entity_type": "party_name",
+            "entity_value": val,
+            "confirmed_by_user": False
+        })
+        found_party = True
+
     try:
         import spacy
         nlp = spacy.load("en_core_web_sm")
@@ -50,12 +99,13 @@ def extract_entities(text: str) -> List[Dict[str, Any]]:
         for ent in doc.ents:
             if ent.label_ in ["PERSON", "ORG"]:
                 val = ent.text.strip()
-                if len(val) > 2 and not any(e['entity_value'] == val for e in entities):
+                if is_valid_party_name(val) and not any(e['entity_value'] == val for e in entities):
                     entities.append({
                         "entity_type": "party_name",
                         "entity_value": val,
                         "confirmed_by_user": False
                     })
+                    found_party = True
             elif ent.label_ in ["GPE", "LOC", "FAC"]:
                 val = ent.text.strip()
                 if len(val) > 2 and not any(e['entity_value'] == val for e in entities):
@@ -65,13 +115,14 @@ def extract_entities(text: str) -> List[Dict[str, Any]]:
                         "confirmed_by_user": False
                     })
     except Exception:
-        # Simple regex heuristics if spaCy model not present
-        owner_match = re.search(r'(?:landlord|owner|employer|company|builder|store|seller)\s+(?:named\s+|called\s+)?([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)', text, re.IGNORECASE)
-        if owner_match:
-            entities.append({
-                "entity_type": "party_name",
-                "entity_value": owner_match.group(1),
-                "confirmed_by_user": False
-            })
+        pass
+
+    # Fallback to clean default if no explicit proper name was mentioned
+    if not found_party:
+        entities.append({
+            "entity_type": "party_name",
+            "entity_value": "Opposing Party / Respondent",
+            "confirmed_by_user": False
+        })
 
     return entities
