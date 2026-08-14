@@ -29,16 +29,17 @@ def retrieve_chunks(
     similarity_floor: float = 0.05
 ) -> List[StatuteChunk]:
     """
-    Retrieves top-k relevant StatuteChunk entries using persistent AI Neural Vector Index.
-    Falls back to n-gram similarity or domain-based chunks if score threshold is low.
+    Retrieves top-k relevant StatuteChunk entries using Hybrid Dense-Sparse RAG Search:
+    1. Dense Neural Vector Store Embeddings Search
+    2. BM25 / N-Gram Sparse Keyword Matcher
+    3. Reciprocal Rank Fusion (RRF) & Precedent Re-Ranking
     """
     store = get_vector_store()
-    results = store.search(db, query, domain_hint=domain_hint, k=k, min_score=similarity_floor)
     
-    if results:
-        return results
-
-    # Fallback to DB scan
+    # 1. Dense Vector Search Stream
+    dense_results = store.search(db, query, domain_hint=domain_hint, k=k*2, min_score=similarity_floor)
+    
+    # 2. Sparse BM25 / N-Gram Search Stream
     query_obj = db.query(StatuteChunk)
     if domain_hint:
         query_obj = query_obj.filter(StatuteChunk.domain_hint == domain_hint)
@@ -46,23 +47,55 @@ def retrieve_chunks(
     if not all_chunks:
         all_chunks = db.query(StatuteChunk).all()
 
-    scored = []
+    sparse_scored = []
+    sec_match = re.search(r'section\s+(\d+[A-Za-z]?)', query, re.IGNORECASE)
+    
     for chunk in all_chunks:
         combined_text = f"{chunk.act_name} {chunk.section_number} {chunk.chunk_text}"
         score = jaccard_similarity(query, combined_text)
         
-        sec_match = re.search(r'section\s+(\d+[A-Za-z]?)', query, re.IGNORECASE)
         if sec_match and chunk.section_number and sec_match.group(1).lower() in chunk.section_number.lower():
-            score += 0.35
+            score += 0.40
 
         if score >= similarity_floor:
-            scored.append((score, chunk))
+            sparse_scored.append((score, chunk))
 
-    if scored:
-        scored.sort(key=lambda x: x[0], reverse=True)
-        return [chunk for _, chunk in scored[:k]]
+    sparse_scored.sort(key=lambda x: x[0], reverse=True)
+    sparse_results = [c for _, c in sparse_scored[:k*2]]
 
-    # If no chunk met similarity floor, return top domain/DB chunks unless strict similarity floor requested
+    # 3. Reciprocal Rank Fusion (RRF) & Precedent Boost
+    rrf_scores: Dict[int, float] = {}
+    chunk_map: Dict[int, StatuteChunk] = {}
+
+    for rank, chunk in enumerate(dense_results, 1):
+        chunk_map[chunk.id] = chunk
+        rrf_scores[chunk.id] = rrf_scores.get(chunk.id, 0.0) + (1.0 / (60.0 + rank))
+
+    for rank, chunk in enumerate(sparse_results, 1):
+        chunk_map[chunk.id] = chunk
+        rrf_scores[chunk.id] = rrf_scores.get(chunk.id, 0.0) + (1.0 / (60.0 + rank))
+
+    # Precedent Re-Ranking Boost if query asks for case precedents / Supreme Court judgments
+    is_precedent_query = any(w in query.lower() for w in ["precedent", "supreme court", "judgment", "ruling", "case law", "hc", "sc"])
+
+    final_ranked = []
+    for chunk_id, rrf_score in rrf_scores.items():
+        chunk = chunk_map[chunk_id]
+        final_score = rrf_score
+        
+        # Precedent Re-Ranking Boost
+        if is_precedent_query and any(w in (chunk.act_name or "").lower() or w in (chunk.chunk_text or "").lower() for w in ["supreme court", "precedent", "judgment"]):
+            final_score += 0.05
+            
+        final_ranked.append((final_score, chunk))
+
+    final_ranked.sort(key=lambda x: x[0], reverse=True)
+    top_chunks = [c for _, c in final_ranked[:k]]
+
+    if top_chunks:
+        return top_chunks
+
+    # Fallback if no chunk met strict similarity floor
     if similarity_floor > 0.2:
         return []
 
