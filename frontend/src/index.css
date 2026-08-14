@@ -799,6 +799,121 @@ body {
   }
 }
 
+/* Tab Footer Navigation Bar (Next & Previous Step Buttons) */
+.tab-footer-nav {
+  margin-top: 1.5rem;
+  padding: 1.1rem 1.5rem;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.nav-btn-wrapper {
+  flex: 1;
+  display: flex;
+}
+
+.nav-btn-wrapper.left {
+  justify-content: flex-start;
+}
+
+.nav-btn-wrapper.right {
+  justify-content: flex-end;
+}
+
+.tab-nav-btn {
+  background: #f8fafc;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 1.1rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  color: var(--text-main);
+}
+
+.tab-nav-btn:hover {
+  background: #f1f5f9;
+  border-color: rgba(217, 119, 6, 0.4);
+  box-shadow: 0 4px 14px rgba(217, 119, 6, 0.12);
+}
+
+.tab-nav-btn.btn-next {
+  background: linear-gradient(135deg, rgba(217, 119, 6, 0.08), rgba(180, 83, 9, 0.04));
+  border-color: rgba(217, 119, 6, 0.3);
+}
+
+.tab-nav-btn.btn-next:hover {
+  background: linear-gradient(135deg, #d97706, #b45309);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 6px 18px rgba(217, 119, 6, 0.35);
+}
+
+.tab-nav-btn.btn-next:hover .nav-step-label,
+.tab-nav-btn.btn-next:hover .nav-tab-title {
+  color: white;
+}
+
+.btn-nav-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.btn-nav-text.align-right {
+  text-align: right;
+}
+
+.nav-step-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+.nav-tab-title {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--text-main);
+  transition: color 0.2s ease;
+}
+
+.step-count-pill {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: #92400e;
+  background: rgba(217, 119, 6, 0.1);
+  border: 1px solid rgba(217, 119, 6, 0.25);
+  padding: 0.35rem 0.85rem;
+  border-radius: 50px;
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 640px) {
+  .tab-footer-nav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .nav-btn-wrapper.left, .nav-btn-wrapper.right {
+    justify-content: center;
+  }
+  .tab-nav-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 /* Tab Bar Navigation (Fallback Top Bar) */
 .nav-tabs-bar {
   display: grid;

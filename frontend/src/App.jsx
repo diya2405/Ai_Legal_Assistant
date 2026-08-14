@@ -7,6 +7,7 @@ import LandingView from './components/LandingView';
 import WorkspaceHeader from './components/WorkspaceHeader';
 import StatCards from './components/StatCards';
 import TabBar from './components/TabBar';
+import TabFooterNav from './components/TabFooterNav';
 import { getSampleStarters } from './data/constants';
 
 import RightsTab from './components/tabs/RightsTab';
@@ -433,6 +434,12 @@ export default function App() {
                       />
                     )}
                   </AnimatePresence>
+
+                  <TabFooterNav 
+                    activeTab={activeTab} 
+                    setActiveTab={handleTabSelect} 
+                    language={language} 
+                  />
                 </div>
               </div>
             </motion.div>
