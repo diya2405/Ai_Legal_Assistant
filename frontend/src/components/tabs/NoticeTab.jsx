@@ -150,9 +150,6 @@ export default function NoticeTab({
               <FileText size={22} className="icon-accent-purple" />
               {t.title}
             </div>
-            <div className="header-actions">
-              <span className="badge badge-purple">{t.editableBadge}</span>
-            </div>
           </div>
 
           <div className="form-sections">
@@ -322,7 +319,6 @@ export default function NoticeTab({
               <FileCheck size={20} className="icon-accent-blue" />
               Live Document Blueprint Preview
             </div>
-            <span className="pill pill-gold">Live Updating</span>
           </div>
 
           <motion.div 

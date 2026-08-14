@@ -329,9 +329,6 @@ export default function App() {
       />
 
       <main className="main-container">
-        {/* Upfront Feature Navigation Bar (1. Legal Rights & Statutes, 2. Legal Notice Generator, 3. Statutory Q&A, 4. Extracted Facts) */}
-        <TabBar activeTab={activeTab} setActiveTab={handleTabSelect} language={language} />
-
         <AnimatePresence mode="wait">
           {!kbEntry ? (
             <LandingView
@@ -364,67 +361,80 @@ export default function App() {
 
               <StatCards kbEntry={kbEntry} language={language} />
 
-              <AnimatePresence mode="wait">
-                {activeTab === 'rights' && (
-                  <RightsTab
-                    key="rights"
-                    kbEntry={kbEntry}
-                    entities={entities}
-                    explanationData={explanationData}
-                    expLoading={expLoading}
-                    copiedExp={copiedExp}
-                    onCopyExplanation={handleCopyExplanation}
-                    whyThisLaw={whyThisLaw}
-                    language={language}
+              <div className="workspace-main-layout">
+                <aside className="workspace-sidebar">
+                  <TabBar 
+                    activeTab={activeTab} 
+                    setActiveTab={handleTabSelect} 
+                    language={language} 
+                    isSidebar={true} 
                   />
-                )}
+                </aside>
 
-                {activeTab === 'notice' && (
-                  <NoticeTab
-                    key="notice"
-                    kbEntry={kbEntry}
-                    docTone={docTone}
-                    setDocTone={setDocTone}
-                    userName={userName}
-                    setUserName={setUserName}
-                    userAddress={userAddress}
-                    setUserAddress={setUserAddress}
-                    opposingName={opposingName}
-                    setOpposingName={setOpposingName}
-                    opposingAddress={opposingAddress}
-                    setOpposingAddress={setOpposingAddress}
-                    customSubject={customSubject}
-                    setCustomSubject={setCustomSubject}
-                    customBody={customBody}
-                    setCustomBody={setCustomBody}
-                    generatedDoc={generatedDoc}
-                    docLoading={docLoading}
-                    onGenerateDoc={handleGenerateDoc}
-                    language={language}
-                  />
-                )}
+                <div className="workspace-tab-content">
+                  <AnimatePresence mode="wait">
+                    {activeTab === 'rights' && (
+                      <RightsTab
+                        key="rights"
+                        kbEntry={kbEntry}
+                        entities={entities}
+                        explanationData={explanationData}
+                        expLoading={expLoading}
+                        copiedExp={copiedExp}
+                        onCopyExplanation={handleCopyExplanation}
+                        whyThisLaw={whyThisLaw}
+                        language={language}
+                      />
+                    )}
 
-                {activeTab === 'chat' && (
-                  <ChatTab
-                    key="chat"
-                    kbEntry={kbEntry}
-                    chatMessages={chatMessages}
-                    chatInput={chatInput}
-                    setChatInput={setChatInput}
-                    chatLoading={chatLoading}
-                    onSendChatMessage={handleSendChatMessage}
-                    language={language}
-                  />
-                )}
+                    {activeTab === 'notice' && (
+                      <NoticeTab
+                        key="notice"
+                        kbEntry={kbEntry}
+                        docTone={docTone}
+                        setDocTone={setDocTone}
+                        userName={userName}
+                        setUserName={setUserName}
+                        userAddress={userAddress}
+                        setUserAddress={setUserAddress}
+                        opposingName={opposingName}
+                        setOpposingName={setOpposingName}
+                        opposingAddress={opposingAddress}
+                        setOpposingAddress={setOpposingAddress}
+                        customSubject={customSubject}
+                        setCustomSubject={setCustomSubject}
+                        customBody={customBody}
+                        setCustomBody={setCustomBody}
+                        generatedDoc={generatedDoc}
+                        docLoading={docLoading}
+                        onGenerateDoc={handleGenerateDoc}
+                        language={language}
+                      />
+                    )}
 
-                {activeTab === 'facts' && (
-                  <FactsTab
-                    key="facts"
-                    entities={entities}
-                    language={language}
-                  />
-                )}
-              </AnimatePresence>
+                    {activeTab === 'chat' && (
+                      <ChatTab
+                        key="chat"
+                        kbEntry={kbEntry}
+                        chatMessages={chatMessages}
+                        chatInput={chatInput}
+                        setChatInput={setChatInput}
+                        chatLoading={chatLoading}
+                        onSendChatMessage={handleSendChatMessage}
+                        language={language}
+                      />
+                    )}
+
+                    {activeTab === 'facts' && (
+                      <FactsTab
+                        key="facts"
+                        entities={entities}
+                        language={language}
+                      />
+                    )}
+                  </AnimatePresence>
+                </div>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
