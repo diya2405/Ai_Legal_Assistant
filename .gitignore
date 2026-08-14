@@ -21,6 +21,7 @@ env/
 *.db
 *.sqlite3
 *.pkl
+!backend/app/ml/models/classification_model.pkl
 
 # Generated PDFs & runtime outputs
 backend/generated_pdfs/
@@ -31,3 +32,5 @@ generated_pdfs/
 .idea/
 .DS_Store
 Thumbs.db
+
+.vercel

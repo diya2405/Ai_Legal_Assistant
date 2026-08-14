@@ -62,7 +62,10 @@ def retrieve_chunks(
         scored.sort(key=lambda x: x[0], reverse=True)
         return [chunk for _, chunk in scored[:k]]
 
-    # If no chunk met similarity floor, return top domain/DB chunks so LLM has context to answer
+    # If no chunk met similarity floor, return top domain/DB chunks unless strict similarity floor requested
+    if similarity_floor > 0.2:
+        return []
+
     if domain_hint:
         fallback = db.query(StatuteChunk).filter(StatuteChunk.domain_hint == domain_hint).limit(k).all()
         if fallback:

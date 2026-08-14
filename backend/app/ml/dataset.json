@@ -3783,5 +3783,360 @@
     "domain": "real_estate",
     "issue_type": "builder_possession_delay",
     "text": "demanding 100 percent refund with statutory interest under rera section 18 for delayed possession"
+  },
+  {
+    "domain": "financial",
+    "issue_type": "cheque_bounce",
+    "text": "cheque of 50000 rupees bounced due to insufficient funds in bank account"
+  },
+  {
+    "domain": "financial",
+    "issue_type": "cheque_bounce",
+    "text": "client issued a bank cheque that was dishonored with memo funds insufficient"
+  },
+  {
+    "domain": "financial",
+    "issue_type": "cheque_bounce",
+    "text": "cheque returned unpaid by bank section 138 negotiable instruments act"
+  },
+  {
+    "domain": "financial",
+    "issue_type": "cheque_bounce",
+    "text": "served cheque bounce legal notice but party refusing to pay within 15 days"
+  },
+  {
+    "domain": "financial",
+    "issue_type": "cheque_bounce",
+    "text": "post dated cheque bounced dishonoured by drawer bank account closed"
+  },
+  {
+    "domain": "financial",
+    "issue_type": "cheque_bounce",
+    "text": "payment cheque returned dishonoured memo from HDFC bank for insufficient balance"
+  },
+  {
+    "domain": "insurance",
+    "issue_type": "claim_rejection",
+    "text": "health insurance company rejected my cashless hospital claim arbitrarily"
+  },
+  {
+    "domain": "insurance",
+    "issue_type": "claim_rejection",
+    "text": "star health insurance repudiated my hospitalization claim citing pre existing condition falsely"
+  },
+  {
+    "domain": "insurance",
+    "issue_type": "claim_rejection",
+    "text": "car insurance claim rejected by insurer citing delay in intimating accident"
+  },
+  {
+    "domain": "insurance",
+    "issue_type": "claim_rejection",
+    "text": "life insurance claim denied by company after 30 days without valid medical reason"
+  },
+  {
+    "domain": "insurance",
+    "issue_type": "claim_rejection",
+    "text": "insurance company refused to pay full cashless billing amount at hospital counter"
+  },
+  {
+    "domain": "insurance",
+    "issue_type": "claim_rejection",
+    "text": "medical insurance claim repudiated illegally by TPA ombudsman complaint required"
+  },
+  {
+    "domain": "medical",
+    "issue_type": "medical_negligence",
+    "text": "doctor performed wrong surgery on my leg causing permanent disability"
+  },
+  {
+    "domain": "medical",
+    "issue_type": "medical_negligence",
+    "text": "hospital doctor committed gross medical negligence leaving surgical cloth inside patient body"
+  },
+  {
+    "domain": "medical",
+    "issue_type": "medical_negligence",
+    "text": "private hospital gave wrong medicine dosage leading to organ failure and death"
+  },
+  {
+    "domain": "medical",
+    "issue_type": "medical_negligence",
+    "text": "medical malpractice by surgeon who operated without proper consent and damaged nerves"
+  },
+  {
+    "domain": "medical",
+    "issue_type": "medical_negligence",
+    "text": "nursing home negligence caused severe infection and critical condition after routine operation"
+  },
+  {
+    "domain": "medical",
+    "issue_type": "medical_negligence",
+    "text": "misdiagnosis and wrong medical treatment at private clinic causing severe health complication"
+  },
+  {
+    "domain": "motor",
+    "issue_type": "accident_compensation",
+    "text": "hit and run road accident by speeding truck caused severe head injury and fracture"
+  },
+  {
+    "domain": "motor",
+    "issue_type": "accident_compensation",
+    "text": "filing mact claim petition for compensation after fatal car collision on national highway"
+  },
+  {
+    "domain": "motor",
+    "issue_type": "accident_compensation",
+    "text": "motor vehicle accident claim for third party bodily injury against vehicle owner and insurance company"
+  },
+  {
+    "domain": "motor",
+    "issue_type": "accident_compensation",
+    "text": "speeding bike hit pedestrian resulting in permanent disability seeking mact compensation under section 166"
+  },
+  {
+    "domain": "motor",
+    "issue_type": "accident_compensation",
+    "text": "compensation claim before motor accident claims tribunal for medical expenses and loss of earning"
+  },
+  {
+    "domain": "motor",
+    "issue_type": "accident_compensation",
+    "text": "road accident death compensation claim against vehicle driver and insurance company section 166"
+  },
+  {
+    "domain": "ip",
+    "issue_type": "trademark_infringement",
+    "text": "competitor company copied our registered brand trademark name and logo on fake products"
+  },
+  {
+    "domain": "ip",
+    "issue_type": "trademark_infringement",
+    "text": "unauthorized website selling counterfeit goods using our registered trademark and brand tag"
+  },
+  {
+    "domain": "ip",
+    "issue_type": "trademark_infringement",
+    "text": "trademark infringement cease and desist notice for using deceptively similar brand name"
+  },
+  {
+    "domain": "ip",
+    "issue_type": "trademark_infringement",
+    "text": "copyright infringement software code stolen and distributed illegally online without permission"
+  },
+  {
+    "domain": "ip",
+    "issue_type": "trademark_infringement",
+    "text": "domain name squatting and trademark violation using our registered corporate brand identity"
+  },
+  {
+    "domain": "ip",
+    "issue_type": "trademark_infringement",
+    "text": "illegal copying of proprietary business design and trademark section 29 trademark act"
+  },
+  {
+    "domain": "banking",
+    "issue_type": "cibil_harassment",
+    "text": "bank wrongly reported credit card loan default to cibil ruining my credit score"
+  },
+  {
+    "domain": "banking",
+    "issue_type": "cibil_harassment",
+    "text": "recovery agents harassing me with abusive calls at workplace for settled loan amount"
+  },
+  {
+    "domain": "banking",
+    "issue_type": "cibil_harassment",
+    "text": "bank refusing to update cibil report even after full payment of credit card bill"
+  },
+  {
+    "domain": "banking",
+    "issue_type": "cibil_harassment",
+    "text": "rbi banking ombudsman complaint against bank for false credit bureau default entry and harassment"
+  },
+  {
+    "domain": "banking",
+    "issue_type": "cibil_harassment",
+    "text": "recovery agents threatening family members for credit card dues despite NOC certificate"
+  },
+  {
+    "domain": "banking",
+    "issue_type": "cibil_harassment",
+    "text": "unauthorized reporting of loan default to CIBIL credit score dropped by 150 points"
+  },
+  {
+    "domain": "family",
+    "issue_type": "domestic_violence",
+    "text": "husband and in laws subjecting wife to physical abuse, emotional harassment, and demanding dowry"
+  },
+  {
+    "domain": "family",
+    "issue_type": "domestic_violence",
+    "text": "filing domestic violence protection order petition under dv act section 12 for physical assault and harassment"
+  },
+  {
+    "domain": "family",
+    "issue_type": "domestic_violence",
+    "text": "husband locked wife out of shared matrimonial home refusing residence and economic maintenance"
+  },
+  {
+    "domain": "family",
+    "issue_type": "domestic_violence",
+    "text": "victim of severe domestic abuse seeking emergency protection order and monetary relief under domestic violence act"
+  },
+  {
+    "domain": "family",
+    "issue_type": "domestic_violence",
+    "text": "cruelty by husband and relatives in law under bns section 85 dowry prohibition and domestic harassment"
+  },
+  {
+    "domain": "family",
+    "issue_type": "maintenance_claim",
+    "text": "husband deserted wife and minor child refusing to pay monthly maintenance allowance under bnss section 144"
+  },
+  {
+    "domain": "family",
+    "issue_type": "maintenance_claim",
+    "text": "filing petition for monthly maintenance for minor children and dependent spouse under section 125 crpc"
+  },
+  {
+    "domain": "family",
+    "issue_type": "maintenance_claim",
+    "text": "husband having high monthly income refusing financial support for family seeking interim maintenance"
+  },
+  {
+    "domain": "family",
+    "issue_type": "maintenance_claim",
+    "text": "claim for monthly maintenance and child education expenses from estranged husband under hindu marriage act"
+  },
+  {
+    "domain": "family",
+    "issue_type": "maintenance_claim",
+    "text": "elderly parents claiming monthly maintenance support from employed son under maintenance of parents act"
+  },
+  {
+    "domain": "contract",
+    "issue_type": "breach_of_contract",
+    "text": "vendor breached written supply agreement by failing to deliver raw materials on agreed date"
+  },
+  {
+    "domain": "contract",
+    "issue_type": "breach_of_contract",
+    "text": "software development client violated service contract by stopping payment after project delivery"
+  },
+  {
+    "domain": "contract",
+    "issue_type": "breach_of_contract",
+    "text": "contractor abandoned construction work midway breaching commercial agreement section 73 contract act"
+  },
+  {
+    "domain": "contract",
+    "issue_type": "breach_of_contract",
+    "text": "legal notice for breach of business partnership contract and non payment of liquidated damages"
+  },
+  {
+    "domain": "contract",
+    "issue_type": "breach_of_contract",
+    "text": "failure to perform contractual terms causing financial loss claiming damages under indian contract act"
+  },
+  {
+    "domain": "property",
+    "issue_type": "land_encroachment",
+    "text": "neighbor illegally encroached on private plot boundary wall constructing illegal structure"
+  },
+  {
+    "domain": "property",
+    "issue_type": "land_encroachment",
+    "text": "land grabbers forcibly occupied private land parcel forging property deed documents"
+  },
+  {
+    "domain": "property",
+    "issue_type": "land_encroachment",
+    "text": "filing civil suit under specific relief act section 6 for recovery of land dispossessed without consent"
+  },
+  {
+    "domain": "property",
+    "issue_type": "land_encroachment",
+    "text": "illegal boundary wall encroachment and criminal trespass on ancestral plot bns section 329"
+  },
+  {
+    "domain": "property",
+    "issue_type": "land_encroachment",
+    "text": "seeking injunction order from civil court against illegal construction and property encroachment"
+  },
+  {
+    "domain": "tax",
+    "issue_type": "gst_overcharge_fraud",
+    "text": "restaurant charged 18 percent gst on food bill when official rate is 5 percent without valid tax invoice"
+  },
+  {
+    "domain": "tax",
+    "issue_type": "gst_overcharge_fraud",
+    "text": "retailer collected extra gst on retail price without issuing printed tax invoice bill"
+  },
+  {
+    "domain": "tax",
+    "issue_type": "gst_overcharge_fraud",
+    "text": "commercial seller pocketed collected gst amount using fake gstion number tax fraud"
+  },
+  {
+    "domain": "tax",
+    "issue_type": "gst_overcharge_fraud",
+    "text": "illegal overcharging of gst over mrp price by supermarket consumer court complaint section 122 cgst act"
+  },
+  {
+    "domain": "tax",
+    "issue_type": "gst_overcharge_fraud",
+    "text": "fraudulent tax invoice billing and excessive gst deduction report to anti evasion directorate"
+  },
+  {
+    "domain": "cyber",
+    "issue_type": "identity_theft_harassment",
+    "text": "scammer created fake instagram profile using my private photos impersonating me and sending abusive messages"
+  },
+  {
+    "domain": "cyber",
+    "issue_type": "identity_theft_harassment",
+    "text": "cyberbullying and online stalking harassment on social media platforms section 66c it act"
+  },
+  {
+    "domain": "cyber",
+    "issue_type": "identity_theft_harassment",
+    "text": "identity theft and unauthorized morphing of personal photographs uploaded online without consent"
+  },
+  {
+    "domain": "cyber",
+    "issue_type": "identity_theft_harassment",
+    "text": "cyber crime complaint for online harassment defamation and fake social media account creation"
+  },
+  {
+    "domain": "cyber",
+    "issue_type": "identity_theft_harassment",
+    "text": "hacker stole personal identity credentials and created fraudulent email accounts to harass contacts"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "workplace_harassment_posh",
+    "text": "female employee subjected to sexual harassment and unwelcome physical contact by senior manager"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "workplace_harassment_posh",
+    "text": "filing formal complaint with internal complaints committee icc under posh act 2013 for hostile work environment"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "workplace_harassment_posh",
+    "text": "employer retaliated against employee after she reported sexual harassment at workplace to internal committee"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "workplace_harassment_posh",
+    "text": "workplace sexual harassment, inappropriate comments, and demands for sexual favors by supervisor posh act"
+  },
+  {
+    "domain": "labor",
+    "issue_type": "workplace_harassment_posh",
+    "text": "company failed to constitute mandatory internal complaints committee icc for posh harassment inquiry"
   }
 ]

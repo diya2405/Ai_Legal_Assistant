@@ -251,6 +251,298 @@ def seed_data():
             notice_template_id="rera_builder_delay_notice",
             source_url="https://www.indiacode.nic.in/handle/123456789/2156",
             last_verified_date=date(2024, 2, 10)
+        ),
+
+        # --- FINANCIAL & CHEQUE BOUNCE ---
+        KBEntry(
+            domain="financial",
+            issue_type="cheque_bounce",
+            law_code="NI Act",
+            act_name="Negotiable Instruments Act, 1881",
+            section_number="Section 138",
+            section_text_plain=(
+                "Under Section 138 of the Negotiable Instruments Act, 1881, where any cheque drawn by a person for discharge of any debt "
+                "or liability is returned by the bank unpaid due to insufficiency of funds or exceeding arrangement amount, such person "
+                "shall be deemed to have committed an offense punishable with imprisonment up to 2 years, or fine up to twice the amount of the cheque."
+            ),
+            plain_summary_seed=(
+                "If a cheque issued to you has bounced due to insufficient funds, you have the statutory right to serve a formal 30-day "
+                "demand notice under Section 138 NI Act. If the drawer fails to pay within 15 days of notice receipt, a criminal case can be filed."
+            ),
+            remedy_forum="Judicial Magistrate First Class (JMFC) / Metropolitan Magistrate Court",
+            limitation_period="Serve statutory notice within 30 days of memo; file complaint within 30 days after notice expiry",
+            notice_template_id="financial_cheque_bounce_notice",
+            source_url="https://www.indiacode.nic.in/handle/123456789/2189",
+            last_verified_date=date(2024, 3, 1)
+        ),
+
+        # --- INSURANCE CLAIMS ---
+        KBEntry(
+            domain="insurance",
+            issue_type="claim_rejection",
+            law_code="IRDAI / CPA",
+            act_name="Insurance Regulatory & Development Authority Act, 1999 & CPA 2019",
+            section_number="IRDAI Regulations 2017 / CPA Section 39",
+            section_text_plain=(
+                "Under IRDAI Protection of Policyholders Interest Regulations and CPA 2019, insurance companies are required to settle "
+                "or repudiate claims within 30 days. Arbitrary rejection of health, life, or auto claims without medical or factual evidence "
+                "constitutes deficiency in service under Section 2(11) of CPA 2019 and illegal repudiation."
+            ),
+            plain_summary_seed=(
+                "Insurance companies cannot reject your valid medical or auto insurance claim arbitrarily using obscure exclusions. "
+                "You have the right to file a grievance with the Insurance Ombudsman or Consumer Commission for 100% claim payout plus penalty interest."
+            ),
+            remedy_forum="Insurance Ombudsman / District Consumer Disputes Redressal Commission",
+            limitation_period="1 year to Ombudsman / 2 years to Consumer Commission from claim rejection date",
+            notice_template_id="insurance_claim_rejection_notice",
+            source_url="https://www.irdai.gov.in/",
+            last_verified_date=date(2024, 3, 1)
+        ),
+
+        # --- MEDICAL NEGLIGENCE ---
+        KBEntry(
+            domain="medical",
+            issue_type="medical_negligence",
+            law_code="BNS / CPA",
+            act_name="Consumer Protection Act, 2019 & Bharatiya Nyaya Sanhita, 2023",
+            section_number="CPA Section 2(11) / BNS Section 106 (IPC Section 304A)",
+            section_text_plain=(
+                "As affirmed by the Supreme Court (Jacob Mathew v. State of Punjab), medical negligence occurs when a doctor or hospital "
+                "fails to exercise reasonable care and competence, resulting in bodily injury or worsening condition. "
+                "Hospitals are vicariously liable for failure to provide adequate care, wrong surgical procedures, or improper post-op care."
+            ),
+            plain_summary_seed=(
+                "If a hospital or medical practitioner causes harm, surgical complications, or misdiagnosis through gross carelessness, "
+                "you can claim statutory compensation for medical expenses, pain and suffering, and loss of income."
+            ),
+            remedy_forum="State / District Consumer Commission & State Medical Council",
+            limitation_period="2 years from date of medical negligence or injury discovery",
+            notice_template_id="medical_negligence_notice",
+            source_url="https://www.indiacode.nic.in/handle/123456789/15256",
+            last_verified_date=date(2024, 3, 1)
+        ),
+
+        # --- MOTOR VEHICLE ACCIDENT ---
+        KBEntry(
+            domain="motor",
+            issue_type="accident_compensation",
+            law_code="MV Act",
+            act_name="Motor Vehicles Act, 1988",
+            section_number="Section 166 & Section 164",
+            section_text_plain=(
+                "Under Section 166 of the Motor Vehicles Act, 1988, an application for compensation arising out of an accident involving "
+                "death or bodily injury may be made by the injured person or legal representatives of the deceased against the vehicle owner and insurer. "
+                "Section 164 provides structured no-fault interim compensation for death or severe permanent disability."
+            ),
+            plain_summary_seed=(
+                "Victims of road accidents or their family members have the statutory right to file a claim before the Motor Accident "
+                "Claims Tribunal (MACT) to recover full medical expenses, loss of earning capacity, and third-party liability compensation."
+            ),
+            remedy_forum="Motor Accident Claims Tribunal (MACT)",
+            limitation_period="6 months from accident date under MV Amendment Act 2019",
+            notice_template_id="mact_accident_notice",
+            source_url="https://www.indiacode.nic.in/handle/123456789/1798",
+            last_verified_date=date(2024, 3, 1)
+        ),
+
+        # --- INTELLECTUAL PROPERTY ---
+        KBEntry(
+            domain="ip",
+            issue_type="trademark_infringement",
+            law_code="IP Laws",
+            act_name="Trade Marks Act, 1999 & Copyright Act, 1957",
+            section_number="Trade Marks Act Section 29 / Copyright Act Section 51",
+            section_text_plain=(
+                "Under Section 29 of Trade Marks Act, 1999, a registered trademark is infringed by a person who, not being a registered proprietor, "
+                "uses in the course of trade a mark which is deceptively similar to the registered trademark. Section 51 of Copyright Act renders "
+                "unauthorized distribution or copying of proprietary creative works an actionable infringement."
+            ),
+            plain_summary_seed=(
+                "If another party copies your registered brand name, logo, or proprietary software/content without permission, you can issue an "
+                "immediate Cease and Desist notice requiring them to stop unauthorized usage, destroy infringing materials, and pay damages."
+            ),
+            remedy_forum="Commercial Court / High Court (Intellectual Property Division)",
+            limitation_period="3 years from date of infringement discovery",
+            notice_template_id="ip_trademark_infringement_notice",
+            source_url="https://www.indiacode.nic.in/handle/123456789/1993",
+            last_verified_date=date(2024, 3, 1)
+        ),
+
+        # --- BANKING & CIBIL HARASSMENT ---
+        KBEntry(
+            domain="banking",
+            issue_type="cibil_harassment",
+            law_code="RBI / CICRA",
+            act_name="Credit Information Companies (Regulation) Act, 2005 & RBI Ombudsman Scheme",
+            section_number="CICRA Section 15 & Section 21",
+            section_text_plain=(
+                "Under Section 15 and 21 of CICRA 2005 and RBI Ombudsman Directive 2023, banks and credit institutions must update "
+                "and correct inaccurate credit reporting within 30 days of notification. Failure to correct wrong CIBIL default entries or employing "
+                "unlawful recovery agents for coercion renders the financial institution liable to pay Rs. 100 per day penalty compensation."
+            ),
+            plain_summary_seed=(
+                "If a bank wrongly reports a loan default to CIBIL or subjects you to abusive recovery agent calls for an unpaid or settled card, "
+                "you can file a complaint with the RBI Banking Ombudsman to clean your credit report and demand compensation."
+            ),
+            remedy_forum="RBI Integrated Ombudsman (cms.rbi.org.in) / Consumer Commission",
+            limitation_period="1 year from bank's final response or 30 days post dispute filing",
+            notice_template_id="banking_cibil_notice",
+            source_url="https://rbi.org.in/",
+            last_verified_date=date(2024, 3, 1)
+        ),
+
+        # --- FAMILY & DOMESTIC VIOLENCE ---
+        KBEntry(
+            domain="family",
+            issue_type="domestic_violence",
+            law_code="DV Act / BNS",
+            act_name="Protection of Women from Domestic Violence Act, 2005 & BNS 2023",
+            section_number="DV Act Section 3 & 12 / BNS Section 85 (IPC Section 498A)",
+            section_text_plain=(
+                "Under Section 3 and 12 of the DV Act 2005 and BNS Section 85, domestic violence encompasses physical, emotional, sexual, and economic abuse. "
+                "Aggrieved women are entitled to protection orders, monetary relief, residence orders in the shared household, and immediate police assistance."
+            ),
+            plain_summary_seed=(
+                "Women facing domestic abuse, economic deprivation, or physical violence have statutory rights to obtain emergency protection orders, "
+                "maintenance allowances, and residence rights without being dispossessed from the household."
+            ),
+            remedy_forum="Judicial Magistrate / Protection Officer / Family Court",
+            limitation_period="No strict limitation for ongoing domestic violence or abuse",
+            notice_template_id="family_dv_notice",
+            source_url="https://www.indiacode.nic.in/handle/123456789/2012",
+            last_verified_date=date(2024, 3, 15)
+        ),
+
+        # --- FAMILY MAINTENANCE ---
+        KBEntry(
+            domain="family",
+            issue_type="maintenance_claim",
+            law_code="BNSS / HMA",
+            act_name="Bharatiya Nagarik Suraksha Sanhita, 2023 & Hindu Marriage Act, 1955",
+            section_number="BNSS Section 144 (CrPC Section 125) / HMA Section 24 & 25",
+            section_text_plain=(
+                "Under BNSS Section 144 (CrPC 125) and HMA Section 24, any person having sufficient means who neglects or refuses to maintain "
+                "their spouse, minor children, or elderly parents unable to maintain themselves, shall be ordered by the Magistrate to pay a monthly allowance."
+            ),
+            plain_summary_seed=(
+                "Spouses, minor children, and dependent parents have a mandatory statutory right to claim monthly maintenance allowance "
+                "for food, clothing, shelter, education, and medical care from a person with income."
+            ),
+            remedy_forum="Family Court / Judicial Magistrate Court",
+            limitation_period="Claim payable from date of application filing",
+            notice_template_id="family_maintenance_notice",
+            source_url="https://www.indiacode.nic.in/handle/123456789/19542",
+            last_verified_date=date(2024, 3, 15)
+        ),
+
+        # --- CONTRACT BREACH ---
+        KBEntry(
+            domain="contract",
+            issue_type="breach_of_contract",
+            law_code="Contract Act",
+            act_name="Indian Contract Act, 1872",
+            section_number="Section 73 & Section 74",
+            section_text_plain=(
+                "Under Section 73 and 74 of Indian Contract Act, 1872, when a contract has been broken, the party who suffers by such breach "
+                "is entitled to receive compensation for any loss or damage caused to him thereby, including liquidated damages stipulated in the agreement."
+            ),
+            plain_summary_seed=(
+                "If a vendor, contractor, or business partner breaks a written agreement or fails to perform contractual obligations, "
+                "you can issue a legal demand notice for full monetary compensation, damages, and penalty interest."
+            ),
+            remedy_forum="Commercial Court / Civil Court / Arbitration Tribunal",
+            limitation_period="3 years from the date of contract breach",
+            notice_template_id="contract_breach_notice",
+            source_url="https://www.indiacode.nic.in/handle/123456789/2187",
+            last_verified_date=date(2024, 3, 15)
+        ),
+
+        # --- PROPERTY LAND ENCROACHMENT ---
+        KBEntry(
+            domain="property",
+            issue_type="land_encroachment",
+            law_code="Specific Relief / BNS",
+            act_name="Specific Relief Act, 1963 & Bharatiya Nyaya Sanhita, 2023",
+            section_number="Specific Relief Act Section 6 / BNS Section 329",
+            section_text_plain=(
+                "Under Section 6 of Specific Relief Act, 1963 and BNS Section 329, if any person is dispossessed without their consent of immovable "
+                "property otherwise than in due course of law, he or any person claiming through him may, by suit, recover possession thereof."
+            ),
+            plain_summary_seed=(
+                "Illegal boundary encroachment, land grabbing, or forcible possession of your private property is a criminal offense and civil wrong. "
+                "You can seek an immediate injunction, eviction order, and police protection."
+            ),
+            remedy_forum="Civil Court / Revenue Authority / District Magistrate",
+            limitation_period="6 months for summary suit under Sec 6; 12 years for title suit",
+            notice_template_id="property_encroachment_notice",
+            source_url="https://www.indiacode.nic.in/handle/123456789/2192",
+            last_verified_date=date(2024, 3, 15)
+        ),
+
+        # --- TAX & GST OVERCHARGE ---
+        KBEntry(
+            domain="tax",
+            issue_type="gst_overcharge_fraud",
+            law_code="CGST / CPA",
+            act_name="Central Goods and Services Tax Act, 2017 & CPA 2019",
+            section_number="CGST Act Section 122 & CPA Section 2(47)",
+            section_text_plain=(
+                "Under Section 122 of CGST Act, 2017 and CPA 2019, collecting GST without issuing a valid tax invoice, charging GST higher than "
+                "the prescribed statutory slab rate, or pocketing collected tax without depositing with the Government constitutes tax fraud and unfair trade practice."
+            ),
+            plain_summary_seed=(
+                "Merchants and service providers cannot charge excess GST or fake tax amounts on bills. You are entitled to an immediate refund "
+                "and can file a fraud report with GST Anti-Evasion Authority and Consumer Court."
+            ),
+            remedy_forum="GST Anti-Evasion Directorate / Consumer Disputes Redressal Commission",
+            limitation_period="2 years from invoice date",
+            notice_template_id="tax_gst_overcharge_notice",
+            source_url="https://www.cbic.gov.in/",
+            last_verified_date=date(2024, 3, 15)
+        ),
+
+        # --- CYBER IDENTITY THEFT & HARASSMENT ---
+        KBEntry(
+            domain="cyber",
+            issue_type="identity_theft_harassment",
+            law_code="IT Act / BNS",
+            act_name="Information Technology Act, 2000 & Bharatiya Nyaya Sanhita, 2023",
+            section_number="IT Act Section 66C & 67 / BNS Section 78 & 356",
+            section_text_plain=(
+                "Under Section 66C and 67 of Information Technology Act, 2000, identity theft, fraudulent creation of fake social media profiles, "
+                "publishing obscene material, or online stalking/cyberbullying is punishable with up to 5 years imprisonment and fine."
+            ),
+            plain_summary_seed=(
+                "If someone creates fake online profiles using your photos, impersonates you, or engages in cyberstalking and online harassment, "
+                "you can file an immediate complaint on cybercrime.gov.in and obtain takedown orders."
+            ),
+            remedy_forum="Cyber Crime Cell (cybercrime.gov.in) & Magistrate Court",
+            limitation_period="Report immediately upon discovery",
+            notice_template_id="cyber_identity_theft_notice",
+            source_url="https://cybercrime.gov.in/",
+            last_verified_date=date(2024, 3, 15)
+        ),
+
+        # --- LABOR POSH WORKPLACE HARASSMENT ---
+        KBEntry(
+            domain="labor",
+            issue_type="workplace_harassment_posh",
+            law_code="POSH Act",
+            act_name="Sexual Harassment of Women at Workplace (POSH) Act, 2013",
+            section_number="Section 9 & Section 13",
+            section_text_plain=(
+                "Under Section 9 and 13 of POSH Act, 2013, any unwelcome physical contact, sexual demands, sexually colored remarks, or hostile work environment "
+                "gives the aggrieved woman the right to file a formal complaint before the Internal Complaints Committee (ICC). The employer must act within 90 days."
+            ),
+            plain_summary_seed=(
+                "Every employer is required to maintain a safe work environment. Women facing workplace harassment or retaliation can file a confidential "
+                "complaint with the Internal Committee (ICC) for inquiry, transfer, paid leave, and monetary compensation."
+            ),
+            remedy_forum="Internal Complaints Committee (ICC) / Local Complaints Committee (LCC) / Labour Court",
+            limitation_period="3 months from date of last incident",
+            notice_template_id="labor_posh_harassment_notice",
+            source_url="https://www.indiacode.nic.in/handle/123456789/2104",
+            last_verified_date=date(2024, 3, 15)
         )
     ]
     db.bulk_save_objects(entries)

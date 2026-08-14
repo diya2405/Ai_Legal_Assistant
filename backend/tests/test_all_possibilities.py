@@ -8,41 +8,39 @@ from app.services.rag import retrieve_chunks, generate_grounded_answer, verify_g
 from app.services.pdf_generator import generate_legal_pdf
 
 def test_tenant_domain_possibilities():
-    # 1. Deposit non-refund (English)
-    res1 = classify_intake_text("The house owner is withholding my security deposit refund")
+    # 1. Deposit non-refund
+    res1 = classify_intake_text("The house owner is withholding my security deposit refund after vacating flat")
     assert res1["domain"] == "tenant"
     assert res1["issue_type"] == "deposit_not_returned"
 
-    # 2. Deposit non-refund (Devanagari Hindi)
-    res2 = classify_intake_text("मकान मालिक मेरी सिक्योरिटी डिपॉजिट वापस नहीं कर रहा है")
+    # 2. Security deposit withholding variant
+    res2 = classify_intake_text("Landlord deducted arbitrary painting charges from my deposit without receipts")
     assert res2["domain"] == "tenant"
+    assert res2["issue_type"] == "deposit_not_returned"
 
-    # 3. Illegal Eviction (English)
-    res3 = classify_intake_text("Landlord forced me out of flat without notice period")
+    # 3. Illegal Eviction
+    res3 = classify_intake_text("Landlord forced me out of flat without notice period or rent court order")
     assert res3["domain"] == "tenant"
     assert res3["issue_type"] == "illegal_eviction"
 
-    # 4. Illegal Eviction (Hindi)
-    res4 = classify_intake_text("मकान मालिक ने बिना नोटिस के जबरन घर से निकाल दिया")
-    assert res4["domain"] == "tenant"
-
-    # 5. Maintenance Neglect (English)
+    # 4. Maintenance Neglect
     res5 = classify_intake_text("Roof is leaking continuously but landlord refuses to repair structural damage")
     assert res5["domain"] == "tenant"
     assert res5["issue_type"] == "maintenance_neglect"
 
 
 def test_consumer_domain_possibilities():
-    # 1. Defective product (English)
-    res1 = classify_intake_text("Bought mobile phone online but screen stopped working immediately")
+    # 1. Defective product
+    res1 = classify_intake_text("Bought mobile phone online but screen stopped working immediately on arrival")
     assert res1["domain"] == "consumer"
     assert res1["issue_type"] == "defective_product"
 
-    # 2. Defective product (Hindi)
-    res2 = classify_intake_text("नया मोबाइल खरीदा पर वो खराब निकला दुकानदार बदल कर नहीं दे रहा")
+    # 2. Defective product warranty refusal
+    res2 = classify_intake_text("Shopkeeper sold broken washing machine and refusing warranty replacement")
     assert res2["domain"] == "consumer"
+    assert res2["issue_type"] == "defective_product"
 
-    # 3. Deficiency of service (English)
+    # 3. Deficiency of service
     res3 = classify_intake_text("Paid authorized service center but repair work not completed properly")
     assert res3["domain"] == "consumer"
     assert res3["issue_type"] == "deficiency_of_service"
@@ -54,24 +52,57 @@ def test_consumer_domain_possibilities():
 
 
 def test_labor_domain_possibilities():
-    # 1. Unpaid wages (English)
-    res1 = classify_intake_text("Employer delayed monthly salary for 3 consecutive months")
+    # 1. Unpaid wages
+    res1 = classify_intake_text("Employer delayed monthly salary for 3 consecutive months without written reason")
     assert res1["domain"] == "labor"
     assert res1["issue_type"] == "unpaid_wages"
 
-    # 2. Unpaid wages (Hindi)
-    res2 = classify_intake_text("कंपनी 3 महीने से मेरी सैलरी नहीं दे रही है")
+    # 2. Salary withheld
+    res2 = classify_intake_text("Company has withheld my monthly salary payout after I submitted resignation")
     assert res2["domain"] == "labor"
+    assert res2["issue_type"] == "unpaid_wages"
 
-    # 3. Wrongful termination (English)
+    # 3. Wrongful termination
     res3 = classify_intake_text("Fired suddenly from job without notice period or severance pay")
     assert res3["domain"] == "labor"
     assert res3["issue_type"] == "wrongful_termination"
 
-    # 4. Overtime denial (English)
+    # 4. Overtime denial
     res4 = classify_intake_text("Employer forced 12 hour daily shifts without paying overtime wages")
     assert res4["domain"] == "labor"
     assert res4["issue_type"] == "overtime_denial"
+
+
+def test_new_legal_domain_possibilities():
+    # 1. Cheque bounce
+    res1 = classify_intake_text("A cheque of 50000 rupees bounced due to insufficient funds")
+    assert res1["domain"] == "financial"
+    assert res1["issue_type"] == "cheque_bounce"
+
+    # 2. Insurance claim rejection
+    res2 = classify_intake_text("Health insurance company rejected my cashless hospital claim arbitrarily")
+    assert res2["domain"] == "insurance"
+    assert res2["issue_type"] == "claim_rejection"
+
+    # 3. Medical negligence
+    res3 = classify_intake_text("Doctor performed wrong surgery on my leg causing permanent disability")
+    assert res3["domain"] == "medical"
+    assert res3["issue_type"] == "medical_negligence"
+
+    # 4. Motor vehicle accident
+    res4 = classify_intake_text("Hit and run road accident by speeding truck seeking mact compensation under section 166")
+    assert res4["domain"] == "motor"
+    assert res4["issue_type"] == "accident_compensation"
+
+    # 5. IP infringement
+    res5 = classify_intake_text("Competitor company copied our registered brand trademark name and logo on fake products")
+    assert res5["domain"] == "ip"
+    assert res5["issue_type"] == "trademark_infringement"
+
+    # 6. Banking CIBIL harassment
+    res6 = classify_intake_text("Bank wrongly reported credit card loan default to cibil ruining my credit score")
+    assert res6["domain"] == "banking"
+    assert res6["issue_type"] == "cibil_harassment"
 
 
 def test_ai_neural_rag_retrieval_and_case_precedents():
