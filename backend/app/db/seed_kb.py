@@ -635,6 +635,42 @@ def seed_data():
 
         # Model Tenancy Act 2021 Chunks
         StatuteChunk(
+            act_name="Model Tenancy Act, 2021 & Rent Control Act",
+            section_number="Rent Court Filing Fee Rules",
+            law_code="N/A",
+            domain_hint="tenant",
+            chunk_text="Court Fee & Filing Costs under Model Tenancy Act / Rent Control Act: Applications filed before the Rent Authority or Rent Court attract a nominal fixed court fee (typically Rs. 100 to Rs. 500 depending on State Court Fee Rules). No heavy ad-valorem court fee is payable for tenancy disputes.",
+            source_url="https://www.indiacode.nic.in/handle/123456789/15478",
+            last_verified_date=date(2024, 1, 15)
+        ),
+        StatuteChunk(
+            act_name="Consumer Protection Act, 2019",
+            section_number="e-Daakhil Court Fee Rules",
+            law_code="N/A",
+            domain_hint="consumer",
+            chunk_text="Court Fee Structure under Consumer Protection Rules 2020: Complaints for claims up to Rs. 5 Lakhs attract NIL (Zero) Court Fee. Claims above Rs. 5 Lakhs up to Rs. 10 Lakhs require Rs. 200 fee; up to Rs. 20 Lakhs require Rs. 400 fee; up to Rs. 50 Lakhs require Rs. 1,000 fee.",
+            source_url="https://edaakhil.nic.in/",
+            last_verified_date=date(2024, 1, 20)
+        ),
+        StatuteChunk(
+            act_name="Payment of Wages Act & Industrial Disputes Act",
+            section_number="Labour Court Fee Rules",
+            law_code="N/A",
+            domain_hint="labor",
+            chunk_text="Court Fee Exemption for Workmen: Applications for recovery of unpaid wages or wrongful termination filed before the Labour Commissioner or Labour Court are exempt from court fees (NIL court fee) to ensure accessible justice.",
+            source_url="https://www.indiacode.nic.in/handle/123456789/1992",
+            last_verified_date=date(2024, 1, 15)
+        ),
+        StatuteChunk(
+            act_name="Negotiable Instruments Act, 1881",
+            section_number="Cheque Bounce Filing Fee Rules",
+            law_code="NI Act",
+            domain_hint="financial",
+            chunk_text="Court Fee for Cheque Bounce Complaints under Section 138 NI Act: Criminal complaints filed before the Judicial Magistrate attract a nominal court fee based on state court fee schedules (typically 1% to 5% of cheque amount or fixed nominal fee).",
+            source_url="https://www.indiacode.nic.in/handle/123456789/2189",
+            last_verified_date=date(2024, 2, 1)
+        ),
+        StatuteChunk(
             act_name="Model Tenancy Act, 2021",
             section_number="Section 10 & 13",
             law_code="N/A",

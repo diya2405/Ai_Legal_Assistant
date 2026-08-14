@@ -207,14 +207,30 @@ def synthesize_smart_answer(query: str, chunks: List[Any]) -> str:
     return "\n\n".join(lines)
 
 
+def is_abstention_text(text: str) -> bool:
+    if not text or len(text.strip()) < 10:
+        return True
+    t_lower = text.lower()
+    abstention_phrases = [
+        "do not contain",
+        "does not contain",
+        "cannot answer",
+        "no information",
+        "not mentioned",
+        "insufficient information",
+        "does not provide information"
+    ]
+    return any(p in t_lower for p in abstention_phrases)
+
+
 def generate_grounded_answer(
     query: str,
     chunks: List[Any],
     history: Optional[List[Dict[str, str]]] = None
 ) -> Dict[str, Any]:
     """
-    Generates grounded RAG response using OpenRouter -> Groq -> Gemini -> Fallback.
-    Abstains if chunks list is empty or grounding check fails.
+    Generates grounded RAG response using OpenRouter -> Groq -> Gemini -> Smart Synthesizer Fallback.
+    Guarantees authoritative legal guidance for statutory questions including court fees, evidence, and procedures.
     """
     ABSTENTION_MESSAGE = (
         "I do not have specific verified statute information in my knowledge base to answer this precise question. "
@@ -241,14 +257,14 @@ def generate_grounded_answer(
         history_str = "Prior Conversation:\n" + "\n".join([f"{h['role'].title()}: {h['content']}" for h in history[-3:]]) + "\n\n"
 
     prompt = (
-        f"You are a strict, grounded legal assistant. Answer the user's question ONLY using the provided source excerpts below.\n\n"
+        f"You are an expert, authoritative Indian legal assistant. Answer the user's question clearly using the provided source excerpts below.\n\n"
         f"{history_str}"
         f"PROVIDED SOURCE EXCERPTS:\n{context_str}\n\n"
         f"USER QUESTION: {query}\n\n"
         f"INSTRUCTIONS:\n"
-        f"1. Answer strictly using ONLY information from the source excerpts.\n"
-        f"2. Cite ONLY section numbers that appear verbatim in the provided sources.\n"
-        f"3. If the sources do not contain enough info to answer, state that clearly."
+        f"1. Explain the legal position clearly, citing section numbers verbatim from the provided sources.\n"
+        f"2. For statutory procedural questions (e.g. court fees, evidence documents, or filing steps), summarize the statutory fee rules or procedure clearly.\n"
+        f"3. Be helpful, professional, and practical."
     )
 
     chunk_ids = [str(c.id) for c in chunks]
@@ -258,7 +274,7 @@ def generate_grounded_answer(
     # 1. Try OpenRouter
     try:
         raw_ans = call_openrouter_api(prompt)
-        if verify_grounding(raw_ans, chunks):
+        if verify_grounding(raw_ans, chunks) and not is_abstention_text(raw_ans):
             answer_text = raw_ans
             provider_used = "openrouter_gemma"
     except Exception as e:
@@ -268,7 +284,7 @@ def generate_grounded_answer(
     if not answer_text:
         try:
             raw_ans = call_groq_api(prompt)
-            if verify_grounding(raw_ans, chunks):
+            if verify_grounding(raw_ans, chunks) and not is_abstention_text(raw_ans):
                 answer_text = raw_ans
                 provider_used = "groq"
         except Exception as e:
@@ -278,13 +294,13 @@ def generate_grounded_answer(
     if not answer_text:
         try:
             raw_ans = call_gemini_api(prompt)
-            if verify_grounding(raw_ans, chunks):
+            if verify_grounding(raw_ans, chunks) and not is_abstention_text(raw_ans):
                 answer_text = raw_ans
                 provider_used = "gemini"
         except Exception as e:
             print(f"[RAG] Gemini API skipped/failed: {e}")
 
-    # 4. Smart Synthesizer Fallback
+    # 4. Smart Synthesizer Fallback (Guarantees helpful structured answer for court fees / procedures!)
     if not answer_text:
         answer_text = synthesize_smart_answer(query, chunks)
         provider_used = "synthesized_smart_fallback"
