@@ -18,7 +18,9 @@ def verify_citation_guard(generated_text: str, kb_entry_section: str, kb_entry_a
     citation_patterns = [
         r'Section\s+\d+[A-Za-z]?',
         r'Article\s+\d+',
-        r'Act,?\s+\d{4}'
+        r'Act,?\s+\d{4}',
+        r'धारा\s+\d+[A-Za-z]?',
+        r'अधिनियम,?\s+\d{4}'
     ]
 
     all_citations = []
@@ -140,22 +142,38 @@ def clean_llm_output(text: str) -> str:
     return cleaned
 
 
-def generate_plain_explanation(kb_entry: Any, facts: List[Dict[str, Any]]) -> Dict[str, Any]:
+def generate_plain_explanation(kb_entry: Any, facts: List[Dict[str, Any]], language: str = "en") -> Dict[str, Any]:
     """
     Generates a plain-language rights explanation using LLMs strictly seeded with kb_entry.plain_summary_seed.
     Applies Citation Guard & Fallback Chain: OpenRouter -> Groq -> Gemini -> KB Seed Fallback.
+    Supports English ('en') and Hindi ('hi').
     """
+    is_hindi = language == "hi" or language.startswith("hi")
     facts_str = ", ".join([f"{f.get('entity_type', 'fact')}: {f.get('entity_value', '')}" for f in facts]) if facts else "No extra facts provided"
 
-    prompt = (
-        f"Rephrase the following legal summary seed into 3-4 simple, warm, clear sentences for a first-generation litigant.\n\n"
-        f"LEGAL SEED: {kb_entry.plain_summary_seed}\n"
-        f"USER FACTS: {facts_str}\n\n"
-        f"STRICT RULES:\n"
-        f"1. DO NOT invent or introduce any new legal section numbers, act names, or court names.\n"
-        f"2. Keep language empathetic, clear, and easy to understand.\n"
-        f"3. Explain what rights the user has and what immediate step they can take."
-    )
+    if is_hindi:
+        seed_to_use = getattr(kb_entry, 'plain_summary_seed_hi', None) or kb_entry.plain_summary_seed
+        prompt = (
+            f"अग्रलिखित कानूनी सारांश बीज (Legal Summary Seed) को एक आम भारतीय नागरिक के लिए सरल, स्पष्ट और सहानुभूतिपूर्ण हिंदी (Devanagari script) में 3-4 वाक्यों में समझाएं।\n\n"
+            f"कानूनी सारांश (LEGAL SEED): {seed_to_use}\n"
+            f"अधिनियम (ACT): {kb_entry.act_name}\n"
+            f"धारा (SECTION): {kb_entry.section_number}\n"
+            f"उपयोगकर्ता के तथ्य (USER FACTS): {facts_str}\n\n"
+            f"सख्त नियम (STRICT RULES):\n"
+            f"1. केवल {kb_entry.section_number} और {kb_entry.act_name} का संदर्भ दें। कोई भी नया धारा नंबर अपनी तरफ से न जोड़ें।\n"
+            f"2. भाषा बेहद सरल, स्पष्ट और हिंदी देवनागरी लिपि में होनी चाहिए।\n"
+            f"3. समझाएं कि नागरिक के पास क्या कानूनी अधिकार हैं और वे तुरंत क्या कदम उठा सकते हैं।"
+        )
+    else:
+        prompt = (
+            f"Rephrase the following legal summary seed into 3-4 simple, warm, clear sentences for a first-generation litigant.\n\n"
+            f"LEGAL SEED: {kb_entry.plain_summary_seed}\n"
+            f"USER FACTS: {facts_str}\n\n"
+            f"STRICT RULES:\n"
+            f"1. DO NOT invent or introduce any new legal section numbers, act names, or court names.\n"
+            f"2. Keep language empathetic, clear, and easy to understand.\n"
+            f"3. Explain what rights the user has and what immediate step they can take."
+        )
 
     explanation = None
     provider_used = "seed_fallback"
@@ -198,7 +216,10 @@ def generate_plain_explanation(kb_entry: Any, facts: List[Dict[str, Any]]) -> Di
 
     # 4. Fallback to unmodified seed text if explanation is empty or invalid
     if not explanation or not explanation.strip():
-        explanation = kb_entry.plain_summary_seed
+        if is_hindi and getattr(kb_entry, 'plain_summary_seed_hi', None):
+            explanation = kb_entry.plain_summary_seed_hi
+        else:
+            explanation = kb_entry.plain_summary_seed
         provider_used = "unmodified_kb_seed"
         guard_passed = True
 
@@ -206,5 +227,5 @@ def generate_plain_explanation(kb_entry: Any, facts: List[Dict[str, Any]]) -> Di
         "explanation": explanation,
         "provider_used": provider_used,
         "guard_passed": guard_passed,
-        "kb_summary_seed": kb_entry.plain_summary_seed
+        "kb_summary_seed": getattr(kb_entry, 'plain_summary_seed_hi', None) if is_hindi else kb_entry.plain_summary_seed
     }

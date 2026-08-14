@@ -9,6 +9,7 @@ LegalAId PRO is an AI-powered legal intake, statutory research, and editable not
 ## 🌟 Key Features
 
 - **🏛️ 24 Statutory Legal Categories**: Automated classification and plain-language rights explanation across Consumer, Tenant, Labor, Real Estate, Cyber, Financial, IP, Family, Property, Tax, and Contractual laws.
+- **🔊 Dual-Engine Hindi & English Text-to-Speech (TTS)**: Seamless voice narration with Web Speech API integration and server-side `/api/tts` proxy fallback for crystal-clear Hindi (हिन्दी) & English legal audio reading across all browsers & OS platforms.
 - **🛡️ 100% Citation Guard Verified**: Deterministic bare act validation ensuring zero hallucinated section citations or non-existent laws.
 - **📄 100% Editable Legal Notice Generator**: Live real-time PDF paper blueprint preview with custom tone configurations (Formal Statutory Notice vs. Diplomatic Requisition) and instant custom PDF generation.
 - **🤖 Grounded RAG Statutory Q&A Assistant**: Context-aware RAG vector search providing grounded answers with exact Bare Act section citations and Supreme Court precedents.

@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Edit3, ChevronRight, RefreshCw, Sparkles, AlertCircle } from 'lucide-react';
-import { SAMPLE_STARTERS } from '../data/constants';
+import { Edit3, ChevronRight, RefreshCw, Sparkles, AlertCircle } from 'lucide-react';
+import { getSampleStarters } from '../data/constants';
+import { TRANSLATIONS } from '../data/translations';
 
 const containerVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -30,8 +31,12 @@ export default function LandingView({
   setInputText,
   onSubmit,
   loading,
-  error
+  error,
+  language = 'en'
 }) {
+  const t = TRANSLATIONS[language]?.landing || TRANSLATIONS.en.landing;
+  const starters = getSampleStarters(language);
+
   return (
     <motion.div 
       className="landing-view"
@@ -40,42 +45,25 @@ export default function LandingView({
       animate="visible"
       exit="exit"
     >
-      {/* Hero Banner */}
-      <motion.div className="hero-banner" variants={childVariants}>
-        <motion.div 
-          className="hero-pill"
-          whileHover={{ scale: 1.05 }}
-        >
-          <Shield size={14} />
-          Indian Jurisprudence • Consumer, Tenant & Employment Rights
-        </motion.div>
-        <h1 className="hero-title">
-          Verified Legal Rights & Statutory Notice Generator
-        </h1>
-        <p className="hero-subtitle">
-          AI legal intake grounded in deterministic statutory knowledge bases. Eliminates hallucinated section numbers.
-        </p>
-      </motion.div>
-
       {/* Case Intake Card */}
       <motion.div className="glass-card intake-card" variants={childVariants}>
         <div className="intake-header">
           <h2 className="section-heading">
             <Edit3 size={20} className="icon-accent-gold" />
-            Describe Your Legal Issue
+            {t.intakeHeading}
           </h2>
           <span className="subtext-muted">
-            Natural Language Legal Intake
+            {t.intakeSubtext}
           </span>
         </div>
 
-        {/* Sample Prompts */}
+        {/* Demo Sample Prompts */}
         <div>
           <div className="starter-label">
-            Select Sample Case Prompt:
+            {t.selectSample}
           </div>
           <div className="prompt-starters">
-            {SAMPLE_STARTERS.map((starter, i) => (
+            {starters.map((starter, i) => (
               <motion.button
                 key={i}
                 type="button"
@@ -95,7 +83,7 @@ export default function LandingView({
         <form onSubmit={onSubmit}>
           <textarea
             className="intake-textarea"
-            placeholder="Example: A local supermarket charged me ₹450 for a packaged food item with a printed MRP of ₹300 and refused cash memo receipt..."
+            placeholder={t.textareaPlaceholder}
             value={inputText}
             onChange={e => setInputText(e.target.value)}
           />
@@ -111,12 +99,12 @@ export default function LandingView({
               {loading ? (
                 <>
                   <RefreshCw size={18} className="animate-spin" />
-                  Analyzing Case Facts & Searching Statutes...
+                  {t.analyzingBtn}
                 </>
               ) : (
                 <>
                   <Sparkles size={18} />
-                  Analyze Legal Rights & Generate Report
+                  {t.analyzeBtn}
                 </>
               )}
             </motion.button>

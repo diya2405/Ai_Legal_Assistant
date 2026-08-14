@@ -1,8 +1,11 @@
 import os
+import re
 import uuid
+import urllib.parse
+import requests
 from typing import List, Dict, Any, Optional
 from fastapi import APIRouter, Depends, HTTPException, status, Header
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, Response
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
 
@@ -12,8 +15,8 @@ from app.db.models import (
     KBEntry, Document, ChatMessage
 )
 from app.services.classification import classify_intake_text
-from app.services.extraction import extract_entities
-from app.services.kb import get_kb_entry
+from app.services.extraction import extract_entities, extract_structured_case_object
+from app.services.kb import get_kb_entry, get_why_this_law_analysis
 from app.services.llm import generate_plain_explanation
 from app.services.pdf_generator import generate_legal_pdf
 from app.services.rag import retrieve_chunks, generate_grounded_answer
@@ -40,6 +43,7 @@ class EntityUpdateRequest(BaseModel):
 class ExplanationRequest(BaseModel):
     kb_entry_id: str
     facts: List[Dict[str, Any]] = []
+    language: Optional[str] = "en"
 
 class DocumentGenerateRequest(BaseModel):
     session_id: str
@@ -51,6 +55,13 @@ class DocumentGenerateRequest(BaseModel):
     opposing_address: Optional[str] = "Not Specified"
     custom_subject: Optional[str] = None
     custom_body: Optional[str] = None
+
+class SaveDraftRequest(BaseModel):
+    session_id: str
+    kb_entry_id: str
+    custom_subject: str
+    custom_body: str
+
 
 class ChatMessageRequest(BaseModel):
     content: str
@@ -96,17 +107,27 @@ def process_intake(req: IntakeRequest, db: Session = Depends(get_db)):
         db.commit()
         db.refresh(session_obj)
 
+    detected_lang = req.language or "en"
+    if re.search(r'[\u0900-\u097F]', req.raw_text):
+        detected_lang = "hi"
+
+    # 2. Run Classification
+    cls_res = classify_intake_text(req.raw_text)
+
+    # 3. Extract Structured Case JSON & Entities
+    structured_case = extract_structured_case_object(req.raw_text, domain=cls_res["domain"], language=detected_lang)
+    extracted = extract_entities(req.raw_text)
+
     intake_obj = Intake(
         session_id=req.session_id,
         raw_text=req.raw_text,
-        language=req.language
+        language=detected_lang,
+        structured_case_json=structured_case
     )
     db.add(intake_obj)
     db.commit()
     db.refresh(intake_obj)
 
-    # 2. Run Classification
-    cls_res = classify_intake_text(req.raw_text)
     cls_obj = Classification(
         intake_id=intake_obj.id,
         domain=cls_res["domain"],
@@ -117,8 +138,6 @@ def process_intake(req: IntakeRequest, db: Session = Depends(get_db)):
     )
     db.add(cls_obj)
 
-    # 3. Extract Entities
-    extracted = extract_entities(req.raw_text)
     entity_objs = []
     for ext in extracted:
         ent = Entity(
@@ -133,19 +152,21 @@ def process_intake(req: IntakeRequest, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(cls_obj)
 
-    # 4. Lookup KB entry for the classified domain & issue_type (with fallback guard)
+    # 4. Deterministic KB Entry Lookup
     kb_entry = get_kb_entry(db, cls_res["domain"], cls_res["issue_type"])
     if not kb_entry:
-        # Fallback to top candidate matches
         for candidate in cls_res.get("candidate_matches", []):
             kb_entry = get_kb_entry(db, candidate["domain"], candidate["issue_type"])
             if kb_entry:
                 break
     if not kb_entry:
-        # Ultimate fallback guard: return first available KB entry in database
         kb_entry = db.query(KBEntry).first()
+
     kb_data = None
+    why_this_law = None
+
     if kb_entry:
+        why_this_law = get_why_this_law_analysis(kb_entry, structured_case, language=detected_lang)
         kb_data = {
             "id": kb_entry.id,
             "domain": kb_entry.domain,
@@ -155,8 +176,10 @@ def process_intake(req: IntakeRequest, db: Session = Depends(get_db)):
             "section_number": kb_entry.section_number,
             "section_text_plain": kb_entry.section_text_plain,
             "plain_summary_seed": kb_entry.plain_summary_seed,
+            "plain_summary_seed_hi": getattr(kb_entry, 'plain_summary_seed_hi', None),
             "remedy_forum": kb_entry.remedy_forum,
             "limitation_period": kb_entry.limitation_period,
+            "official_source_name": getattr(kb_entry, 'official_source_name', 'India Code'),
             "source_url": kb_entry.source_url,
             "last_verified_date": str(kb_entry.last_verified_date)
         }
@@ -164,6 +187,9 @@ def process_intake(req: IntakeRequest, db: Session = Depends(get_db)):
     return {
         "intake_id": intake_obj.id,
         "classification": cls_res,
+        "structured_case": structured_case,
+        "missing_critical_info": structured_case.get("missing_critical_info", []),
+        "why_this_law": why_this_law,
         "entities": [
             {
                 "id": e.id,
@@ -226,8 +252,19 @@ def generate_explanation(req: ExplanationRequest, db: Session = Depends(get_db))
     if not kb_entry:
         raise HTTPException(status_code=404, detail="KB Entry not found")
 
-    result = generate_plain_explanation(kb_entry, req.facts)
+    result = generate_plain_explanation(kb_entry, req.facts, language=req.language or "en")
     return result
+
+
+@router.post("/document/save")
+def save_document_draft(req: SaveDraftRequest, db: Session = Depends(get_db)):
+    doc = db.query(Document).filter(Document.session_id == req.session_id).order_by(Document.created_at.desc()).first()
+    if doc:
+        doc.custom_subject = req.custom_subject
+        doc.custom_body = req.custom_body
+        db.commit()
+        return {"status": "saved", "document_id": doc.id}
+    return {"status": "ready"}
 
 
 @router.post("/document/generate")
@@ -265,6 +302,8 @@ def generate_document(req: DocumentGenerateRequest, db: Session = Depends(get_db
         session_id=req.session_id,
         kb_entry_id=kb_entry.id,
         tone=req.tone,
+        custom_subject=req.custom_subject,
+        custom_body=req.custom_body,
         pdf_path=pdf_path,
         disclaimer_rendered=True
     )
@@ -353,3 +392,58 @@ def get_chat_history(session_id: str, db: Session = Depends(get_db)):
             "created_at": str(m.created_at)
         } for m in msgs
     ]
+
+
+@router.get("/tts")
+def text_to_speech(text: str, lang: str = "hi"):
+    """
+    Server-side Text-to-Speech synthesizer proxy endpoint for Hindi and English.
+    Bypasses browser CORS restrictions and provides 100% reliable audio stream.
+    """
+    if not text or not text.strip():
+        raise HTTPException(status_code=400, detail="Text parameter is required")
+
+    clean_text = re.sub(r'<[^>]*>', '', text)
+    clean_text = re.sub(r'[*_#`~]', '', clean_text).strip()
+
+    if not clean_text:
+        raise HTTPException(status_code=400, detail="Text contains no speakable content")
+
+    # Split long text into chunks of <= 180 chars for Google TTS engine
+    max_chunk = 180
+    words = clean_text.split()
+    chunks = []
+    current_chunk = ""
+    for word in words:
+        if len(current_chunk) + len(word) + 1 <= max_chunk:
+            current_chunk = (current_chunk + " " + word).strip()
+        else:
+            if current_chunk:
+                chunks.append(current_chunk)
+            current_chunk = word
+    if current_chunk:
+        chunks.append(current_chunk)
+
+    if not chunks:
+        chunks = [clean_text[:180]]
+
+    audio_bytes = bytearray()
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    }
+
+    for chunk in chunks[:6]:  # Limit to 6 chunks max (~1000 chars)
+        q = urllib.parse.quote(chunk)
+        url = f"https://translate.google.com/translate_tts?ie=UTF-8&tl={lang}&client=tw-ob&q={q}"
+        try:
+            resp = requests.get(url, headers=headers, timeout=6)
+            if resp.status_code == 200:
+                audio_bytes.extend(resp.content)
+        except Exception as e:
+            print(f"[TTS] Fetch error for chunk: {e}")
+
+    if not audio_bytes:
+        raise HTTPException(status_code=502, detail="Failed to synthesize TTS audio stream")
+
+    return Response(content=bytes(audio_bytes), media_type="audio/mpeg")
+

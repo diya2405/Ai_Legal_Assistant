@@ -7,11 +7,16 @@ import LandingView from './components/LandingView';
 import WorkspaceHeader from './components/WorkspaceHeader';
 import StatCards from './components/StatCards';
 import TabBar from './components/TabBar';
+import { getSampleStarters } from './data/constants';
 
 import RightsTab from './components/tabs/RightsTab';
-import NoticeTab from './components/tabs/NoticeTab';
+import NoticeTab, { generateDraftForTone } from './components/tabs/NoticeTab';
 import ChatTab from './components/tabs/ChatTab';
 import FactsTab from './components/tabs/FactsTab';
+
+import HelpDrawerModal from './components/ui/HelpDrawerModal';
+import FloatingHelpButton from './components/ui/FloatingHelpButton';
+import MissingInfoModal from './components/ui/MissingInfoModal';
 
 export default function App() {
   const [sessionId, setSessionId] = useState(null);
@@ -20,12 +25,21 @@ export default function App() {
   const [inputText, setInputText] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [language, setLanguage] = useState('en');
 
-  // Flow State
+  // Accessibility & Helper Modal State (Image 4)
+  const [isHelpOpen, setIsHelpOpen] = useState(false);
+  const [textSize, setTextSize] = useState('normal'); // 'normal' | 'large' | 'xlarge'
+  const [elderlyMode, setElderlyMode] = useState(false);
+
+  // Flow & Structured Case State
   const [intakeData, setIntakeData] = useState(null);
   const [classification, setClassification] = useState(null);
   const [entities, setEntities] = useState([]);
   const [kbEntry, setKbEntry] = useState(null);
+  const [whyThisLaw, setWhyThisLaw] = useState(null);
+  const [missingQuestions, setMissingQuestions] = useState([]);
+  const [isMissingModalOpen, setIsMissingModalOpen] = useState(false);
   
   // Active Tab State ('rights' | 'notice' | 'chat' | 'facts')
   const [activeTab, setActiveTab] = useState('rights');
@@ -64,23 +78,15 @@ export default function App() {
       .catch(err => console.error("Session init failed:", err));
   }, []);
 
-  // Pre-fill editable document content when KB Entry is loaded
+  // Pre-fill editable document content when KB Entry or tone is loaded
   useEffect(() => {
     if (kbEntry) {
-      setCustomSubject(`STATUTORY DEMAND NOTICE UNDER ${kbEntry.act_name.toUpperCase()} (${kbEntry.section_number})`);
-      setCustomBody(
-        `1. STATEMENT OF FACTS:\n` +
-        `The undersigned submits that a legal dispute has arisen regarding ${kbEntry.issue_type?.replace(/_/g, ' ')} under your jurisdiction. Despite repeated verbal and written requests, the grievance remains unresolved.\n\n` +
-        `2. APPLICABLE LAW & STATUTORY PROVISIONS (${kbEntry.law_code || 'Statute'}):\n` +
-        `Take notice that under ${kbEntry.act_name} (${kbEntry.section_number}), the law provides:\n` +
-        `"${kbEntry.section_text_plain}"\n\n` +
-        `Remedy Forum: ${kbEntry.remedy_forum}\n` +
-        `Statutory Limitation Period: ${kbEntry.limitation_period}\n\n` +
-        `3. DEMAND & RELIEF SOUGHT:\n` +
-        `You are hereby called upon to comply with your statutory obligations within 15 days of service of this notice, failing which formal legal proceedings will be initiated before ${kbEntry.remedy_forum} at your sole risk, cost, and consequence.`
-      );
+      const isHi = language === 'hi';
+      const draft = generateDraftForTone(docTone, kbEntry, isHi);
+      setCustomSubject(draft.subject);
+      setCustomBody(draft.body);
     }
-  }, [kbEntry]);
+  }, [kbEntry, language, docTone]);
 
   // Helper to ensure valid session ID
   const getOrCreateSessionId = async () => {
@@ -107,9 +113,10 @@ export default function App() {
   };
 
   // Handle Intake submission
-  const handleIntakeSubmit = async (e) => {
-    if (e) e.preventDefault();
-    if (!inputText.trim()) return;
+  const handleIntakeSubmit = async (e, directText = null, targetTab = null) => {
+    if (e && e.preventDefault) e.preventDefault();
+    const textToProcess = directText || inputText;
+    if (!textToProcess.trim()) return;
 
     setLoading(true);
     setError(null);
@@ -118,14 +125,20 @@ export default function App() {
 
     const activeSessionId = await getOrCreateSessionId();
 
+    const isDevanagari = /[\u0900-\u097F]/.test(textToProcess);
+    const targetLanguage = isDevanagari ? 'hi' : language;
+    if (isDevanagari && language !== 'hi') {
+      setLanguage('hi');
+    }
+
     try {
       const res = await fetch('/api/intake', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           session_id: activeSessionId,
-          raw_text: inputText,
-          language: 'en'
+          raw_text: textToProcess,
+          language: targetLanguage
         })
       });
 
@@ -140,10 +153,21 @@ export default function App() {
       setClassification(data.classification);
       setEntities(data.entities || []);
       setKbEntry(data.kb_entry);
-      setActiveTab('rights');
+      setWhyThisLaw(data.why_this_law);
+
+      if (targetTab) {
+        setActiveTab(targetTab);
+      } else if (!activeTab) {
+        setActiveTab('rights');
+      }
+
+      if (data.missing_critical_info && data.missing_critical_info.length > 0) {
+        setMissingQuestions(data.missing_critical_info);
+        setIsMissingModalOpen(true);
+      }
 
       if (data.kb_entry) {
-        fetchExplanation(data.kb_entry.id, data.entities);
+        fetchExplanation(data.kb_entry.id, data.entities, targetLanguage);
       }
     } catch (err) {
       console.error("Intake submission error:", err);
@@ -153,16 +177,43 @@ export default function App() {
     }
   };
 
+  const handleTabSelect = (tabId) => {
+    setActiveTab(tabId);
+    if (!kbEntry && tabId !== 'rights') {
+      const starters = getSampleStarters(language);
+      const defaultText = starters[0]?.text || 'My landlord is refusing to return my security deposit.';
+      setInputText(defaultText);
+      handleIntakeSubmit(null, defaultText, tabId);
+    }
+  };
+
+  // Handle missing details submission
+  const handleMissingAnswersSubmit = (answers) => {
+    const updatedEntities = [...entities];
+    Object.entries(answers).forEach(([key, val]) => {
+      if (val && val.trim()) {
+        updatedEntities.push({
+          entity_type: key,
+          entity_value: val.trim(),
+          confirmed_by_user: true
+        });
+      }
+    });
+    setEntities(updatedEntities);
+  };
+
   // Fetch LLM rephrased explanation
-  const fetchExplanation = async (kbId, currentEntities) => {
+  const fetchExplanation = async (kbId, currentEntities, langOverride) => {
     setExpLoading(true);
+    const activeLang = langOverride || language;
     try {
       const res = await fetch('/api/explanation', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           kb_entry_id: kbId,
-          facts: currentEntities
+          facts: currentEntities,
+          language: activeLang
         })
       });
       const data = await res.json();
@@ -180,6 +231,8 @@ export default function App() {
     setIntakeData(null);
     setClassification(null);
     setEntities([]);
+    setWhyThisLaw(null);
+    setMissingQuestions([]);
     setExplanationData(null);
     setGeneratedDoc(null);
     setChatMessages([]);
@@ -258,11 +311,27 @@ export default function App() {
     }
   };
 
+  const isHiLang = language === 'hi';
+  const currentReadAloudText = explanationData?.explanation || 
+    (isHiLang ? (kbEntry?.plain_summary_seed_hi || kbEntry?.plain_summary_seed) : kbEntry?.plain_summary_seed) || 
+    (isHiLang 
+      ? "सत्यापित कानूनी अधिकार एवं नोटिस प्लेटफ़ॉर्म लीगल ऐड प्रो में आपका स्वागत है। आपके मामले के लिए लागू कानूनों और कानूनी नोटिस की जानकारी यहां उपलब्ध है।" 
+      : "Welcome to LegalAId PRO verified statutory legal analysis platform. Here is your legal analysis and verified statutory options.");
+
+
   return (
-    <div className="app-wrapper">
-      <Header onReset={handleResetSearch} />
+    <div className={`app-wrapper ${textSize !== 'normal' ? 'text-scale-' + textSize : ''} ${elderlyMode ? 'elderly-mode' : ''}`}>
+      <Header 
+        onReset={handleResetSearch} 
+        language={language} 
+        setLanguage={setLanguage} 
+        onOpenHelp={() => setIsHelpOpen(true)}
+      />
 
       <main className="main-container">
+        {/* Upfront Feature Navigation Bar (1. Legal Rights & Statutes, 2. Legal Notice Generator, 3. Statutory Q&A, 4. Extracted Facts) */}
+        <TabBar activeTab={activeTab} setActiveTab={handleTabSelect} language={language} />
+
         <AnimatePresence mode="wait">
           {!kbEntry ? (
             <LandingView
@@ -272,6 +341,7 @@ export default function App() {
               onSubmit={handleIntakeSubmit}
               loading={loading}
               error={error}
+              language={language}
             />
           ) : (
             <motion.div 
@@ -289,21 +359,23 @@ export default function App() {
                 showOriginalIntake={showOriginalIntake}
                 setShowOriginalIntake={setShowOriginalIntake}
                 onResetSearch={handleResetSearch}
+                language={language}
               />
 
-              <StatCards kbEntry={kbEntry} />
-
-              <TabBar activeTab={activeTab} setActiveTab={setActiveTab} />
+              <StatCards kbEntry={kbEntry} language={language} />
 
               <AnimatePresence mode="wait">
                 {activeTab === 'rights' && (
                   <RightsTab
                     key="rights"
                     kbEntry={kbEntry}
+                    entities={entities}
                     explanationData={explanationData}
                     expLoading={expLoading}
                     copiedExp={copiedExp}
                     onCopyExplanation={handleCopyExplanation}
+                    whyThisLaw={whyThisLaw}
+                    language={language}
                   />
                 )}
 
@@ -328,6 +400,7 @@ export default function App() {
                     generatedDoc={generatedDoc}
                     docLoading={docLoading}
                     onGenerateDoc={handleGenerateDoc}
+                    language={language}
                   />
                 )}
 
@@ -340,6 +413,7 @@ export default function App() {
                     setChatInput={setChatInput}
                     chatLoading={chatLoading}
                     onSendChatMessage={handleSendChatMessage}
+                    language={language}
                   />
                 )}
 
@@ -347,6 +421,7 @@ export default function App() {
                   <FactsTab
                     key="facts"
                     entities={entities}
+                    language={language}
                   />
                 )}
               </AnimatePresence>
@@ -355,7 +430,32 @@ export default function App() {
         </AnimatePresence>
       </main>
 
-      <Footer />
+      <Footer language={language} />
+
+      {/* Floating Help Trigger Button */}
+      <FloatingHelpButton onClick={() => setIsHelpOpen(true)} language={language} />
+
+      {/* Accessibility & Help Assistant Drawer / Modal (Image 4) */}
+      <HelpDrawerModal
+        isOpen={isHelpOpen}
+        onClose={() => setIsHelpOpen(false)}
+        language={language}
+        setLanguage={setLanguage}
+        textSize={textSize}
+        setTextSize={setTextSize}
+        elderlyMode={elderlyMode}
+        setElderlyMode={setElderlyMode}
+        readAloudText={currentReadAloudText}
+      />
+
+      {/* Missing Information Follow-Up Questions Prompt Modal */}
+      <MissingInfoModal
+        isOpen={isMissingModalOpen}
+        onClose={() => setIsMissingModalOpen(false)}
+        missingQuestions={missingQuestions}
+        onSubmitAnswers={handleMissingAnswersSubmit}
+        language={language}
+      />
     </div>
   );
 }

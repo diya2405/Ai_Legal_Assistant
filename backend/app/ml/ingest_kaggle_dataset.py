@@ -134,6 +134,54 @@ def generate_kaggle_derived_dataset() -> List[Dict[str, str]]:
     amounts = ["10000", "25000", "50000", "15000", "30000"]
     dates = ["15 January", "10 February", "1 March", "20 November"]
 
+    financial_cheque_templates = [
+        "A cheque of {amount} rupees bounced due to insufficient funds and bank issued memo",
+        "cheque bounce under section 138 negotiable instruments act for {amount} rupees",
+        "client issued dishonoured cheque of {amount} rupees and bank return memo",
+        "चेक बाउंस हो गया 50000 रुपये का और बैंक ने मेमो जारी कर दिया",
+        "cheque bounce hogaya account me insufficient funds hone ki wajah se"
+    ]
+
+    insurance_claim_templates = [
+        "Health insurance company rejected my cashless hospital claim of {amount} arbitrarily",
+        "insurance company repudiated medical claim citing false pre-existing condition",
+        "auto insurance claim rejected by company despite full policy coverage",
+        "बीमा कंपनी ने अस्पताल के इलाज का क्लेम खारिज कर दिया",
+        "insurance company claim rejection kar diya hai rejection letter bheja"
+    ]
+
+    medical_negligence_templates = [
+        "Doctor performed wrong surgery on my leg causing permanent disability",
+        "hospital committed gross medical negligence during surgical operation",
+        "doctor misdiagnosed serious illness causing severe health complications",
+        "अस्पताल और डॉक्टर की गलत सर्जरी और इलाज के कारण शारीरिक नुकसान हुआ",
+        "doctor wrong treatment and medical negligence causing severe pain"
+    ]
+
+    motor_accident_templates = [
+        "Hit and run road accident by speeding truck seeking mact compensation under section 166",
+        "speeding vehicle hit my motorcycle causing severe bodily injury on highway",
+        "mact claim for road accident bodily injury and medical bills compensation",
+        "तेज रफ्तार गाड़ी ने टक्कर मार दी एक्सीडेंट क्लेम और मुआवजा चाहिए",
+        "road accident hit and run mact claim compensation required"
+    ]
+
+    ip_trademark_templates = [
+        "Competitor company copied our registered brand trademark name and logo on fake products",
+        "trademark infringement and counterfeit product selling by rival seller",
+        "cease and desist notice for illegal usage of brand logo and trade name",
+        "हमारी ब्रांड कंपनी का नाम और लोगो चोरी करके नकली प्रोडक्ट बेच रहे हैं",
+        "trademark infringement kar raha hai fake product brand logo copy karke"
+    ]
+
+    banking_cibil_templates = [
+        "Bank wrongly reported credit card loan default to cibil ruining my credit score",
+        "bank reported settled loan default to cibil and sent abusive recovery agents",
+        "cibil score dropped because bank failed to update non-overdue credit card status",
+        "बैंक ने गलत तरीके से सिबिल स्कोर में लोन डिफॉल्ट रिपोर्ट कर दिया",
+        "bank cibil score default report kar diya wrongfully recovery agent harassment"
+    ]
+
     categories = [
         ("tenant", "deposit_not_returned", tenant_deposit_templates),
         ("tenant", "illegal_eviction", tenant_eviction_templates),
@@ -143,7 +191,13 @@ def generate_kaggle_derived_dataset() -> List[Dict[str, str]]:
         ("consumer", "unfair_trade_practice", consumer_unfair_templates),
         ("labor", "unpaid_wages", labor_wages_templates),
         ("labor", "wrongful_termination", labor_termination_templates),
-        ("labor", "overtime_denial", labor_overtime_templates)
+        ("labor", "overtime_denial", labor_overtime_templates),
+        ("financial", "cheque_bounce", financial_cheque_templates),
+        ("insurance", "claim_rejection", insurance_claim_templates),
+        ("medical", "medical_negligence", medical_negligence_templates),
+        ("motor", "accident_compensation", motor_accident_templates),
+        ("ip", "trademark_infringement", ip_trademark_templates),
+        ("banking", "cibil_harassment", banking_cibil_templates)
     ]
 
     for domain, issue_type, templates in categories:

@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { UserCheck, CheckCircle2 } from 'lucide-react';
+import { TRANSLATIONS } from '../../data/translations';
 
 const gridVariants = {
   hidden: { opacity: 0 },
@@ -17,7 +18,9 @@ const cardVariants = {
   visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.3 } }
 };
 
-export default function FactsTab({ entities }) {
+export default function FactsTab({ entities, language = 'en' }) {
+  const t = TRANSLATIONS[language]?.factsTab || TRANSLATIONS.en.factsTab;
+
   return (
     <motion.div 
       className="glass-card panel-card"
@@ -29,13 +32,13 @@ export default function FactsTab({ entities }) {
       <div className="panel-header">
         <div className="panel-title">
           <UserCheck size={22} className="icon-accent-emerald" />
-          NER Extracted Key Case Entities
+          {t.title}
         </div>
-        <span className="subtext-muted">Extracted automatically from your intake description</span>
+        <span className="subtext-muted">{t.subtext}</span>
       </div>
 
       {entities.length === 0 ? (
-        <div className="empty-facts-state">No specific entities detected in the text.</div>
+        <div className="empty-facts-state">{t.emptyText}</div>
       ) : (
         <motion.div 
           className="entities-grid"
@@ -53,7 +56,7 @@ export default function FactsTab({ entities }) {
               <div className="entity-label">{ent.entity_type}</div>
               <div className="entity-value">{ent.entity_value}</div>
               <div className="entity-status">
-                <CheckCircle2 size={12} className="icon-emerald" /> Verified Extracted Entity
+                <CheckCircle2 size={12} className="icon-emerald" /> {t.verifiedStatus}
               </div>
             </motion.div>
           ))}

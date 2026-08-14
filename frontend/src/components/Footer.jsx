@@ -1,8 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MANDATORY_DISCLAIMER } from '../data/constants';
+import { TRANSLATIONS } from '../data/translations';
 
-export default function Footer() {
+export default function Footer({ language = 'en' }) {
+  const t = TRANSLATIONS[language]?.footer || TRANSLATIONS.en.footer;
+
   return (
     <motion.footer 
       className="app-footer"
@@ -11,7 +13,7 @@ export default function Footer() {
       transition={{ delay: 0.4 }}
     >
       <div className="footer-content">
-        <strong className="text-gold">Mandatory Legal Disclaimer:</strong> {MANDATORY_DISCLAIMER}
+        <strong className="text-gold">{t.disclaimerLabel}</strong> {t.disclaimerText}
       </div>
     </motion.footer>
   );

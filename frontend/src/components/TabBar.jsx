@@ -1,15 +1,18 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, FileText, MessageSquare, UserCheck } from 'lucide-react';
+import { TRANSLATIONS } from '../data/translations';
 
-const tabs = [
-  { id: 'rights', label: '1. Legal Rights & Statutes', icon: Sparkles },
-  { id: 'notice', label: '2. Legal Notice Generator (Editable)', icon: FileText },
-  { id: 'chat', label: '3. Statutory Q&A Assistant', icon: MessageSquare },
-  { id: 'facts', label: '4. Extracted Case Facts', icon: UserCheck }
-];
+export default function TabBar({ activeTab, setActiveTab, language = 'en' }) {
+  const t = TRANSLATIONS[language]?.tabs || TRANSLATIONS.en.tabs;
 
-export default function TabBar({ activeTab, setActiveTab }) {
+  const tabs = [
+    { id: 'rights', label: t.rights, icon: Sparkles },
+    { id: 'notice', label: t.notice, icon: FileText },
+    { id: 'chat', label: t.chat, icon: MessageSquare },
+    { id: 'facts', label: t.facts, icon: UserCheck }
+  ];
+
   return (
     <div className="nav-tabs-bar glass-card">
       {tabs.map(tab => {

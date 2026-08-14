@@ -2,7 +2,8 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, Sparkles, Send, RefreshCw } from 'lucide-react';
 import FormattedText from '../ui/FormattedText';
-import { SUGGESTED_CHAT_PROMPTS } from '../../data/constants';
+import { getSuggestedChatPrompts } from '../../data/constants';
+import { TRANSLATIONS } from '../../data/translations';
 
 export default function ChatTab({
   kbEntry,
@@ -10,9 +11,13 @@ export default function ChatTab({
   chatInput,
   setChatInput,
   chatLoading,
-  onSendChatMessage
+  onSendChatMessage,
+  language = 'en'
 }) {
   if (!kbEntry) return null;
+
+  const t = TRANSLATIONS[language]?.chatTab || TRANSLATIONS.en.chatTab;
+  const chatPrompts = getSuggestedChatPrompts(language);
 
   return (
     <motion.div 
@@ -25,18 +30,18 @@ export default function ChatTab({
       <div className="panel-header">
         <div className="panel-title">
           <MessageSquare size={22} className="icon-accent-gold" />
-          Grounded Statutory Q&A Assistant
+          {t.title}
         </div>
         <span className="badge badge-rag">
           <Sparkles size={13} />
-          RAG Statute Grounded
+          {t.ragBadge}
         </span>
       </div>
 
       {/* Prompt Chips */}
       <div className="chat-prompt-chips">
-        <span className="chips-label">Suggested Qs:</span>
-        {SUGGESTED_CHAT_PROMPTS.map((promptText, idx) => (
+        <span className="chips-label">{t.suggestedQs}</span>
+        {chatPrompts.map((promptText, idx) => (
           <motion.button 
             key={idx}
             className="chat-chip"
@@ -58,8 +63,8 @@ export default function ChatTab({
             animate={{ opacity: 1, scale: 1 }}
           >
             <MessageSquare size={36} className="empty-icon" />
-            <p className="empty-title">Ask statutory follow-up questions regarding {kbEntry.act_name}</p>
-            <p className="empty-sub">Answers are grounded in statutory codes and judicial precedents.</p>
+            <p className="empty-title">{t.emptyTitle.replace('{act}', kbEntry.act_name)}</p>
+            <p className="empty-sub">{t.emptySub}</p>
           </motion.div>
         )}
 
@@ -81,7 +86,7 @@ export default function ChatTab({
                 </div>
                 {msg.source_chunks && msg.source_chunks.length > 0 && (
                   <div className="chat-source-tag">
-                    Source: <strong>{msg.source_chunks[0].act_name} ({msg.source_chunks[0].section_number})</strong>
+                    {t.sourceTag} <strong>{msg.source_chunks[0].act_name} ({msg.source_chunks[0].section_number})</strong>
                   </div>
                 )}
               </div>
@@ -97,7 +102,7 @@ export default function ChatTab({
           >
             <div className="chat-avatar">AI</div>
             <div className="chat-bubble-content loading-bubble">
-              <RefreshCw size={14} className="animate-spin" /> Searching grounded statute chunks...
+              <RefreshCw size={14} className="animate-spin" /> {t.searchingText}
             </div>
           </motion.div>
         )}
@@ -107,7 +112,7 @@ export default function ChatTab({
         <input
           type="text"
           className="chat-input-styled"
-          placeholder="Ask a follow-up statutory question..."
+          placeholder={t.placeholder}
           value={chatInput}
           onChange={e => setChatInput(e.target.value)}
         />

@@ -256,6 +256,9 @@ def generate_grounded_answer(
     if history:
         history_str = "Prior Conversation:\n" + "\n".join([f"{h['role'].title()}: {h['content']}" for h in history[-3:]]) + "\n\n"
 
+    is_hindi_query = bool(re.search(r'[\u0900-\u097F]', query))
+    lang_instruction = "4. The user asked in Hindi. Please respond in clear, helpful, empathetic Devanagari Hindi while citing sections and laws accurately." if is_hindi_query else ""
+
     prompt = (
         f"You are an expert, authoritative Indian legal assistant. Answer the user's question clearly using the provided source excerpts below.\n\n"
         f"{history_str}"
@@ -264,7 +267,8 @@ def generate_grounded_answer(
         f"INSTRUCTIONS:\n"
         f"1. Explain the legal position clearly, citing section numbers verbatim from the provided sources.\n"
         f"2. For statutory procedural questions (e.g. court fees, evidence documents, or filing steps), summarize the statutory fee rules or procedure clearly.\n"
-        f"3. Be helpful, professional, and practical."
+        f"3. Be helpful, professional, and practical.\n"
+        f"{lang_instruction}"
     )
 
     chunk_ids = [str(c.id) for c in chunks]

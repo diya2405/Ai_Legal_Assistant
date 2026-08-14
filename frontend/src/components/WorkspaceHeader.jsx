@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Scale, ShieldCheck, Landmark, Award, BookOpen, Info } from 'lucide-react';
+import { TRANSLATIONS } from '../data/translations';
 
 export default function WorkspaceHeader({
   classification,
@@ -8,8 +9,11 @@ export default function WorkspaceHeader({
   inputText,
   showOriginalIntake,
   setShowOriginalIntake,
-  onResetSearch
+  onResetSearch,
+  language = 'en'
 }) {
+  const t = TRANSLATIONS[language]?.workspaceHeader || TRANSLATIONS.en.workspaceHeader;
+
   return (
     <div className="workspace-header-group">
       <motion.div 
@@ -26,25 +30,25 @@ export default function WorkspaceHeader({
             whileTap={{ scale: 0.95 }}
           >
             <ArrowLeft size={15} />
-            New Legal Analysis
+            {t.newAnalysis}
           </motion.button>
           
           <div className="case-title-meta">
             <h1 className="case-heading">
-              {classification?.domain?.toUpperCase()} RIGHTS • {classification?.issue_type?.replace(/_/g, ' ').toUpperCase()}
+              {classification?.domain?.toUpperCase()} {t.rightsHeader} {classification?.issue_type?.replace(/_/g, ' ').toUpperCase()}
             </h1>
             <div className="meta-pills">
               <span className="pill pill-gold">
                 <Scale size={12} /> {kbEntry?.act_name}
               </span>
               <span className="pill pill-emerald">
-                <ShieldCheck size={12} /> 100% Citation Guard Passed
+                <ShieldCheck size={12} /> {t.guardPassed}
               </span>
               <span className="pill pill-blue">
                 <Landmark size={12} /> {kbEntry?.remedy_forum}
               </span>
               <span className="pill pill-purple">
-                <Award size={12} /> Confidence: {Math.round((classification?.confidence || 1) * 100)}%
+                <Award size={12} /> {t.confidence} {Math.round((classification?.confidence || 1) * 100)}%
               </span>
             </div>
           </div>
@@ -58,7 +62,7 @@ export default function WorkspaceHeader({
             whileTap={{ scale: 0.96 }}
           >
             <BookOpen size={14} />
-            {showOriginalIntake ? 'Hide Facts' : 'View Submitted Facts'}
+            {showOriginalIntake ? t.hideFacts : t.viewFacts}
           </motion.button>
         </div>
       </motion.div>

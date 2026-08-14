@@ -1,6 +1,7 @@
 import React from 'react';
+import HighlightText from './HighlightText';
 
-export default function FormattedText({ text }) {
+export default function FormattedText({ text, enableHighlight = true }) {
   if (!text) return null;
   
   const paragraphs = text.split('\n\n');
@@ -12,11 +13,11 @@ export default function FormattedText({ text }) {
           if (part.startsWith('**') && part.endsWith('**')) {
             return (
               <strong key={idx} className="font-bold-highlight">
-                {part.slice(2, -2)}
+                <HighlightText text={part.slice(2, -2)} enableHighlight={enableHighlight} />
               </strong>
             );
           }
-          return part;
+          return <HighlightText key={idx} text={part} enableHighlight={enableHighlight} />;
         });
 
         const isStep = para.startsWith('•') || para.startsWith('Step') || /^\d+\./.test(para);

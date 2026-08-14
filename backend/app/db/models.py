@@ -27,6 +27,7 @@ class Intake(Base):
     session_id = Column(String(36), ForeignKey("sessions.id", ondelete="CASCADE"), nullable=False)
     raw_text = Column(Text, nullable=False)
     language = Column(String(10), default="en")
+    structured_case_json = Column(JSON, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
 
     session = relationship("Session", back_populates="intakes")
@@ -39,7 +40,7 @@ class Classification(Base):
 
     id = Column(String(36), primary_key=True, default=generate_uuid)
     intake_id = Column(String(36), ForeignKey("intakes.id", ondelete="CASCADE"), nullable=False, unique=True)
-    domain = Column(String(50), nullable=False, index=True)       # 'consumer', 'labor', 'tenant'
+    domain = Column(String(50), nullable=False, index=True)       # 'consumer', 'labour', 'tenant', 'criminal', 'cybercrime'
     issue_type = Column(String(100), nullable=False, index=True)
     confidence = Column(Float, nullable=False)
     clarification_needed = Column(Boolean, default=False)
@@ -66,14 +67,16 @@ class KBEntry(Base):
     id = Column(String(36), primary_key=True, default=generate_uuid)
     domain = Column(String(50), nullable=False, index=True)
     issue_type = Column(String(100), nullable=False, index=True)
-    law_code = Column(String(20), nullable=False)                # 'IPC', 'BNS', 'N/A'
+    law_code = Column(String(20), nullable=False)                # 'IPC', 'BNS', 'IT Act', 'N/A'
     act_name = Column(String(200), nullable=False)
     section_number = Column(String(100), nullable=False)
     section_text_plain = Column(Text, nullable=False)
     plain_summary_seed = Column(Text, nullable=False)
+    plain_summary_seed_hi = Column(Text, nullable=True)
     remedy_forum = Column(Text, nullable=False)
     limitation_period = Column(String(100), nullable=False)
     notice_template_id = Column(String(100), nullable=False)
+    official_source_name = Column(String(100), default="India Code")
     source_url = Column(Text, nullable=False)
     last_verified_date = Column(Date, default=date.today)
 
@@ -87,6 +90,8 @@ class Document(Base):
     session_id = Column(String(36), ForeignKey("sessions.id", ondelete="CASCADE"), nullable=False)
     kb_entry_id = Column(String(36), ForeignKey("kb_entries.id"), nullable=False)
     tone = Column(String(50), default="formal_notice")           # 'request', 'formal_notice'
+    custom_subject = Column(Text, nullable=True)
+    custom_body = Column(Text, nullable=True)
     pdf_path = Column(Text, nullable=False)
     disclaimer_rendered = Column(Boolean, default=True)
     created_at = Column(DateTime, default=datetime.utcnow)

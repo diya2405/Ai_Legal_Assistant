@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Clock } from 'lucide-react';
+import { TRANSLATIONS } from '../data/translations';
 
 const gridVariants = {
   hidden: { opacity: 0 },
@@ -17,8 +18,10 @@ const cardVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
 };
 
-export default function StatCards({ kbEntry }) {
+export default function StatCards({ kbEntry, language = 'en' }) {
   if (!kbEntry) return null;
+
+  const t = TRANSLATIONS[language]?.statCards || TRANSLATIONS.en.statCards;
 
   return (
     <motion.div 
@@ -32,9 +35,9 @@ export default function StatCards({ kbEntry }) {
         variants={cardVariants}
         whileHover={{ y: -4, boxShadow: '0 8px 25px rgba(234, 179, 8, 0.15)' }}
       >
-        <div className="stat-label">Enacted Statute Act</div>
+        <div className="stat-label">{t.statuteAct}</div>
         <div className="stat-value text-gold">{kbEntry.act_name}</div>
-        <div className="stat-subtext">Statutory Code</div>
+        <div className="stat-subtext">{t.statutoryCode}</div>
       </motion.div>
 
       <motion.div 
@@ -42,9 +45,9 @@ export default function StatCards({ kbEntry }) {
         variants={cardVariants}
         whileHover={{ y: -4, boxShadow: '0 8px 25px rgba(236, 72, 153, 0.15)' }}
       >
-        <div className="stat-label">Section Citation</div>
+        <div className="stat-label">{t.sectionCitation}</div>
         <div className="stat-value font-mono text-pink">{kbEntry.section_number}</div>
-        <div className="stat-subtext">Verified Law Code</div>
+        <div className="stat-subtext">{t.verifiedCode}</div>
       </motion.div>
 
       <motion.div 
@@ -52,11 +55,11 @@ export default function StatCards({ kbEntry }) {
         variants={cardVariants}
         whileHover={{ y: -4, boxShadow: '0 8px 25px rgba(59, 130, 246, 0.15)' }}
       >
-        <div className="stat-label">Remedy Forum</div>
+        <div className="stat-label">{t.remedyForum}</div>
         <div className="stat-value text-blue">
           <MapPin size={14} className="inline-icon" /> {kbEntry.remedy_forum}
         </div>
-        <div className="stat-subtext">Filing Jurisdiction</div>
+        <div className="stat-subtext">{t.filingJurisdiction}</div>
       </motion.div>
 
       <motion.div 
@@ -64,11 +67,11 @@ export default function StatCards({ kbEntry }) {
         variants={cardVariants}
         whileHover={{ y: -4, boxShadow: '0 8px 25px rgba(16, 185, 129, 0.15)' }}
       >
-        <div className="stat-label">Limitation Period</div>
+        <div className="stat-label">{t.limitationPeriod}</div>
         <div className="stat-value text-emerald">
           <Clock size={14} className="inline-icon" /> {kbEntry.limitation_period}
         </div>
-        <div className="stat-subtext">Filing Time Limit</div>
+        <div className="stat-subtext">{t.filingTimeLimit}</div>
       </motion.div>
     </motion.div>
   );

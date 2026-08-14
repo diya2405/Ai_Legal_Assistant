@@ -1,12 +1,11 @@
 import re
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 
 def is_valid_party_name(val: str) -> bool:
     if not val or len(val) < 2:
         return False
     val_lower = val.lower().strip()
     
-    # Common verb/stop phrases to reject
     invalid_words = {
         "is", "are", "was", "were", "be", "been", "being",
         "refuse", "refused", "refusing", "refuses",
@@ -23,11 +22,9 @@ def is_valid_party_name(val: str) -> bool:
     if not tokens:
         return False
         
-    # Reject if any token is a prohibited action verb
     if any(t in invalid_words for t in tokens):
         return False
         
-    # Reject generic pronoun/stop phrases
     if val_lower in {"he", "she", "they", "it", "this", "that", "someone", "my", "your", "his", "her"}:
         return False
 
@@ -77,10 +74,8 @@ def extract_entities(text: str) -> List[Dict[str, Any]]:
 
     # 3. Party Names & Addresses
     found_party = False
-    
-    # Explicit pattern matching for owner/landlord/employer/builder/company names
     owner_match = re.search(
-        r'(?:landlord|owner|employer|company|builder|store|seller|respondent|opponent|accused)\s+(?:named\s+|called\s+)?([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)',
+        r'(?:landlord|owner|employer|company|builder|store|seller|respondent|opponent|accused|neighbour)\s+(?:named\s+|called\s+)?([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)',
         text, re.IGNORECASE
     )
     if owner_match and is_valid_party_name(owner_match.group(1)):
@@ -117,7 +112,6 @@ def extract_entities(text: str) -> List[Dict[str, Any]]:
     except Exception:
         pass
 
-    # Fallback to clean default if no explicit proper name was mentioned
     if not found_party:
         entities.append({
             "entity_type": "party_name",
@@ -126,3 +120,101 @@ def extract_entities(text: str) -> List[Dict[str, Any]]:
         })
 
     return entities
+
+
+def extract_structured_case_object(raw_text: str, domain: str = "consumer", language: str = "en") -> Dict[str, Any]:
+    """
+    Constructs a complete structured legal case JSON object from natural language intake.
+    Identifies missing critical fields and returns targeted follow-up questions.
+    """
+    entities = extract_entities(raw_text)
+    
+    # 1. Extract Amounts & Dates
+    amounts = [e['entity_value'] for e in entities if e['entity_type'] == 'amount']
+    dates = [e['entity_value'] for e in entities if e['entity_type'] == 'date']
+    parties = [e['entity_value'] for e in entities if e['entity_type'] == 'party_name']
+    addresses = [e['entity_value'] for e in entities if e['entity_type'] == 'address']
+
+    primary_amount = amounts[0] if amounts else "Not specified"
+    primary_date = dates[0] if dates else "Not specified"
+    opponent_name = parties[0] if parties else "Opposing Party / Entity"
+    location = addresses[0] if addresses else "Not specified"
+
+    # 2. Extract Evidence items
+    evidence = []
+    text_lower = raw_text.lower()
+    if any(w in text_lower for w in ['invoice', 'bill', 'receipt', 'mrp']):
+        evidence.append({"type": "document", "description": "Order tax invoice / Cash memo receipt"})
+    if any(w in text_lower for w in ['photo', 'video', 'image', 'picture', 'screen']):
+        evidence.append({"type": "media", "description": "Photos / Video proof of defect or damage"})
+    if any(w in text_lower for w in ['email', 'mail', 'chat', 'whatsapp', 'message']):
+        evidence.append({"type": "communication", "description": "Customer care rejection emails / chat logs"})
+
+    if not evidence:
+        evidence.append({"type": "general", "description": "Written complaint record & communications"})
+
+    # 3. Identify Missing Critical Info & Follow-Up Questions
+    missing_info = []
+
+    if domain == "tenant":
+        if primary_amount == "Not specified":
+            missing_info.append({"field": "deposit_amount", "question": "How much security deposit amount was paid to the landlord?"})
+        if location == "Not specified":
+            missing_info.append({"field": "property_state", "question": "Which state and city is the rented property located in?"})
+        if not any(w in text_lower for w in ['agreement', 'rent agreement', 'lease']):
+            missing_info.append({"field": "agreement_status", "question": "Do you have a written, registered rental agreement with the landlord?"})
+    elif domain == "labour":
+        if primary_amount == "Not specified":
+            missing_info.append({"field": "unpaid_salary", "question": "What is the total unpaid salary / employment dues amount?"})
+        if opponent_name == "Opposing Party / Entity":
+            missing_info.append({"field": "employer_name", "question": "What is the official registered name of your employer/company?"})
+    elif domain == "consumer":
+        if primary_amount == "Not specified":
+            missing_info.append({"field": "purchase_amount", "question": "What was the total purchase price paid for the item/service?"})
+        if opponent_name == "Opposing Party / Entity":
+            missing_info.append({"field": "seller_name", "question": "What is the name of the retail store or e-commerce platform?"})
+    elif domain == "criminal":
+        if opponent_name == "Opposing Party / Entity":
+            missing_info.append({"field": "accused_identity", "question": "Who is the accused person or party making threats against you?"})
+        if primary_date == "Not specified":
+            missing_info.append({"field": "incident_date", "question": "On what date and time did the threatening incident occur?"})
+    elif domain == "cybercrime":
+        if primary_amount == "Not specified":
+            missing_info.append({"field": "fraud_amount", "question": "How much total money was lost or fraudulently transferred?"})
+
+    structured_case = {
+        "user": {
+            "name": "First Citizen / Litigant",
+            "address": location if location != "Not specified" else "Resident Address",
+            "phone": "Not provided",
+            "email": "Not provided"
+        },
+        "opponent": {
+            "name": opponent_name,
+            "organization": opponent_name,
+            "address": location if location != "Not specified" else "Opposing Party Address"
+        },
+        "case": {
+            "domain": domain,
+            "dispute_type": "legal_dispute",
+            "summary": raw_text[:300] + ("..." if len(raw_text) > 300 else ""),
+            "facts": [raw_text]
+        },
+        "dates": [
+            {"description": "Incident / Cause of action date", "date": primary_date}
+        ],
+        "financials": [
+            {"description": "Disputed monetary value", "amount": primary_amount, "currency": "INR"}
+        ],
+        "jurisdiction": {
+            "country": "India",
+            "state": "Applicable State Jurisdiction",
+            "district": "Local Judicial District",
+            "city": location if location != "Not specified" else "Local City"
+        },
+        "evidence": evidence,
+        "requested_relief": ["Full refund / resolution", "Statutory compensation for mental hardship"],
+        "missing_critical_info": missing_info
+    }
+
+    return structured_case
