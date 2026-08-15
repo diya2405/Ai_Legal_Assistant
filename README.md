@@ -2,7 +2,82 @@
 
 > **Verified AI Legal Rights & Statutory Legal Notice Platform under Indian Jurisprudence**
 
-LegalAId PRO is an AI-powered legal intake, statutory research, and editable notice generation platform built for first-generation litigants, citizens, and advocates in India. Grounded in deterministic statutory knowledge bases, LegalAId PRO eliminates hallucinated section numbers and generates 100% verified legal notice documents.
+LegalAId PRO is an AI-powered legal intake, statutory research, and editable notice generation platform built for first-generation litigants, citizens, and advocates in India. Grounded in deterministic statutory knowledge bases, LegalAId PRO eliminates hallucinated section numbers (IPC/BNS dual display) and generates 100% verified legal notice documents.
+
+---
+
+## 🗺️ System Working Flow & Architecture
+
+LegalAId operates on a **7-Stage Pipeline** with a **Two-Path Resolution Strategy** ensuring 0% hallucination on statutory citations.
+
+### 1. Primary 7-Stage Architectural Pipeline
+
+```mermaid
+flowchart TD
+    subgraph STAGE1["Stage 1: Intake"]
+        A1["User Input<br/>(Hindi / English text)"] --> A2["Language Detection<br/>(langdetect / fasttext)"]
+        A2 --> A3["Text Normalization & Validation"]
+    end
+
+    subgraph STAGE2["Stage 2: Classification & Entities"]
+        A3 --> B1["Embedding Generator<br/>(MiniLM-L12-v2)"]
+        B1 --> B2{"Cosine Similarity Match"}
+        B2 -- "Confidence ≥ 0.55" --> B4["Stage 2c: Entity Extraction<br/>(spaCy NER + Regex)"]
+        B2 -- "Confidence < 0.55" --> B3["Stage 2b: Clarification Loop<br/>(Max 2 rounds → Manual Picker)"]
+        B3 --> B4
+    end
+
+    subgraph STAGE3["Stage 3: KB Lookup"]
+        B4 --> C1{"Deterministic SQL Query<br/>(Zero LLM)"}
+        C1 -- "Match Found" --> D1["Extract Verified Section Text & Metadata"]
+        C1 -- "No KB Match" --> RAG1["pgvector Vector Search<br/>(statute_chunks)"]
+    end
+
+    subgraph STAGE4["Stage 4: LLM Explanation & Guard"]
+        D1 --> D2["Groq API (Llama-3.3-70b)<br/>[Fallback: Gemini API (5s)]"]
+        D2 --> D3{"Hallucination Guard<br/>(Regex Citation Scanner)"}
+        D3 -- "Passed (Exact Matches)" --> E1
+        D3 -- "Failed (Invented Citation)" --> D4["Retry strict prompt /<br/>Raw KB text fallback"]
+        D4 --> E1
+        RAG1 --> RAG2["RAG LLM Generation + Grounding Check"]
+        RAG2 --> E1
+    end
+
+    subgraph STAGE5["Stage 5: UI Presentation"]
+        E1["Stage 5: 3-Card UI Display"]
+        E1 --> F1["Card 1: Legal Sections (IPC / BNS)"]
+        E1 --> F2["Card 2: Plain Language Explanation"]
+        E1 --> F3["Card 3: Actionable Next Steps & Countdown"]
+    end
+
+    subgraph STAGE6_7["Stage 6 & 7: Document Generation & Security"]
+        F3 --> G1["User Selects Tone<br/>(Formal / Request)"]
+        G1 --> G2["Jinja2 Template Engine + WeasyPrint PDF"]
+        G2 --> G3["Embed Mandatory Verbatim Legal Disclaimer"]
+        G3 --> G4["Generate Signed URL + Cookie Session Gate"]
+        G4 --> G5["Secure PDF Download"]
+    end
+```
+
+### 2. Dual-Path Resolution Architecture
+
+```mermaid
+flowchart LR
+    Intake["User Problem Description"] --> Classify["Classification Layer"]
+    Classify --> MatchDB{"Curated KB Match?"}
+
+    subgraph PATH1["Primary Path: Curated Knowledge Base"]
+        MatchDB -- "YES" --> SQL["SQL Query to kb_entries"]
+        SQL --> Rephrase["LLM Rephrases Verified Law"]
+        Rephrase --> VerifiedBadge["✅ Display Verified Citation"]
+    end
+
+    subgraph PATH2["Fallback Path: pgvector RAG"]
+        MatchDB -- "NO" --> VectorSearch["pgvector Similarity Search"]
+        VectorSearch --> ChunkGen["LLM Generates from Statute Chunks"]
+        ChunkGen --> AIReferenceBadge["⚠️ Display AI-retrieved Reference"]
+    end
+```
 
 ---
 
@@ -10,7 +85,7 @@ LegalAId PRO is an AI-powered legal intake, statutory research, and editable not
 
 - **🏛️ 24 Statutory Legal Categories**: Automated classification and plain-language rights explanation across Consumer, Tenant, Labor, Real Estate, Cyber, Financial, IP, Family, Property, Tax, and Contractual laws.
 - **🔊 Dual-Engine Hindi & English Text-to-Speech (TTS)**: Seamless voice narration with Web Speech API integration and server-side `/api/tts` proxy fallback for crystal-clear Hindi (हिन्दी) & English legal audio reading across all browsers & OS platforms.
-- **🛡️ 100% Citation Guard Verified**: Deterministic bare act validation ensuring zero hallucinated section citations or non-existent laws.
+- **🛡️ 100% Citation Guard Verified**: Deterministic bare act validation ensuring zero hallucinated section citations or non-existent laws (IPC/BNS dual display).
 - **📄 100% Editable Legal Notice Generator**: Live real-time PDF paper blueprint preview with custom tone configurations (Formal Statutory Notice vs. Diplomatic Requisition) and instant custom PDF generation.
 - **🤖 Grounded RAG Statutory Q&A Assistant**: Context-aware RAG vector search providing grounded answers with exact Bare Act section citations and Supreme Court precedents.
 - **✨ Executive Motion Dashboard**: Modular React component architecture powered by `framer-motion` staggered animations, active tab sliding pills, and glassmorphic UI aesthetics.
@@ -55,7 +130,7 @@ LegalAId PRO is an AI-powered legal intake, statutory research, and editable not
 - **Classifier**: Logistic Regression ($C=3.0$, `lbfgs` solver).
 - **Training Accuracy**: `100.00%`
 - **5-Fold Cross-Validation Accuracy**: `96.13%`
-- **Test Suite Pass Rate**: `100%` (8 passed in 18.43s via Pytest).
+- **Test Suite Pass Rate**: `100%` (8 passed via Pytest).
 
 ---
 
@@ -63,8 +138,8 @@ LegalAId PRO is an AI-powered legal intake, statutory research, and editable not
 
 - **Frontend**: React 18, Vite, Framer Motion, Lucide Icons, Vanilla CSS Design System.
 - **Backend API**: Python 3.13, FastAPI, Uvicorn, SQLAlchemy.
-- **ML / AI NLP**: Scikit-Learn (TF-IDF + LogisticRegression), Sentence-Transformers RAG Embeddings, ReportLab PDF Engine.
-- **Database**: SQLite / Serverless DB with Bare Act Knowledge Base Seeding.
+- **ML / AI NLP**: Scikit-Learn (TF-IDF + LogisticRegression), Sentence-Transformers RAG Embeddings (`paraphrase-multilingual-MiniLM-L12-v2`), ReportLab / WeasyPrint PDF Engine.
+- **Database**: SQLite / PostgreSQL + `pgvector` with Bare Act Knowledge Base Seeding.
 
 ---
 
@@ -119,7 +194,7 @@ LegalAId PRO is pre-configured for one-click deployment on **Vercel** via [`verc
 1. **Push Repository to GitHub**:
    ```bash
    git add .
-   git commit -m "feat: complete LegalAId PRO codebase with 24 legal categories and vercel config"
+   git commit -m "docs: update README with 7-stage visual workflow diagram and architecture flowcharts"
    git push origin main
    ```
 
