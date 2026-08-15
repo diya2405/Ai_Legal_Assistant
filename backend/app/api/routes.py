@@ -159,8 +159,9 @@ def process_intake(req: IntakeRequest, db: Session = Depends(get_db)):
             kb_entry = get_kb_entry(db, candidate["domain"], candidate["issue_type"])
             if kb_entry:
                 break
-    if not kb_entry:
-        kb_entry = db.query(KBEntry).first()
+    if not kb_entry and cls_res.get("domain"):
+        # Domain fallback: pick entry matching domain before any arbitrary first row
+        kb_entry = db.query(KBEntry).filter(KBEntry.domain == cls_res["domain"]).first()
 
     kb_data = None
     why_this_law = None

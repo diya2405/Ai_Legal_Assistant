@@ -57,6 +57,44 @@ def test_new_legal_domain_possibilities():
     res2 = classify_intake_text("I lost money in online phishing bank fraud and fake website scam")
     assert res2["domain"] == "cybercrime"
 
+    # 3. CIBIL Financial Harassment
+    res3 = classify_intake_text("A bank reported a wrong loan default on my CIBIL record for an account I never opened, damaging my credit score severely")
+    assert res3["domain"] == "financial"
+    assert res3["issue_type"] == "cibil_harassment"
+
+    # 4. Cheque Bounce
+    res4 = classify_intake_text("A debtor issued me a cheque for ₹1,50,000 which bounced due to insufficient funds")
+    assert res4["domain"] == "financial"
+    assert res4["issue_type"] == "cheque_bounce"
+
+    # 5. RERA Builder Delay
+    res5 = classify_intake_text("My builder has delayed flat possession by 2 years past the agreed RERA date")
+    assert res5["domain"] == "property"
+    assert res5["issue_type"] == "builder_delay"
+
+
+def test_kb_entry_lookup_all_domains():
+    from app.services.kb import get_kb_entry
+    db = SessionLocal()
+    try:
+        # CIBIL harassment must map to CICRA / RBI Ombudsman, NOT Model Tenancy Act
+        cibil_kb = get_kb_entry(db, "financial", "cibil_harassment")
+        assert cibil_kb is not None
+        assert "Credit Information Companies" in cibil_kb.act_name or "CICRA" in cibil_kb.law_code
+        assert "Ombudsman" in cibil_kb.remedy_forum or "DCDRC" in cibil_kb.remedy_forum
+
+        # Cheque bounce must map to NI Act
+        cheque_kb = get_kb_entry(db, "financial", "cheque_bounce")
+        assert cheque_kb is not None
+        assert "Negotiable Instruments" in cheque_kb.act_name
+
+        # Builder delay must map to RERA
+        rera_kb = get_kb_entry(db, "property", "builder_delay")
+        assert rera_kb is not None
+        assert "Real Estate" in rera_kb.act_name
+    finally:
+        db.close()
+
 
 def test_ai_neural_rag_retrieval_and_case_precedents():
     db = SessionLocal()

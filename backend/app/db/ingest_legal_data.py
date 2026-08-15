@@ -206,6 +206,182 @@ def ingest_all_legal_data():
             notice_template_id="labor_overtime_notice",
             source_url="https://www.indiacode.nic.in/handle/123456789/2289",
             last_verified_date=date(2024, 2, 1)
+        ),
+
+        # --- FINANCIAL RIGHTS & CIBIL HARASSMENT ---
+        KBEntry(
+            domain="financial",
+            issue_type="cibil_harassment",
+            law_code="CICRA",
+            act_name="Credit Information Companies (Regulation) Act, 2005 & RBI Regulations",
+            section_number="Section 15 & Section 21",
+            section_text_plain=(
+                "Under Sections 15 and 21 of the Credit Information Companies (Regulation) Act, 2005, credit institutions "
+                "and CIBIL/bureau operators are legally obligated to maintain accurate financial records and update rectifications within 30 days. "
+                "Reporting unauthorized loan defaults or failing to rectify erroneous credit reports attracts statutory compensation under RBI Ombudsman directions."
+            ),
+            plain_summary_seed=(
+                "Banks and credit bureaus are legally bound to correct false default entries on your CIBIL credit report within 30 days of dispute notice. "
+                "Erroneous reporting or harassment for loans you never took entitles you to statutory compensation and immediate credit record correction."
+            ),
+            remedy_forum="RBI Banking Ombudsman / District Consumer Disputes Redressal Commission (DCDRC)",
+            limitation_period="3 years from discovery of erroneous reporting",
+            notice_template_id="cibil_harassment_notice",
+            source_url="https://cms.rbi.org.in/",
+            last_verified_date=date(2024, 1, 20)
+        ),
+        KBEntry(
+            domain="financial",
+            issue_type="cheque_bounce",
+            law_code="NI Act",
+            act_name="Negotiable Instruments Act, 1881",
+            section_number="Section 138 & Section 142",
+            section_text_plain=(
+                "Under Section 138 of the Negotiable Instruments Act, 1881, dishonour of a cheque for insufficiency of funds or exceeding arrangements "
+                "is a criminal offense punishable with imprisonment up to 2 years, or with fine which may extend to twice the amount of the cheque, or both."
+            ),
+            plain_summary_seed=(
+                "If a cheque issued to you bounces due to insufficient funds, you must issue a statutory demand notice within 30 days of receiving bank memo. "
+                "Failure to pay within 15 days of notice allows you to file a criminal case under Section 138 of the NI Act."
+            ),
+            remedy_forum="Judicial Magistrate First Class (JMFC) / Metropolitan Magistrate Court",
+            limitation_period="30 days from expiry of 15-day statutory notice period",
+            notice_template_id="cheque_bounce_notice",
+            source_url="https://www.indiacode.nic.in/handle/123456789/2187",
+            last_verified_date=date(2024, 1, 20)
+        ),
+
+        # --- PROPERTY & RERA BUILDER DELAY ---
+        KBEntry(
+            domain="property",
+            issue_type="builder_delay",
+            law_code="RERA",
+            act_name="Real Estate (Regulation and Development) Act, 2016 (RERA)",
+            section_number="Section 18 & Section 31",
+            section_text_plain=(
+                "Under Section 18 of RERA 2016, if a promoter fails to complete or give possession of an apartment in accordance with the agreement for sale, "
+                "the promoter shall be liable on demand to return the amount received with interest at prescribed rates, or pay monthly delay interest."
+            ),
+            plain_summary_seed=(
+                "If your builder delays flat possession beyond the agreed RERA commitment date, you have the legal right to claim full refund with interest "
+                "or monthly interest compensation for every month of delay until possession is handed over."
+            ),
+            remedy_forum="Real Estate Regulatory Authority (RERA) / RERA Adjudicating Officer",
+            limitation_period="3 years from agreed date of possession",
+            notice_template_id="builder_delay_notice",
+            source_url="https://rera.mohua.gov.in/",
+            last_verified_date=date(2024, 1, 20)
+        ),
+
+        # --- MEDICAL NEGLIGENCE ---
+        KBEntry(
+            domain="medical",
+            issue_type="medical_negligence",
+            law_code="CPA",
+            act_name="Consumer Protection Act, 2019 & Indian Medical Council Regulations",
+            section_number="Section 2(11) & Section 84",
+            section_text_plain=(
+                "Under Section 2(11) of CPA 2019, gross surgical failure, incorrect treatment, or breach of duty of care by medical practitioners "
+                "and hospitals constitutes deficiency of service entitling the patient or legal heirs to financial damages and compensation."
+            ),
+            plain_summary_seed=(
+                "Doctors and hospitals are legally answerable for breach of medical standard of care, surgical errors, or wrong treatment. "
+                "Patients or their families can claim compensation for medical expenses, disability, and suffering before the Consumer Commission."
+            ),
+            remedy_forum="District Consumer Disputes Redressal Commission (DCDRC) / State Medical Council",
+            limitation_period="2 years from date of negligence or discovery",
+            notice_template_id="medical_negligence_notice",
+            source_url="https://www.nmc.org.in/",
+            last_verified_date=date(2024, 1, 20)
+        ),
+
+        # --- ACCIDENT & MACT CLAIMS ---
+        KBEntry(
+            domain="accident",
+            issue_type="mact_claim",
+            law_code="MV Act",
+            act_name="Motor Vehicles Act, 1988",
+            section_number="Section 166 & Section 168",
+            section_text_plain=(
+                "Under Section 166 of the Motor Vehicles Act 1988, victims of road accidents or legal representatives of deceased persons "
+                "can file a claim petition before the Motor Accidents Claims Tribunal (MACT) for just compensation against the vehicle owner and insurance company."
+            ),
+            plain_summary_seed=(
+                "Road accident victims or their families have a statutory right to claim financial compensation for medical bills, permanent disability, "
+                "loss of livelihood, and pain/suffering from the vehicle owner's insurer under Motor Vehicles law."
+            ),
+            remedy_forum="Motor Accidents Claims Tribunal (MACT)",
+            limitation_period="6 months from date of accident",
+            notice_template_id="mact_claim_notice",
+            official_source_name="Ministry of Road Transport and Highways",
+            source_url="https://morth.nic.in/",
+            last_verified_date=date(2024, 1, 20)
+        ),
+
+        # --- INTELLECTUAL PROPERTY & TRADEMARK ---
+        KBEntry(
+            domain="intellectual_property",
+            issue_type="trademark_infringement",
+            law_code="Trade Marks Act",
+            act_name="Trade Marks Act, 1999",
+            section_number="Section 29 & Section 134",
+            section_text_plain=(
+                "Under Section 29 of the Trade Marks Act 1999, unauthorized commercial use of a mark identical or deceptively similar to a registered trademark "
+                "constitutes infringement. Section 134 empowers trademark owners to seek permanent injunction, damages, and seizure of counterfeit goods."
+            ),
+            plain_summary_seed=(
+                "Using a registered brand name, logo, or trademark without authorization to sell goods/services is illegal. "
+                "The registered owner can issue a Cease and Desist notice and claim injunction plus financial damages in Commercial Court."
+            ),
+            remedy_forum="Commercial Court / District Court",
+            limitation_period="3 years from date of infringement discovery",
+            notice_template_id="trademark_infringement_notice",
+            source_url="https://ipindia.gov.in/",
+            last_verified_date=date(2024, 1, 20)
+        ),
+
+        # --- INSURANCE REJECTION ---
+        KBEntry(
+            domain="consumer",
+            issue_type="insurance_rejection",
+            law_code="Insurance Act & CPA",
+            act_name="Insurance Act, 1938 & Consumer Protection Act, 2019",
+            section_number="Insurance Act Section 45 & CPA Section 35",
+            section_text_plain=(
+                "Arbitrary rejection of valid health, life, or motor insurance claims citing unverified pre-existing conditions or minor delay "
+                "constitutes illegal repudiation and deficiency of service punishable under Consumer Protection Act and IRDAI guidelines."
+            ),
+            plain_summary_seed=(
+                "Insurance companies cannot reject valid claims on frivolous or unproven technical grounds. "
+                "You have the right to appeal to the Insurance Ombudsman or file a complaint with DCDRC for claim disbursement plus interest."
+            ),
+            remedy_forum="Insurance Ombudsman / District Consumer Disputes Redressal Commission (DCDRC)",
+            limitation_period="1 year (Insurance Ombudsman) / 2 years (DCDRC)",
+            notice_template_id="insurance_claim_notice",
+            source_url="https://irdai.gov.in/",
+            last_verified_date=date(2024, 1, 20)
+        ),
+
+        # --- UTILITY DISCONNECTION ---
+        KBEntry(
+            domain="tenant",
+            issue_type="utility_disconnection",
+            law_code="MTA & Electricity Act",
+            act_name="Model Tenancy Act, 2021 & Electricity Act, 2003",
+            section_number="MTA Section 22 & Electricity Act Section 56",
+            section_text_plain=(
+                "Under Section 22 of MTA 2021, no landlord shall cut off or withhold any essential supply or service (water, power, sanitation) "
+                "in the premises occupied by the tenant. The Rent Authority can order immediate restoration and impose heavy monetary penalties on the offender."
+            ),
+            plain_summary_seed=(
+                "Cutting off basic utility services like electricity or water supply to pressurize or evict a tenant is illegal. "
+                "You can seek emergency restoration orders from the Rent Authority and Electricity Ombudsman."
+            ),
+            remedy_forum="Rent Authority / Electricity Ombudsman / Civil Court",
+            limitation_period="Immediate / 30 days from disconnection",
+            notice_template_id="utility_disconnection_notice",
+            source_url="https://powermin.gov.in/",
+            last_verified_date=date(2024, 1, 20)
         )
     ]
     db.bulk_save_objects(kb_entries)
