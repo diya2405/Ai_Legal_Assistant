@@ -81,6 +81,64 @@ flowchart LR
 
 ---
 
+## 📁 Folder Structure
+
+```
+LegalAId /
+├── backend/
+│   ├── api/
+│   │   └── index.py               # Vercel Serverless Function entry point
+│   ├── app/
+│   │   ├── api/
+│   │   │   └── routes.py          # FastAPI REST endpoints (/intake, /classify, /explain, /document, /chat, /tts)
+│   │   ├── db/
+│   │   │   ├── database.py        # SQLAlchemy Async engine & SQLite/Postgres connection pool
+│   │   │   ├── models.py          # Database ORM models (Session, Intake, Classification, Entity, KB, Document)
+│   │   │   ├── seed_kb.py         # Knowledge Base seeder script for 24 statutory law domains
+│   │   │   └── ingest_legal_data.py # Ingestion pipeline for bare act statutory data
+│   │   ├── ml/
+│   │   │   ├── dataset.json       # 828-sample legal dataset across 25 legal classes
+│   │   │   ├── train_classifier.py# TF-IDF + Logistic Regression training pipeline
+│   │   │   └── ingest_kaggle_dataset.py # ML dataset pre-processor & formatter
+│   │   └── services/
+│   │       ├── classification.py  # MiniLM-L12-v2 embedding & TF-IDF hybrid classifier service
+│   │       ├── extraction.py      # spaCy NER + Regex entity extraction engine (amounts, dates, names)
+│   │       ├── kb.py              # Zero-hallucination deterministic SQL KB lookup service
+│   │       ├── llm.py             # Groq & Gemini API LLM explanation engine with citation guard
+│   │       ├── pdf_generator.py   # ReportLab / WeasyPrint notice PDF document generator
+│   │       ├── rag.py             # Grounded RAG statutory Q&A assistant engine
+│   │       └── vector_store.py    # Vector store & semantic similarity engine
+│   ├── generated_pdfs/            # Output directory for generated legal notice PDFs
+│   ├── tests/
+│   │   └── test_pipeline.py       # Pytest test suite for end-to-end legal pipeline validation
+│   ├── legalaid.db                # SQLite database storage (development)
+│   └── requirements.txt           # Python backend dependencies
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── tabs/              # Workspace Tab Views (FactsTab, RightsTab, NoticeTab, ChatTab)
+│   │   │   ├── ui/                # UI Components (ApplicableProvisionsCard, HelpDrawerModal, WhyThisLawCard, etc.)
+│   │   │   ├── Footer.jsx         # Global application footer
+│   │   │   ├── Header.jsx         # Executive App Top Bar with language switcher
+│   │   │   ├── LandingView.jsx    # Problem Intake Hero Section
+│   │   │   ├── StatCards.jsx      # Quick stat metrics display
+│   │   │   ├── TabBar.jsx         # Workspace step navigation tab bar
+│   │   │   ├── TabFooterNav.jsx   # Next / Previous step action bar
+│   │   │   └── WorkspaceHeader.jsx# Active case header bar
+│   │   ├── data/
+│   │   │   ├── constants.js       # Global legal domain constants & fallback structures
+│   │   │   └── translations.js    # Bilingual Hindi (हिन्दी) & English UI localization strings
+│   │   ├── App.jsx                # Main application component & workflow state manager
+│   │   ├── index.css              # Custom Vanilla CSS Design System & animations
+│   │   └── main.jsx               # React DOM entry point
+│   ├── package.json               # Node.js dependencies
+│   └── vite.config.js             # Vite development server & backend proxy configuration
+├── vercel.json                    # Monorepo Vercel serverless deployment configuration
+└── README.md                      # Comprehensive LegalAId PRO project documentation
+```
+
+---
+
 ## 🌟 Key Features
 
 - **🏛️ 24 Statutory Legal Categories**: Automated classification and plain-language rights explanation across Consumer, Tenant, Labor, Real Estate, Cyber, Financial, IP, Family, Property, Tax, and Contractual laws.
@@ -89,6 +147,23 @@ flowchart LR
 - **📄 100% Editable Legal Notice Generator**: Live real-time PDF paper blueprint preview with custom tone configurations (Formal Statutory Notice vs. Diplomatic Requisition) and instant custom PDF generation.
 - **🤖 Grounded RAG Statutory Q&A Assistant**: Context-aware RAG vector search providing grounded answers with exact Bare Act section citations and Supreme Court precedents.
 - **✨ Executive Motion Dashboard**: Modular React component architecture powered by `framer-motion` staggered animations, active tab sliding pills, and glassmorphic UI aesthetics.
+
+---
+
+## 🔌 API Endpoints Reference
+
+| Method | Endpoint | Purpose | Stage | Request Payload / Params |
+| :--- | :--- | :--- | :--- | :--- |
+| `GET` | `/api/health` | DB & LLM connectivity healthcheck | System | `None` |
+| `POST` | `/api/intake` | Submit raw legal problem description | Stage 1 | `{ "text": "...", "language": "hi/en" }` |
+| `POST` | `/api/classify` | Auto-classify domain & issue type | Stage 2a | `{ "intake_id": "UUID" }` |
+| `GET` | `/api/intake/{id}/entities` | Get extracted entities (amounts, dates, names) | Stage 2c | `intake_id` (Path) |
+| `PUT` | `/api/intake/{id}/entities` | Confirm / edit extracted entities | Stage 2c | `{ "entities": [{ "label": "...", "value": "..." }] }` |
+| `POST` | `/api/explain` | Generate plain-language rights & citations | Stage 4 | `{ "intake_id": "UUID" }` |
+| `POST` | `/api/document/generate` | Render formal legal notice draft PDF | Stage 6 | `{ "intake_id": "UUID", "tone": "formal/request" }` |
+| `GET` | `/api/document/{id}/download`| Download generated legal notice PDF | Stage 7 | `document_id` + signed token |
+| `POST` | `/api/chat` | RAG Statutory Q&A follow-up assistant | Q&A | `{ "message": "...", "session_id": "UUID" }` |
+| `POST` | `/api/tts` | Dual-engine Hindi/English Text-to-Speech proxy | TTS | `{ "text": "...", "lang": "hi/en" }` |
 
 ---
 
@@ -123,6 +198,27 @@ flowchart LR
 
 ---
 
+## 🔑 Environment Variables Configuration
+
+Create a `.env` file in the `backend/` directory:
+
+```env
+# LLM Provider API Keys
+GROQ_API_KEY=gsk_your_groq_api_key_here
+GEMINI_API_KEY=AIzaSy_your_gemini_api_key_here
+
+# Database Connection (SQLite default, PostgreSQL supported)
+DATABASE_URL=sqlite+aiosqlite:///./legalaid.db
+# For PostgreSQL: postgresql+asyncpg://user:password@localhost:5432/legalaid
+
+# Application Security & Logging
+SECRET_KEY=128_bit_random_cryptographic_secret
+LOG_LEVEL=INFO
+ENVIRONMENT=development
+```
+
+---
+
 ## 📊 Machine Learning Model Metrics
 
 - **Dataset Size**: 828 samples across 25 legal classes.
@@ -134,11 +230,35 @@ flowchart LR
 
 ---
 
-## 🏗️ Tech Stack & Architecture
+## 🧪 Testing & Quality Assurance
+
+Run the automated test suite from the `backend/` directory:
+
+```bash
+# Run end-to-end pipeline Pytest suite
+cd backend
+pytest tests/ -v
+
+# Train and evaluate ML classifier
+python -m app.ml.train_classifier
+```
+
+---
+
+## 🛡️ Security, Privacy & Compliance
+
+- **Anonymous-First Sessions**: Users can start sessions without mandatory account registration using 128-bit HTTP-only secure cookies (`SEC-01`).
+- **DPDP Act 2023 Compliance**: Data is retained strictly for current session processing and user-initiated notice rendering. Full session wipe available on request (`SEC-04`).
+- **PII Log Masking**: Raw user problem inputs, names, phone numbers, and financial transaction amounts are strictly excluded from structured application logs.
+- **Mandatory Legal Disclaimer**: Every generated PDF legal notice contains a non-modifiable statutory disclaimer clarifying that the document is an automated draft requiring advocate review before filing.
+
+---
+
+## 🏗️ Tech Stack
 
 - **Frontend**: React 18, Vite, Framer Motion, Lucide Icons, Vanilla CSS Design System.
-- **Backend API**: Python 3.13, FastAPI, Uvicorn, SQLAlchemy.
-- **ML / AI NLP**: Scikit-Learn (TF-IDF + LogisticRegression), Sentence-Transformers RAG Embeddings (`paraphrase-multilingual-MiniLM-L12-v2`), ReportLab / WeasyPrint PDF Engine.
+- **Backend API**: Python 3.13, FastAPI, Uvicorn, SQLAlchemy 2.0 (async).
+- **ML / AI NLP**: Scikit-Learn (TF-IDF + LogisticRegression), Sentence-Transformers (`paraphrase-multilingual-MiniLM-L12-v2`), ReportLab / WeasyPrint PDF Engine.
 - **Database**: SQLite / PostgreSQL + `pgvector` with Bare Act Knowledge Base Seeding.
 
 ---
@@ -194,7 +314,7 @@ LegalAId PRO is pre-configured for one-click deployment on **Vercel** via [`verc
 1. **Push Repository to GitHub**:
    ```bash
    git add .
-   git commit -m "docs: update README with 7-stage visual workflow diagram and architecture flowcharts"
+   git commit -m "docs: update README with folder structure, API endpoints, and security details"
    git push origin main
    ```
 
