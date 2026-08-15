@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Scale, Sparkles, ShieldCheck, Info, X } from 'lucide-react';
+import { Scale, Sparkles, ShieldCheck, Info, X, ExternalLink } from 'lucide-react';
 import HighlightText from './HighlightText';
 
 export default function ApplicableProvisionsCard({ kbEntry, language = 'en', enableHighlight = true }) {
@@ -75,7 +75,7 @@ export default function ApplicableProvisionsCard({ kbEntry, language = 'en', ena
       </div>
 
       {/* Bottom Action Pill Button */}
-      <div className="provisions-footer">
+      <div className="provisions-footer" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
         <motion.button
           className="why-showing-btn"
           onClick={() => setShowModal(true)}
@@ -85,6 +85,24 @@ export default function ApplicableProvisionsCard({ kbEntry, language = 'en', ena
           <ShieldCheck size={16} className="shield-icon" />
           <span>{whyBtnText}</span>
         </motion.button>
+
+        <span
+          className="source-link-pill"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '6px',
+            fontSize: '0.82rem',
+            color: '#10b981',
+            padding: '6px 12px',
+            borderRadius: '20px',
+            background: 'rgba(16, 185, 129, 0.1)',
+            border: '1px solid rgba(16, 185, 129, 0.25)',
+            fontWeight: 500
+          }}
+        >
+          <span>{isHi ? 'पूर्वानुमान स्रोत: मूल अधिनियम ज्ञानकोश' : 'Prediction Source: Bare Act KB'}</span>
+        </span>
       </div>
 
       {/* Interactive Explanation Modal */}
@@ -125,8 +143,8 @@ export default function ApplicableProvisionsCard({ kbEntry, language = 'en', ena
                   <Info size={16} className="icon-accent-blue" />
                   <span>
                     {isHi
-                      ? `अधिनियम स्रोत: भारत का राजपत्र एवं आधिकारिक मूल अधिनियम ज्ञानकोश।`
-                      : `Source: Official Bare Act Knowledge Base (${kbEntry.law_code || 'Statute Code'}). Jurisdiction: ${kbEntry.remedy_forum}.`
+                      ? `अधिनियम स्रोत: भारत का राजपत्र एवं आधिकारिक मूल अधिनियम ज्ञानकोश (${kbEntry.official_source_name || kbEntry.act_name})।`
+                      : `Prediction Source: Official Bare Act Knowledge Base (${kbEntry.official_source_name || kbEntry.law_code || 'Statute Code'}). Forum: ${kbEntry.remedy_forum}.`
                     }
                   </span>
                 </div>

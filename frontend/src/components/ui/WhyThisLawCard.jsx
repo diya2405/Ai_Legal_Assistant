@@ -97,19 +97,8 @@ export default function WhyThisLawCard({ whyThisLaw, kbEntry, language = 'en' })
       <div className="why-law-footer">
         <div className="source-link-group">
           <CheckCircle2 size={16} className="icon-emerald" />
-          <span>{sourceLabel} <strong>{sourceName}</strong></span>
+          <span>{sourceLabel} <strong>{sourceName}</strong> ({isHi ? 'सत्यापित मॉडल पूर्वानुमान' : 'Deterministic Grounded Prediction'})</span>
         </div>
-        {sourceUrl && (
-          <a 
-            href={sourceUrl} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="btn-source-link"
-          >
-            <span>{isHi ? 'आधिकारिक स्रोत देखें' : 'View Official Government Source'}</span>
-            <ExternalLink size={14} />
-          </a>
-        )}
       </div>
     </motion.div>
   );

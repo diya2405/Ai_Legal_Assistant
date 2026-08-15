@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FileText, RefreshCw, FileCheck, CheckCircle2, Download, Highlighter, Save } from 'lucide-react';
+import { FileText, RefreshCw, FileCheck, CheckCircle2, Download, Highlighter } from 'lucide-react';
 import HighlightText from '../ui/HighlightText';
 import { TRANSLATIONS } from '../../data/translations';
 
@@ -89,7 +89,6 @@ export default function NoticeTab({
   language = 'en'
 }) {
   const [enableHighlight, setEnableHighlight] = useState(true);
-  const [saveSuccess, setSaveSuccess] = useState(false);
 
   if (!kbEntry) return null;
 
@@ -106,11 +105,6 @@ export default function NoticeTab({
     const draft = generateDraftForTone(newTone, kbEntry, isHi);
     setCustomSubject(draft.subject);
     setCustomBody(draft.body);
-  };
-
-  const handleSaveDraft = () => {
-    setSaveSuccess(true);
-    setTimeout(() => setSaveSuccess(false), 2500);
   };
 
   return (
@@ -248,17 +242,6 @@ export default function NoticeTab({
             </div>
 
             <div className="editor-actions-row" style={{ display: 'flex', gap: '0.75rem' }}>
-              <motion.button 
-                type="button"
-                className="btn-secondary" 
-                onClick={handleSaveDraft}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Save size={16} />
-                {saveSuccess ? (isHi ? 'सहेजा गया!' : 'Draft Saved!') : (isHi ? 'ड्राफ्ट सहेजें' : 'Save Draft')}
-              </motion.button>
-
               <motion.button 
                 className="btn-primary btn-notice-generate glow-effect" 
                 onClick={onGenerateDoc}

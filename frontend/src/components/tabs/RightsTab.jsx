@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Scale, Sparkles, Copy, Check, ShieldCheck, AlertTriangle, Highlighter, Volume2, VolumeX } from 'lucide-react';
+import { Scale, Sparkles, Copy, Check, ShieldCheck, AlertTriangle, Highlighter, Volume2, VolumeX, ExternalLink } from 'lucide-react';
 import FormattedText from '../ui/FormattedText';
 import ApplicableProvisionsCard from '../ui/ApplicableProvisionsCard';
 import DocumentsHelpCard from '../ui/DocumentsHelpCard';
@@ -128,59 +128,7 @@ export default function RightsTab({
         </label>
       </div>
 
-      {/* 1. Image 1 Reference Component: Applicable Legal Provisions */}
-      <ApplicableProvisionsCard 
-        kbEntry={kbEntry} 
-        language={language} 
-        enableHighlight={enableHighlight} 
-      />
-
-      {/* 2. "Why This Law?" Fact-to-Law Matching Transparency Feature */}
-      <WhyThisLawCard 
-        whyThisLaw={whyThisLaw} 
-        kbEntry={kbEntry} 
-        language={language} 
-      />
-
-      {/* 3. Official Bare Act Law Quoted with Keyword Highlighting */}
-      <motion.div 
-        className="glass-card panel-card bare-act-quote-card"
-        whileHover={{ boxShadow: '0 8px 30px rgba(0, 0, 0, 0.3)' }}
-      >
-        <div className="panel-header">
-          <div className="panel-title">
-            <Scale size={22} className="icon-accent-gold" />
-            {t.statutoryQuoteTitle}
-          </div>
-          <span className="badge badge-code">
-            {kbEntry.act_name} ({kbEntry.section_number})
-          </span>
-        </div>
-
-        <div className="official-law-quote-box">
-          <div className="quote-header-tag">{t.verbatimTag}</div>
-          <p className="law-quote-text">
-            "<HighlightText text={kbEntry.section_text_plain} enableHighlight={enableHighlight} />"
-          </p>
-        </div>
-
-        <div className="statute-meta-footer">
-          <span>
-            <strong>{t.filingForum}</strong>{' '}
-            <HighlightText text={kbEntry.remedy_forum} enableHighlight={enableHighlight} />
-          </span>
-          <span>
-            <strong>{t.limitationPeriod}</strong>{' '}
-            <HighlightText text={kbEntry.limitation_period} enableHighlight={enableHighlight} />
-          </span>
-          <span>
-            <strong>{t.statutoryCode}</strong>{' '}
-            <HighlightText text={kbEntry.law_code || 'Enacted Law'} enableHighlight={enableHighlight} />
-          </span>
-        </div>
-      </motion.div>
-
-      {/* 4. Simplified Plain-Language Explanation */}
+      {/* 1. Simplified Plain-Language Explanation (Summary Card) */}
       <motion.div className="glass-card panel-card hero-explanation-panel">
         <div className="panel-header">
           <div className="panel-title">
@@ -231,6 +179,58 @@ export default function RightsTab({
 
         <div className="panel-footer-meta">
           <span>{t.kbSource}</span>
+        </div>
+      </motion.div>
+
+      {/* 2. Applicable Legal Provisions */}
+      <ApplicableProvisionsCard 
+        kbEntry={kbEntry} 
+        language={language} 
+        enableHighlight={enableHighlight} 
+      />
+
+      {/* 3. "Why This Law?" Fact-to-Law Matching Transparency Feature */}
+      <WhyThisLawCard 
+        whyThisLaw={whyThisLaw} 
+        kbEntry={kbEntry} 
+        language={language} 
+      />
+
+      {/* 4. Official Bare Act Law Quoted with Keyword Highlighting */}
+      <motion.div 
+        className="glass-card panel-card bare-act-quote-card"
+        whileHover={{ boxShadow: '0 8px 30px rgba(0, 0, 0, 0.3)' }}
+      >
+        <div className="panel-header">
+          <div className="panel-title">
+            <Scale size={22} className="icon-accent-gold" />
+            {t.statutoryQuoteTitle}
+          </div>
+          <span className="badge badge-code">
+            {kbEntry.act_name} ({kbEntry.section_number})
+          </span>
+        </div>
+
+        <div className="official-law-quote-box">
+          <div className="quote-header-tag">{t.verbatimTag}</div>
+          <p className="law-quote-text">
+            "<HighlightText text={kbEntry.section_text_plain} enableHighlight={enableHighlight} />"
+          </p>
+        </div>
+
+        <div className="statute-meta-footer">
+          <span>
+            <strong>{t.filingForum}</strong>{' '}
+            <HighlightText text={kbEntry.remedy_forum} enableHighlight={enableHighlight} />
+          </span>
+          <span>
+            <strong>{t.limitationPeriod}</strong>{' '}
+            <HighlightText text={kbEntry.limitation_period} enableHighlight={enableHighlight} />
+          </span>
+          <span>
+            <strong>{t.statutoryCode}</strong>{' '}
+            <HighlightText text={`${kbEntry.official_source_name || 'India Code Bare Act'} (${kbEntry.law_code || 'Enacted Law'})`} enableHighlight={enableHighlight} />
+          </span>
         </div>
       </motion.div>
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Clock } from 'lucide-react';
+import { MapPin, Clock, ShieldCheck } from 'lucide-react';
 import { TRANSLATIONS } from '../data/translations';
 
 const gridVariants = {
@@ -22,6 +22,9 @@ export default function StatCards({ kbEntry, language = 'en' }) {
   if (!kbEntry) return null;
 
   const t = TRANSLATIONS[language]?.statCards || TRANSLATIONS.en.statCards;
+  const isHi = language === 'hi';
+
+  const sourceAttribution = kbEntry.official_source_name || (kbEntry.law_code && kbEntry.law_code !== 'N/A' ? kbEntry.law_code : 'Bare Act Database');
 
   return (
     <motion.div 
@@ -37,7 +40,9 @@ export default function StatCards({ kbEntry, language = 'en' }) {
       >
         <div className="stat-label">{t.statuteAct}</div>
         <div className="stat-value text-gold">{kbEntry.act_name}</div>
-        <div className="stat-subtext">{t.statutoryCode}</div>
+        <div className="stat-subtext">
+          {t.statutoryCode}: {sourceAttribution}
+        </div>
       </motion.div>
 
       <motion.div 
@@ -47,7 +52,10 @@ export default function StatCards({ kbEntry, language = 'en' }) {
       >
         <div className="stat-label">{t.sectionCitation}</div>
         <div className="stat-value font-mono text-pink">{kbEntry.section_number}</div>
-        <div className="stat-subtext">{t.verifiedCode}</div>
+        <div className="stat-subtext" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+          <ShieldCheck size={12} color="#ec4899" />
+          <span>{isHi ? 'मॉडल पूर्वानुमान: मूल कानून ज्ञानकोश' : 'Prediction Source: Bare Act Knowledge Base'}</span>
+        </div>
       </motion.div>
 
       <motion.div 
